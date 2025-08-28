@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>2025_Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Portfolio</a>
+				<nav>
+					<ul>
+						<li><a href="01.html"class=>&larr; Project_1</a></li>
+						<li><a href="02.html"class="active">Project_2</a></li>
+						<li><a href="03.html">Project_3 &rarr;</a></li>
+
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner" style="text-align: center;">
+					<h2>"조직의 경계를 보다"<br>FTU Segmentation Kaggle 프로젝트</h2>
+					 <!-- <a href="pdf\MUSINSA_PROJECT.pdf" download="MUSINSA_PROJECT_윤소미.pdf">📄 PDF 파일 다운로드<br></a>
+					 <span class="image fit"><img src="images\musinsa_mainE.PNG" alt="" /></span> -->
+					 <!-- <a href="https://github.com/YoonSSom/Korean_OCR"><img src="images\ocr_mainE.jpg"></a> -->
+					 <a class="image fit" href="https://heather-factory-172.notion.site/2744de04b5e847c181a60dfc1e2f9906?p=19d0175b71424dacaafea81b8d598872&pm=s" download> <img src="images\contest_mainE.jpg" alt="PDF 다운로드">
+					</a>
+					 <h1 class="major"></h1>
+
+						<h2><strong>🛠 사용 기술</strong><br></h2>
+						S
+						언어 & 프레임워크: Python, PyTorch, MMsegmentation, FastAI<br>
+						모델: ConvNeXt, ResNeSt, EfficientNet, CoaT, DeepLabV3+<br>
+						툴 & 라이브러리: OpenCV, Albumentations, Numpy, Scikit-learn<br>
+						기법: Data Augmentation (Double Sampling, Copy & Paste, Stain Transfer), Inference Ensemble, Slide Inference<br>
+						</strong>
+						<div class="spacer"></div>
+
+						<h2><strong>📌 프로젝트 개요<br></strong></h2>
+						목표: 5개 기관의 주요 기능 세포조직(FTUs)을 Segmentation<br>
+						배경: 의료 영상 데이터를 기반으로 한 세포 단위 Segmentation 정확도 향상<br>
+						기간: 2022.08.14 ~ 2022.09.22<br>
+						참여 인원: 4명 (Kaggle Competition 팀 참가)<br><div class="spacer"></div>
+
+						<h2><strong>🧩 주요 역할<br></strong></h2>
+						- Training 진행 및 Follow-up (MMsegmentation, FastAI, CoaT 등 비교)<br>
+						- Inference Ensemble 직접 구현 (Multi-class MMseg + ResNeSt 앙상블)<br>
+						- ResNeSt에 Slide 방식 Inference 기법 확장 적용<br>
+						- 데이터 불균형 해소를 위한 증강 설계 및 실험 주도<br>
+						- 팀원 업무 분배 및 독려 (중도 포기 방지 및 프로젝트 완주 기여)<br><div class="spacer"></div>
+
+						<h2><strong>🧠 모델링 및 기술적 접근<br></strong></h2>
+						<strong>Data Augmentation</strong><br>
+						- Double Sampling (희소 클래스 보강)<br>
+						- Copy & Paste (의료 영상 증강 논문 기반)<br>
+						- Stain Transfer (HuMap vs HPA 염색 차이 보정)<br>
+						- Tile 기반 데이터 구성 (256, 384, 512, 768 등 멀티 사이즈)<br><br>
+						<strong>모델링</strong><br>
+						- ConvNeXt: Base~XL 전 범위 실험, 최종 선정<br>
+						- EfficientNet (b5~b7), ResNeSt-256, CoaT, Beit, DeepLabV3+, K-Net 등 다양한 모델 비교<br><br>
+						<strong>Inference & Ensemble</strong><br>
+						- MMSegmentation + ResNeSt 앙상블 → 성능 향상<br>
+						- ResNeSt Slide Inference 구현 (Whole/Slide 개념 확장)<br>
+						- Resize 과정에서 정보 손실 최소화 (학습 사이즈 배수 적용)<br><div class="spacer"></div>
+
+
+						<h2><strong>🔍 실험 결과 및 분석<br></strong></h2>
+						- ConvNeXt 모델이 가장 안정적이고 높은 성능을 보임<br>
+						- Slide Inference 적용 시 ResNeSt 성능 향상 확인<br>
+						- Multi-class 앙상블로 Public/Private 리더보드 점수 상승<div class="spacer"></div>
+
+						<h2><strong>✅ 주요 성과<br></strong></h2>
+						- Kaggle Leaderboard: Private 0.76 / Public 0.74<br>
+						- 데이터 증강 및 Slide Inference 전략으로 성능 극대화<br>
+						- 파이프라인 표준화 및 재현성 확보<br>
+						- 팀 프로젝트 완주 (중도 포기 인원 발생 상황에서도 끝까지 수행)<br><div class="spacer"></div>
+
+						<h2><strong>💡 프로젝트를 통해 얻은 인사이트<br></strong></h2>
+						- 의료 영상 데이터의 클래스 불균형 및 염색 편차 문제 해결 전략 체득
+						- Ensemble + Inference 전략의 중요성 및 실제 성능 개선 효과 검증<br>
+						- 다양한 모델 실험을 통한 아키텍처별 강점/한계 비교 경험<br>
+						- 단순 기술 구현을 넘어 팀워크 유지 및 프로젝트 관리 역량의 필요성 인식<br><div class="spacer"></div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li> ysomi010212@gmail.com.</li><li>Design: <a href="https://github.com/YoonSoM?tab=overview&from=2024-12-01&to=2024-12-31">Yoonsomi</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

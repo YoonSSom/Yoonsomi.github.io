@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>2025_Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Portfolio</a>
+				<nav>
+					<ul>
+						<li><a href="03.html"class=>&larr; Project_3</a></li>
+						<li><a href="04.html"class="active">Project_4</a></li>
+						<li><a href="05.html">Project_5 &rarr;</a></li>
+
+				</nav>
+			</header>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner" style="text-align: center;">
+					<h2>눈을 감으면 울리는 알람<br>실시간 감지 시스템<br></h2>
+					 <!-- <a href="pdf\MUSINSA_PROJECT.pdf" download="MUSINSA_PROJECT_윤소미.pdf">📄 PDF 파일 다운로드<br></a>
+					 <span class="image fit"><img src="images\musinsa_mainE.PNG" alt="" /></span> -->
+					 <a class="image fit" href="pdf\졸음운전_YSM.pdf" download> <img src="images\졸은운전_mainE.jpg" alt="PDF 다운로드">
+					</a>
+					 <h1 class="major"></h1>
+
+						<h2><strong>🛠 사용 기술</strong><br></h2>
+						<strong>
+							언어: Python<br>
+							라이브러리: OpenCV, Numpy, playsound<br>
+							모델: YOLOv4 (Darknet)<br>
+							기법: 실시간 객체 탐지, 라벨링 보정, 채널 정규화, Beep 알림 구현
+						</strong>
+						<div class="spacer"></div>
+
+						<h2><strong>📌 프로젝트 개요<br></strong></h2>
+						YOLOv4 모델과 웹캠 입력을 기반으로, 사용자의 눈이 감겼는지 혹은 떠있는지를 실시간으로 인식하는 시스템을 개발했습니다.<br>
+						눈 감김이 감지되면 경고음(Beep)이 울리도록 하여, 피로 누적 혹은 졸음을 사전에 방지할 수 있도록 설계했습니다.
+						<div class="spacer"></div>
+
+						<h2><strong>🧩 주요 역할<br></strong></h2>
+						- 학습용 이미지 데이터 전처리 및 라벨링 오류 수정<br>
+						- 1채널 이미지를 YOLO 학습용 3채널로 자동 변환<br>
+						- Darknet 환경 구축 및 YOLOv4 모델 학습 수행<br>
+						- 실시간 웹캠 영상 처리 및 객체 탐지 구현<br>
+						- 눈 감김 상태에서 Beep 소리 출력 기능 시도<br>
+						- 팀원 간 역할 분담 및 진행 일정 조율
+						<div class="spacer"></div>
+
+						<h2><strong>🧠 YOLO 모델링 및 탐지 구현<br></strong></h2>
+						- YOLOv4 구조 이해 및 구성 요소 튜닝(anchor box, cfg 설정 등)<br>
+						- .json에서 좌표 정보를 추출하여 YOLO 형식의 라벨로 자동 변환<br>
+						- 웹캠에서 프레임을 실시간으로 캡처하고, 탐지 결과를 매 프레임마다 시각화<br>
+						- 눈이 감긴 경우, 알림음을 발생시키는 이벤트 트리거 설계
+						<div class="spacer"></div>
+
+						<h2><strong>🔍 성능 및 결과<br></strong></h2>
+						- 눈의 감김/뜸 상태를 실시간으로 정확히 감지 가능<br>
+						- YOLOv4 실무 적용 경험 확보 및 후속 버전(YOLOv5/YOLOv7) 확장 준비<br>
+						- 개인 학습 우수자로 선정되어 프로젝트 기술력을 인정받음
+						<div class="spacer"></div>
+
+						<h2><strong>✅ 주요 성과<br></strong></h2>
+						- 실시간 객체 탐지 모델 개발 성공<br>
+						- 모델 기반 피드백 시스템(Beep 알람)의 구현 경험 확보<br>
+						- YOLO 구조 및 Label 포맷 전처리 자동화 등 실무 능력 향상
+						<div class="spacer"></div>
+
+						<h2><strong>💡 프로젝트를 통해 얻은 인사이트<br></strong></h2>
+						딥러닝 모델을 실시간 환경에 적용하는 데 있어, 단순한 학습 정확도 외에도 프레임 지연, 채널 처리, 라벨 정합성 등 다양한 요소들이 중요함을 체감했습니다.<br>
+						실제 작동하는 서비스를 만드는 과정을 통해 YOLO에 대한 구조적 이해뿐 아니라, 실시간 시스템 설계와 디버깅 역량을 크게 향상시킬 수 있었습니다.
+						<div class="spacer"></div>증식 기법을 적극 활용하며 자연어 처리(NLP)의 실무적 응용 능력을 크게 향상시킬 수 있었습니다.<div class="spacer"></div>
+
+						
+
+				</div>
+			</section>
+
+<!-- Footer -->
+	<footer id="footer" class="wrapper alt">
+		<div class="inner">
+			<ul class="menu">
+				<li> ysomi010212@gmail.com.</li><li>Design: <a href="https://github.com/YoonSoM?tab=overview&from=2024-12-01&to=2024-12-31">Yoonsomi</a></li>
+			</ul>
+		</div>
+	</footer>
+
+<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>

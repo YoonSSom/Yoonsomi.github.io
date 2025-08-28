@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>2025_Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Portfolio</a>
+				<nav>
+					<ul>
+						<li><a href="04.html"class=>&larr; Project_4</a></li>
+						<li><a href="05.html"class="active">Project_5</a></li>
+						<li><a href="06.html">Project_6 &rarr;</a></li>
+
+				</nav>
+			</header>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner" style="text-align: center;">
+					<h2>"픽셀 하나 놓치지 않는 시선"<br>Semantic Segmentation 기반 파손 인식</h2>
+					 <!-- <a href="pdf\MUSINSA_PROJECT.pdf" download="MUSINSA_PROJECT_윤소미.pdf">📄 PDF 파일 다운로드<br></a>
+					 <span class="image fit"><img src="images\musinsa_mainE.PNG" alt="" /></span> -->
+					 <a class="image fit" href="pdf\Car_Damage_YSM.pdf" download> <img src="images\쏘카pdfE.jpg" alt="PDF 다운로드">
+					</a>
+					 <h1 class="major"></h1>
+
+						<h2><strong>🛠 사용 기술</strong><br></h2>
+						<strong>
+						언어: Python<br>
+						라이브러리: PyTorch, Albumentations, NumPy, Pillow, Matplotlib<br>
+						모델: DeepLabV3<br>
+						툴 & 플랫폼: VIA Tool, Weights & Biases, AWS EC2/S3<br>
+						</strong>
+						<div class="spacer"></div>
+
+						<h2><strong>📌 프로젝트 개요<br></strong></h2>
+						자동차 외관 이미지로부터 파손 부위를 자동으로 탐지하는 Semantic Segmentation 프로젝트입니다.<br>
+						DeepLabV3 모델과 자체 구축한 이미지 데이터셋을 활용해, 파손 영역(스크래치/찌그러짐 등)을 픽셀 단위로 분류하고 시각화했습니다.<div class="spacer"></div>
+
+						<h2><strong>🧩 주요 역할<br></strong></h2>
+						- 웹에서 자동차 외관 이미지 수집 및 직접 촬영<br>
+						- VIA 툴을 이용해 Segmentation용 데이터 라벨링 수행<br>
+						- Albumentations를 사용해 다양한 오프라인 Augmentation 적용<br>
+						- Binary & Multi-class segmentation 실험 병행<br>
+						- DeepLabV3 모델 튜닝 및 fine-tuning 수행<br>
+						- 학습 로그를 W&B로 관리하고 시각화<div class="spacer"></div>
+
+						<h2><strong>🧠 모델링 및 기술적 접근<br></strong></h2>
+						- DeepLabV3 Pretrained 모델 기반으로 Reference 코드 수정<br>
+						- 하이퍼파라미터 튜닝 및 best checkpoint 저장<br>
+						- 불균형한 클래스 대응을 위해 class weight 보정 및 data balancing 적용<br>
+						- 학습 후 예측 이미지를 시각화하여 실제 파손 탐지 성능을 정성적으로 평가<div class="spacer"></div>
+
+						<h2><strong>🔍 실험 결과 및 분석<br></strong></h2>
+						- 실제 이미지에서 파손 부위를 정확히 분할하여 시각적 출력 가능<br>
+						- 소량의 데이터셋을 증식하여도 Semantic segmentation 성능을 일정 수준 유지<br>
+						- Augmentation 기법의 중요성과 효과를 체감하며 활용 경험 확대<div class="spacer"></div>
+
+						<h2><strong>✅ 주요 성과<br></strong></h2>
+						- 실제 자동차 파손 부위 별 탐지 성공 및 시각화<br>
+						- Segmentation 모델 적용 및 튜닝 경험 확보<br>
+						- 학습-추론-시각화 전체 파이프라인 경험<div class="spacer"></div>
+
+						<h2><strong>💡 프로젝트를 통해 얻은 인사이트<br></strong></h2>
+						직접 데이터셋을 구축하고 세분화된 클래스까지 고려한 Segmentation을 진행하며 CV 프로젝트의 A to Z를 경험했습니다.<br>
+						특히 부족한 데이터 환경에서도 증식을 통한 성능 향상 가능성을 체감했고, 추후 실서비스 연계 가능성까지 고려한 프로젝트로 발전시켰습니다.<div class="spacer"></div>
+				</div>
+			</section>
+
+<!-- Footer -->
+	<footer id="footer" class="wrapper alt">
+		<div class="inner">
+			<ul class="menu">
+				<li> ysomi010212@gmail.com.</li><li>Design: <a href="https://github.com/YoonSoM?tab=overview&from=2024-12-01&to=2024-12-31">Yoonsomi</a></li>
+			</ul>
+		</div>
+	</footer>
+
+<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>
