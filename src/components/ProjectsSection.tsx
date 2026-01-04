@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, X, Calendar, Users, Wrench } from "lucide-react";
+import { ExternalLink, Calendar, Users, Wrench, CheckCircle2, Circle } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -7,6 +7,12 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { Progress } from "@/components/ui/progress";
+
+interface TimelineStep {
+  label: string;
+  completed: boolean;
+}
 
 interface Project {
   id: string;
@@ -19,6 +25,8 @@ interface Project {
   period: string;
   team: string;
   tools: string[];
+  progress: number;
+  timeline: TimelineStep[];
 }
 
 const projects: Project[] = [
@@ -37,12 +45,20 @@ const projects: Project[] = [
     period: "2024.01 - 2024.03",
     team: "프론트엔드 개발 (1인)",
     tools: ["React", "TypeScript", "Tailwind CSS", "전자서명 API"],
+    progress: 100,
+    timeline: [
+      { label: "기획 및 요구사항 분석", completed: true },
+      { label: "UI/UX 설계", completed: true },
+      { label: "프론트엔드 개발", completed: true },
+      { label: "API 연동", completed: true },
+      { label: "테스트 및 배포", completed: true },
+    ],
   },
   {
     id: "commercial",
     title: "상업적 웹사이트 운영",
     description: "직접 기획하고 개발한 상업용 웹사이트를 통해 제품(또는 서비스)을 홍보하고 실질적인 판매/문의 유입을 목표로 운영.",
-    fullDescription: "실제 수익 창출을 목표로 상업용 웹사이트를 기획부터 개발, 운영까지 전 과정을 직접 진행했습니다. SEO 최적화, Google Analytics를 활용한 사용자 행동 분석, A/B 테스트를 통한 전환율 개선 등 마케팅 관점에서의 개발을 경험했습니다. 실제 고객 문의와 판매로 이어지는 성과를 달성하며, 기술과 비즈니스를 연결하는 역량을 키웠습니다.",
+    fullDescription: "실제 수익 창출을 목표로 상업용 웹사이트를 기획부터 개발, 운영까지 전 과정을 직접 진행했습니다. SEO 최적화, Google Analytics를 활용한 사용자 행동 분석, A/B 테스트를 통한 전환율 개선 등 마케팅 관점에서의 개발을 경험했습니다. 실제 고객 문의와 판매로 이어지는 성과를 달성하며, 술과 비즈니스를 연결하는 역량을 키웠습니다.",
     tags: [
       { label: "웹 개발", color: "bg-green-500/20 text-green-400" },
       { label: "기획", color: "bg-blue-500/20 text-blue-400" },
@@ -52,6 +68,14 @@ const projects: Project[] = [
     period: "2023.06 - 현재",
     team: "1인 운영",
     tools: ["React", "Next.js", "Google Analytics", "SEO"],
+    progress: 80,
+    timeline: [
+      { label: "아이디어 기획", completed: true },
+      { label: "웹사이트 개발", completed: true },
+      { label: "SEO 최적화", completed: true },
+      { label: "마케팅 및 운영", completed: true },
+      { label: "지속적 개선", completed: false },
+    ],
   },
   {
     id: "medical-segmentation",
@@ -67,6 +91,14 @@ const projects: Project[] = [
     period: "2022.09 - 2022.12",
     team: "팀 프로젝트 (3인)",
     tools: ["Python", "PyTorch", "U-Net", "OpenCV"],
+    progress: 100,
+    timeline: [
+      { label: "데이터 분석", completed: true },
+      { label: "모델 설계", completed: true },
+      { label: "학습 및 실험", completed: true },
+      { label: "앙상블 전략", completed: true },
+      { label: "제출 및 평가", completed: true },
+    ],
   },
   {
     id: "ocr",
@@ -82,6 +114,14 @@ const projects: Project[] = [
     period: "2022.03 - 2022.06",
     team: "팀 프로젝트 (4인)",
     tools: ["Python", "Tesseract OCR", "OpenCV", "Google Translate API"],
+    progress: 100,
+    timeline: [
+      { label: "요구사항 정의", completed: true },
+      { label: "OCR 엔진 연동", completed: true },
+      { label: "번역 API 구현", completed: true },
+      { label: "UI 개발", completed: true },
+      { label: "테스트", completed: true },
+    ],
   },
   {
     id: "drowsy-detection",
@@ -97,6 +137,14 @@ const projects: Project[] = [
     period: "2021.09 - 2021.12",
     team: "팀 프로젝트 (3인)",
     tools: ["Python", "YOLOv4", "Darknet", "OpenCV"],
+    progress: 100,
+    timeline: [
+      { label: "데이터 수집", completed: true },
+      { label: "모델 학습", completed: true },
+      { label: "실시간 처리 최적화", completed: true },
+      { label: "경고 시스템 구현", completed: true },
+      { label: "데모 및 발표", completed: true },
+    ],
   },
   {
     id: "socar",
@@ -111,6 +159,13 @@ const projects: Project[] = [
     period: "2022.01 - 2022.02",
     team: "팀 프로젝트 (5인)",
     tools: ["Python", "PyTorch", "DeepLab V3+", "OpenCV"],
+    progress: 100,
+    timeline: [
+      { label: "데이터 전처리", completed: true },
+      { label: "모델 구현", completed: true },
+      { label: "학습 및 튜닝", completed: true },
+      { label: "성능 평가", completed: true },
+    ],
   },
   {
     id: "musinsa",
@@ -126,6 +181,14 @@ const projects: Project[] = [
     period: "2022.04 - 2022.06",
     team: "팀 프로젝트 (4인)",
     tools: ["Python", "KoBERT", "PyTorch", "Pandas"],
+    progress: 100,
+    timeline: [
+      { label: "데이터 수집", completed: true },
+      { label: "데이터 증식", completed: true },
+      { label: "모델 학습", completed: true },
+      { label: "결과 시각화", completed: true },
+      { label: "인사이트 도출", completed: true },
+    ],
   },
 ];
 
@@ -277,6 +340,39 @@ const ProjectsSection = () => {
                       {tool}
                     </span>
                   ))}
+                </div>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="mt-6">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-sm font-semibold text-muted-foreground">진행률</h4>
+                  <span className="text-sm font-bold text-primary">{selectedProject.progress}%</span>
+                </div>
+                <Progress value={selectedProject.progress} className="h-2" />
+              </div>
+
+              {/* Timeline */}
+              <div className="mt-6">
+                <h4 className="text-sm font-semibold mb-4 text-muted-foreground">프로젝트 타임라인</h4>
+                <div className="relative">
+                  {/* Timeline line */}
+                  <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-border" />
+                  
+                  <div className="space-y-3">
+                    {selectedProject.timeline.map((step, index) => (
+                      <div key={index} className="flex items-center gap-3 relative">
+                        {step.completed ? (
+                          <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 bg-card z-10" />
+                        ) : (
+                          <Circle className="w-6 h-6 text-muted-foreground flex-shrink-0 bg-card z-10" />
+                        )}
+                        <span className={`text-sm ${step.completed ? 'text-foreground' : 'text-muted-foreground'}`}>
+                          {step.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
