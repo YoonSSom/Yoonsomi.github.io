@@ -4,6 +4,13 @@ import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Buil
 // 조직 정보 (그룹화용)
 const organizations = [
   {
+    name: "비대면 수술 동의서 전자서명 서비스",
+    period: "2025.12 - 2026.01",
+    type: "experience",
+    color: "from-sky-500/20 to-blue-500/20",
+    borderColor: "border-sky-500/30",
+  },
+  {
     name: "디저트 린(Dessert Lyn)",
     period: "2023.10 - 현재",
     type: "experience",
@@ -65,6 +72,19 @@ const skillCategories = [
 
 // 경력/교육 타임라인
 const timeline = [
+  {
+    period: "2025.12 - 2026.01",
+    organization: "비대면 수술 동의서 전자서명 서비스",
+    title: "프론트엔드 개발",
+    type: "experience",
+    details: [
+      "역할: React 기반 프론트엔드 개발 담당",
+      "비대면 환경에서 수술 동의서 전자서명 프로세스 구현",
+      "환자 본인인증 및 서명 캡처 기능 개발",
+      "PDF 동의서 생성 및 다운로드 기능 구현",
+      "반응형 UI/UX 설계로 모바일 환경 최적화",
+    ],
+  },
   {
     period: "2023.10 - 현재",
     organization: "디저트 린(Dessert Lyn)",
