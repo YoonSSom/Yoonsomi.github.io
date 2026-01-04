@@ -3,9 +3,10 @@ import { ExternalLink, X, Calendar, Users, Wrench } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 interface Project {
   id: string;
@@ -204,7 +205,12 @@ const ProjectsSection = () => {
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-hidden bg-card border-border p-0">
           {selectedProject && (
-            <div className="flex flex-col">
+            <div className="flex flex-col max-h-[90vh]">
+              <VisuallyHidden>
+                <DialogTitle>{selectedProject.title}</DialogTitle>
+                <DialogDescription>{selectedProject.description}</DialogDescription>
+              </VisuallyHidden>
+              
               {/* Image - Fixed at top */}
               <div className="relative w-full aspect-[16/9] flex-shrink-0">
                 <img
