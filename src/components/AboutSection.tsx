@@ -42,37 +42,37 @@ const organizations = [
 
 // 핵심 역량 요약
 const highlights = [
-  "React/TypeScript 기반 웹 서비스 개발 (전자서명, 커머스)",
-  "Python + PyTorch 활용 AI/ML 프로젝트 8건+ (OCR, 객체탐지, Segmentation)",
-  "실제 서비스 기획→개발→운영 전 과정 경험 (디저트 커머스 월 2,400+ 방문자)",
-  "Kaggle HuBMAP 의료 영상 분할 대회 상위 12% 달성",
-  "GA4, GTM 기반 데이터 분석 및 SEO 최적화 경험",
+  "제품 전 과정(기획→개발→운영) 주도 경험 (디저트 커머스 월 2,400+ 방문자)",
+  "사용자 피드백 기반 반복 개선 및 데이터 드리븐 의사결정 (GA4, A/B 테스트)",
+  "React/TypeScript 기반 빠른 프로토타이핑 및 MVP 개발",
+  "AI/ML 기술의 실제 제품 적용 경험 (OCR, CV, Segmentation)",
+  "비기술 팀과의 협업 및 요구사항 정의 → 기술 솔루션 도출",
 ];
 
 // 기술스택 - 카테고리별 정리
 const skillCategories = [
   {
     icon: Code2,
-    title: "Frontend",
-    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "HTML/CSS"],
+    title: "Product Development",
+    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Rapid Prototyping"],
     level: "주력",
   },
   {
     icon: Database,
-    title: "Backend & DB",
-    skills: ["Python", "Node.js", "Supabase", "PostgreSQL", "Flask"],
+    title: "Data & Analytics",
+    skills: ["GA4", "GTM", "Python", "Supabase", "PostgreSQL", "A/B Testing"],
     level: "활용 가능",
   },
   {
     icon: Palette,
-    title: "AI/ML",
-    skills: ["PyTorch", "OpenCV", "YOLOv4", "U-Net", "Tesseract OCR", "Hugging Face"],
-    level: "프로젝트 경험",
+    title: "AI/ML Integration",
+    skills: ["PyTorch", "OpenCV", "OCR", "LLM API", "CV Models"],
+    level: "제품 적용 경험",
   },
   {
     icon: Target,
-    title: "Tools & DevOps",
-    skills: ["Git", "GitHub Actions", "AWS", "GA4", "GTM", "Figma"],
+    title: "Product Tools",
+    skills: ["Figma", "Git", "Notion", "Slack", "JIRA", "Linear"],
     level: "활용 가능",
   },
 ];
@@ -293,7 +293,7 @@ const AboutSection = () => {
                   />
                   <div>
                     <h3 className="text-xl font-bold">윤소미</h3>
-                    <p className="text-sm text-muted-foreground">Frontend Developer</p>
+                    <p className="text-sm text-muted-foreground">Product Engineer</p>
                     <p className="text-xs text-muted-foreground">ysomi010212@gmail.com</p>
                   </div>
                 </div>
