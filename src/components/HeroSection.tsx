@@ -23,9 +23,9 @@ const featuredProjects = [
 
 // 핵심 기술스택
 const coreSkills = [
-  { icon: Code2, label: "Frontend", skills: "React, TypeScript, Next.js" },
-  { icon: Database, label: "Backend", skills: "Python, Flask, Supabase" },
-  { icon: Brain, label: "AI/ML", skills: "PyTorch, YOLOv4, OCR, U-Net" },
+  { icon: Code2, label: "Product Dev", skills: "React, TypeScript, Next.js" },
+  { icon: Database, label: "Data & Backend", skills: "Python, Supabase, GA4" },
+  { icon: Brain, label: "AI Integration", skills: "PyTorch, OCR, CV, LLM" },
 ];
 
 const HeroSection = ({ onNavigate }: HeroSectionProps) => {
@@ -55,10 +55,10 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           
           {/* 핵심 직무 요약 */}
           <p className="text-lg md:text-xl text-muted-foreground mb-1">
-            <span className="text-foreground font-semibold">AI/ML과 웹 서비스를 연결</span>하는 프론트엔드 개발자
+            <span className="text-foreground font-semibold">기획부터 개발, 운영까지</span> End-to-End 제품 개발자
           </p>
           <p className="text-sm text-muted-foreground/80">
-            React + Python 기반 | OCR·CV·Segmentation 경험 | 헬스케어·커머스 도메인
+            사용자 문제 정의 → 프로토타입 → 데이터 기반 개선 | React + Python + AI
           </p>
         </div>
 
