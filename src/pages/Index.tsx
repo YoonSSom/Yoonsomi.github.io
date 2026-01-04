@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TopNav from "@/components/TopNav";
 import MobileNav from "@/components/MobileNav";
 import HeroSection from "@/components/HeroSection";
@@ -9,31 +9,23 @@ import ContactSection from "@/components/ContactSection";
 const Index = () => {
   const [activeSection, setActiveSection] = useState("welcome");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["welcome", "about", "skills", "projects", "contact"];
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const handleNavigate = (section: string) => {
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    setActiveSection(section);
+  };
+
+  const renderSection = () => {
+    switch (activeSection) {
+      case "welcome":
+        return <HeroSection onNavigate={handleNavigate} />;
+      case "about":
+      case "skills":
+        return <AboutSection />;
+      case "projects":
+        return <ProjectsSection />;
+      case "contact":
+        return <ContactSection />;
+      default:
+        return <HeroSection onNavigate={handleNavigate} />;
     }
   };
 
@@ -42,11 +34,8 @@ const Index = () => {
       <TopNav activeSection={activeSection} onNavigate={handleNavigate} />
       <MobileNav activeSection={activeSection} onNavigate={handleNavigate} />
       
-      <main className="pt-16">
-        <HeroSection onNavigate={handleNavigate} />
-        <AboutSection />
-        <ProjectsSection />
-        <ContactSection />
+      <main className="pt-16 min-h-screen">
+        {renderSection()}
       </main>
     </div>
   );
