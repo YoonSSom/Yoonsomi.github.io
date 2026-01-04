@@ -24,8 +24,8 @@ const featuredProjects = [
 // 핵심 기술스택
 const coreSkills = [
   { icon: Code2, label: "Frontend", skills: "React, TypeScript, Next.js" },
-  { icon: Database, label: "Backend", skills: "Python, Node.js, Supabase" },
-  { icon: Brain, label: "AI/ML", skills: "PyTorch, Computer Vision, NLP" },
+  { icon: Database, label: "Backend", skills: "Python, Flask, Supabase" },
+  { icon: Brain, label: "AI/ML", skills: "PyTorch, YOLOv4, OCR, U-Net" },
 ];
 
 const HeroSection = ({ onNavigate }: HeroSectionProps) => {
