@@ -1,5 +1,4 @@
 import { useState } from "react";
-import kaggleHumanBodyImage from "@/assets/kaggle-hacking-human-body.png";
 import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Lightbulb } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
@@ -144,7 +143,7 @@ const projects: Project[] = [
       { label: "Kaggle", color: "bg-pink-500/20 text-pink-400" },
     ],
     github: "https://github.com/username/hubmap-segmentation",
-    image: kaggleHumanBodyImage,
+    image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=500&fit=crop",
     period: "2022.09 - 2022.12",
     team: "팀 프로젝트 (3인)",
     myRole: "모델 아키텍처 설계 및 학습 파이프라인 구축",
@@ -158,7 +157,7 @@ const projects: Project[] = [
       { label: "최종 제출 및 회고", completed: true },
     ],
     metrics: [
-      { label: "최종 순위", value: "🥉 동메달", description: "1,175팀 중 상위권 달성" },
+      { label: "최종 순위", value: "🏆 수상", description: "1,175팀 중 상위권 달성" },
       { label: "Dice Score", value: "0.847", description: "Public LB 기준" },
       { label: "실험 횟수", value: "47회", description: "체계적인 실험 기록" },
     ],
