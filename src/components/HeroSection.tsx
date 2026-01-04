@@ -55,10 +55,10 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           
           {/* 핵심 직무 요약 */}
           <p className="text-lg md:text-xl text-muted-foreground mb-1">
-            <span className="text-foreground font-semibold">사용자 문제를 기술로 해결</span>하는 풀스택 개발자
+            <span className="text-foreground font-semibold">AI/ML과 웹 서비스를 연결</span>하는 프론트엔드 개발자
           </p>
           <p className="text-sm text-muted-foreground/80">
-            React + Python 기반 | AI/ML 경험 보유 | 헬스케어·커머스 도메인
+            React + Python 기반 | OCR·CV·Segmentation 경험 | 헬스케어·커머스 도메인
           </p>
         </div>
 
