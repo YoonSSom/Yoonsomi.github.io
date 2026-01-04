@@ -40,13 +40,53 @@ const organizations = [
   },
 ];
 
-// 핵심 역량 요약
-const highlights = [
-  "제품 전 과정(기획→개발→운영) 주도 경험 (디저트 커머스 월 2,400+ 방문자)",
-  "사용자 피드백 기반 반복 개선 및 데이터 드리븐 의사결정 (GA4, A/B 테스트)",
-  "React/TypeScript 기반 빠른 프로토타이핑 및 MVP 개발",
-  "AI/ML 기술의 실제 제품 적용 경험 (OCR, CV, Segmentation)",
-  "비기술 팀과의 협업 및 요구사항 정의 → 기술 솔루션 도출",
+// 프로덕트 엔지니어 5대 역량
+const productEngineerCompetencies = [
+  {
+    icon: Target,
+    title: "문제 정의와 Why",
+    description: "주어진 스펙만 구현하는 게 아니라, 왜 이 기능을 만드는지 이해합니다.",
+    examples: [
+      "의료진 인터뷰로 진짜 페인포인트 도출 → 전자서명 서비스 기획",
+      "사용자 문제 정의 후 MVP 개발, 불필요한 기능 제거로 2주 내 출시",
+    ],
+  },
+  {
+    icon: Database,
+    title: "데이터 기반 의사결정",
+    description: "감이 아닌 지표로 우선순위와 성공 여부를 판단합니다.",
+    examples: [
+      "GA4로 사용자 행동 분석, 전환율 3.2% 달성 (업계 평균 대비 160%)",
+      "A/B 테스트로 가설 검증, 47회 체계적 실험으로 최적 조합 도출",
+    ],
+  },
+  {
+    icon: Palette,
+    title: "사용자·비즈니스 중심",
+    description: "기술 자체보다 사용자 경험과 비즈니스 임팩트를 우선합니다.",
+    examples: [
+      "고령층 접근성 고려한 터치 영역 2배 확대 → 서명 완료율 94%",
+      "SEO + 데이터 분석으로 광고비 0원에 월 2,400+ 방문자 달성",
+    ],
+  },
+  {
+    icon: Code2,
+    title: "트레이드오프 제안",
+    description: "공수·UX 양쪽 관점에서 현실적인 선택을 제안합니다.",
+    examples: [
+      "정확도 vs 속도 트레이드오프 분석, 안전 시스템이므로 Recall 우선 결정",
+      "MVP에 집중: 완벽한 기능보다 핵심 가설 검증 우선",
+    ],
+  },
+  {
+    icon: Building2,
+    title: "크로스펑셔널 협업",
+    description: "비개발자도 이해할 수 있는 언어로 기술적 선택을 설명합니다.",
+    examples: [
+      "의료진에게 전자서명 법적 요건 설명, 플로우 조율",
+      "마케팅팀에 'AI가 리뷰를 읽는 법' 비유로 설명, 인사이트 활용 협의",
+    ],
+  },
 ];
 
 // 기술스택 - 카테고리별 정리
@@ -263,20 +303,34 @@ const AboutSection = () => {
           </h2>
         </div>
 
-        {/* 핵심 역량 하이라이트 - 스캔하기 쉽게 */}
-        <div className="mb-12 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
-          <div className="flex items-center gap-2 mb-4">
+        {/* 프로덕트 엔지니어 5대 역량 */}
+        <div className="mb-12">
+          <div className="flex items-center gap-2 mb-6">
             <Target className="w-5 h-5 text-primary" />
-            <h3 className="font-semibold">핵심 역량</h3>
+            <h3 className="font-semibold text-lg">Product Engineer 핵심 역량</h3>
           </div>
-          <ul className="grid md:grid-cols-2 gap-3">
-            {highlights.map((item, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-sm">
-                <span className="text-primary mt-1">✓</span>
-                <span>{item}</span>
-              </li>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {productEngineerCompetencies.map((item) => (
+              <div 
+                key={item.title} 
+                className="p-5 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/20 hover:border-primary/40 transition-colors"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <item.icon className="w-5 h-5 text-primary" />
+                  <h4 className="font-semibold text-sm">{item.title}</h4>
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">{item.description}</p>
+                <ul className="space-y-1.5">
+                  {item.examples.map((ex, idx) => (
+                    <li key={idx} className="text-xs flex items-start gap-2">
+                      <span className="text-primary mt-0.5">✓</span>
+                      <span>{ex}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -317,19 +371,23 @@ const AboutSection = () => {
 
               {/* 가치관 - Product Engineer 마인드셋 */}
               <div className="p-6 rounded-2xl bg-card border border-border">
-                <h4 className="text-sm font-medium mb-3 text-primary">Product Mindset</h4>
+                <h4 className="text-sm font-medium mb-3 text-primary">일하는 방식</h4>
                 <div className="space-y-3 text-sm text-muted-foreground">
                   <p className="leading-relaxed">
-                    <span className="text-foreground font-medium">🎯 문제 정의부터 시작</span><br/>
-                    코드보다 '왜'가 먼저. 사용자의 진짜 문제를 찾습니다.
+                    <span className="text-foreground font-medium">🎯 Why부터 시작</span><br/>
+                    스펙 구현 전에 "왜 이 기능인가" 질문합니다.
                   </p>
                   <p className="leading-relaxed">
-                    <span className="text-foreground font-medium">🔄 빠른 실험, 빠른 학습</span><br/>
-                    완벽한 출시보다 빠른 피드백. MVP로 검증하고 반복합니다.
+                    <span className="text-foreground font-medium">📊 숫자로 판단</span><br/>
+                    감이 아닌 지표로 우선순위와 성공 여부를 결정합니다.
                   </p>
                   <p className="leading-relaxed">
-                    <span className="text-foreground font-medium">📊 데이터 기반 의사결정</span><br/>
-                    감이 아닌 숫자로 판단. 가설을 세우고 측정합니다.
+                    <span className="text-foreground font-medium">⚖️ 트레이드오프 제안</span><br/>
+                    공수와 UX 양쪽 관점에서 현실적인 선택을 제안합니다.
+                  </p>
+                  <p className="leading-relaxed">
+                    <span className="text-foreground font-medium">🤝 모두가 이해하는 언어</span><br/>
+                    비개발자도 이해할 수 있게 기술적 선택을 설명합니다.
                   </p>
                 </div>
               </div>

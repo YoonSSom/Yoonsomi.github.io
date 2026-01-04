@@ -1,31 +1,53 @@
-import { Github, BookOpen, Mail, ArrowRight, Code2, Database, Brain } from "lucide-react";
+import { Github, BookOpen, Mail, ArrowRight, Target, BarChart3, Users, Scale, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
   onNavigate: (section: string) => void;
 }
 
-// 대표 프로젝트 2개
-const featuredProjects = [
-  {
-    title: "비대면 전자서명 서비스",
-    problem: "병원 방문 없이 수술 동의서 서명",
-    metric: "서명 완료율 94%",
-    tags: ["React", "TypeScript", "헬스케어"],
+// 프로덕트 엔지니어 핵심 역량 5가지
+const coreCompetencies = [
+  { 
+    icon: Target, 
+    title: "문제 정의와 Why", 
+    desc: "스펙 구현이 아닌 문제 본질 이해" 
   },
-  {
-    title: "디저트 커머스 운영",
-    problem: "오프라인→온라인 판로 확대",
-    metric: "월 방문자 2,400+",
-    tags: ["Next.js", "SEO", "GA4"],
+  { 
+    icon: BarChart3, 
+    title: "데이터 기반 의사결정", 
+    desc: "지표로 우선순위와 성공 여부 판단" 
+  },
+  { 
+    icon: Users, 
+    title: "사용자·비즈니스 중심", 
+    desc: "기술보다 임팩트를 우선" 
+  },
+  { 
+    icon: Scale, 
+    title: "트레이드오프 제안", 
+    desc: "공수·UX 양쪽 관점 조율" 
+  },
+  { 
+    icon: MessageSquare, 
+    title: "크로스펑셔널 협업", 
+    desc: "비개발자도 이해하는 소통" 
   },
 ];
 
-// 핵심 기술스택
-const coreSkills = [
-  { icon: Code2, label: "Product Dev", skills: "React, TypeScript, Next.js" },
-  { icon: Database, label: "Data & Backend", skills: "Python, Supabase, GA4" },
-  { icon: Brain, label: "AI Integration", skills: "PyTorch, OCR, CV, LLM" },
+// 대표 프로젝트 2개 (핵심 역량이 드러나는 사례)
+const featuredProjects = [
+  {
+    title: "비대면 전자서명 서비스",
+    highlight: "의료진 인터뷰 → 문제 정의 → MVP 출시",
+    metric: "완료율 94%",
+    tags: ["Why 먼저", "사용자 중심", "빠른 검증"],
+  },
+  {
+    title: "디저트 커머스 운영",
+    highlight: "GA4 데이터 분석 → A/B 테스트 → 성장",
+    metric: "광고비 ₩0",
+    tags: ["데이터 기반", "지표 추적", "비개발자 협업"],
+  },
 ];
 
 const HeroSection = ({ onNavigate }: HeroSectionProps) => {
@@ -37,12 +59,12 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       {/* Grid background */}
       <div className="absolute inset-0 grid-bg opacity-30" />
       
-      {/* Gradient overlays - 더 작게 */}
+      {/* Gradient overlays */}
       <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-[100px]" />
       <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-[100px]" />
       
       <div className="w-full max-w-5xl mx-auto px-4 relative z-10">
-        {/* 상단: 한 줄 직무 요약 - 간격 축소 */}
+        {/* 상단: 한 줄 직무 요약 */}
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card/50 border border-border/50 mb-4 backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
@@ -55,28 +77,28 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           
           {/* 핵심 직무 요약 */}
           <p className="text-lg md:text-xl text-muted-foreground mb-1">
-            <span className="text-foreground font-semibold">기획부터 개발, 운영까지</span> End-to-End 제품 개발자
+            <span className="text-foreground font-semibold">Why부터 시작하는</span> Product Engineer
           </p>
           <p className="text-sm text-muted-foreground/80">
-            사용자 문제 정의 → 프로토타입 → 데이터 기반 개선 | React + Python + AI
+            문제 정의 → 데이터 기반 검증 → 크로스펑셔널 협업 | React + Python + AI
           </p>
         </div>
 
-        {/* 핵심 기술스택 - 3열, 컴팩트 */}
-        <div className="grid grid-cols-3 gap-3 mb-6 max-w-xl mx-auto">
-          {coreSkills.map((skill) => (
+        {/* 프로덕트 엔지니어 핵심 역량 5가지 */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-6 max-w-4xl mx-auto">
+          {coreCompetencies.map((item) => (
             <div
-              key={skill.label}
-              className="text-center p-3 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm"
+              key={item.title}
+              className="text-center p-3 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm hover:border-primary/50 transition-colors"
             >
-              <skill.icon className="w-5 h-5 text-primary mx-auto mb-1" />
-              <p className="text-xs text-muted-foreground">{skill.label}</p>
-              <p className="text-[10px] font-medium leading-tight">{skill.skills}</p>
+              <item.icon className="w-5 h-5 text-primary mx-auto mb-1.5" />
+              <p className="text-xs font-medium leading-tight mb-0.5">{item.title}</p>
+              <p className="text-[10px] text-muted-foreground leading-tight">{item.desc}</p>
             </div>
           ))}
         </div>
 
-        {/* 대표 프로젝트 - 더 컴팩트 */}
+        {/* 대표 프로젝트 */}
         <div className="mb-6">
           <h3 className="text-xs font-medium text-center text-muted-foreground mb-3 uppercase tracking-wider">
             Featured Projects
@@ -93,7 +115,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
                     <h4 className="text-sm font-semibold group-hover:text-primary transition-colors">
                       {project.title}
                     </h4>
-                    <p className="text-xs text-muted-foreground">{project.problem}</p>
+                    <p className="text-xs text-muted-foreground">{project.highlight}</p>
                   </div>
                   <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded whitespace-nowrap">
                     {project.metric}
@@ -114,7 +136,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           </div>
         </div>
 
-        {/* CTA 버튼 - 더 눈에 띄게 */}
+        {/* CTA 버튼 */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
           <Button
             onClick={() => onNavigate("projects")}
