@@ -41,49 +41,53 @@ const projects = [
   {
     id: "ocr",
     title: "OCR 메뉴판 번역 시스템",
-    description: "한국을 방문한 외국인 관광객이 식당에서 한국어 메뉴판을 실시간으로 인식하고 번역할 수 ...",
+    description: "한국을 방문한 외국인 관광객이 식당에서 한국어 메뉴판을 실시간으로 인식하고 번역할 수 있는 시스템. 다국어 지원으로 언어 장벽을 해소합니다.",
     tags: [
-      { label: "OCR", color: "bg-gray-500/20 text-gray-300" },
-      { label: "Python", color: "bg-gray-500/20 text-gray-300" },
+      { label: "OCR", color: "bg-cyan-500/20 text-cyan-400" },
+      { label: "Python", color: "bg-purple-500/20 text-purple-400" },
+      { label: "번역", color: "bg-pink-500/20 text-pink-400" },
     ],
-    featured: false,
+    featured: true,
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=500&fit=crop",
   },
   {
     id: "drowsy-detection",
     title: "안전운전 (졸음 인식)",
-    description: "YOLOv4와 Darknet을 활용해 사용자의 눈 상태(감김/떠짐)를 실시간으로 인식하여 졸음...",
+    description: "YOLOv4와 Darknet을 활용해 사용자의 눈 상태(감김/떠짐)를 실시간으로 인식하여 졸음 운전을 예방하는 시스템. 운전자 안전을 최우선으로 합니다.",
     tags: [
-      { label: "YOLOv4", color: "bg-gray-500/20 text-gray-300" },
-      { label: "Darknet", color: "bg-gray-500/20 text-gray-300" },
+      { label: "YOLOv4", color: "bg-green-500/20 text-green-400" },
+      { label: "Darknet", color: "bg-blue-500/20 text-blue-400" },
+      { label: "안전", color: "bg-yellow-500/20 text-yellow-400" },
     ],
-    featured: false,
+    featured: true,
+    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&h=500&fit=crop",
   },
   {
     id: "socar",
     title: "차량 파손 인식 (쏘카)",
-    description: "Semantic Segmentation 기법을 활용해 자동차 외관 파손 부위를 픽셀 단위로 인식하는 AI...",
+    description: "Semantic Segmentation 기법을 활용해 자동차 외관 파손 부위를 픽셀 단위로 인식하는 AI 모델. 보험 처리 및 차량 관리 자동화에 기여합니다.",
     tags: [
-      { label: "Semantic Segmentation", color: "bg-gray-500/20 text-gray-300" },
-      { label: "AI", color: "bg-gray-500/20 text-gray-300" },
+      { label: "Semantic Segmentation", color: "bg-cyan-500/20 text-cyan-400" },
+      { label: "AI", color: "bg-purple-500/20 text-purple-400" },
     ],
-    featured: false,
+    featured: true,
+    image: "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?w=800&h=500&fit=crop",
   },
   {
     id: "musinsa",
     title: "MUSINSA 감성 분석",
-    description: "리뷰를 읽고 감정을 해석해 다음 시즌을 설계. 감성 분석부터 데이터 증식, 별점 예측까지 진...",
+    description: "리뷰를 읽고 감정을 해석해 다음 시즌을 설계. 감성 분석부터 데이터 증식, 별점 예측까지 진행한 NLP 프로젝트입니다.",
     tags: [
-      { label: "감성 분석", color: "bg-gray-500/20 text-gray-300" },
-      { label: "NLP", color: "bg-gray-500/20 text-gray-300" },
+      { label: "감성 분석", color: "bg-green-500/20 text-green-400" },
+      { label: "NLP", color: "bg-blue-500/20 text-blue-400" },
+      { label: "데이터", color: "bg-yellow-500/20 text-yellow-400" },
     ],
-    featured: false,
+    featured: true,
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop",
   },
 ];
 
 const ProjectsSection = () => {
-  const featuredProjects = projects.filter(p => p.featured);
-  const regularProjects = projects.filter(p => !p.featured);
-
   return (
     <section id="projects" className="min-h-screen py-24 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
@@ -100,9 +104,9 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        {/* Featured Projects - 2 column grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-          {featuredProjects.slice(0, 2).map((project, index) => (
+        {/* All Projects - 2 column grid */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {projects.map((project, index) => (
             <div
               key={project.id}
               className="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 opacity-0 animate-fade-in"
@@ -152,93 +156,6 @@ const ProjectsSection = () => {
                   자세히 보기
                 </a>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Third featured project - full width or centered */}
-        {featuredProjects.length > 2 && (
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div
-              className="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 opacity-0 animate-fade-in md:col-span-2 md:max-w-[calc(50%-12px)]"
-              style={{ animationDelay: "400ms" }}
-            >
-              {/* Image */}
-              <div className="aspect-[16/10] overflow-hidden">
-                <img
-                  src={featuredProjects[2].image}
-                  alt={featuredProjects[2].title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              
-              {/* Content overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-              
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {featuredProjects[2].tags.map((tag) => (
-                    <span
-                      key={tag.label}
-                      className={`px-2.5 py-1 text-xs font-medium rounded-md ${tag.color}`}
-                    >
-                      {tag.label}
-                    </span>
-                  ))}
-                </div>
-                
-                {/* Title */}
-                <h3 className="text-xl font-bold mb-2">{featuredProjects[2].title}</h3>
-                
-                {/* Description */}
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                  {featuredProjects[2].description}
-                </p>
-                
-                {/* Link */}
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  자세히 보기
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Regular Projects - 4 column grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {regularProjects.map((project, index) => (
-            <div
-              key={project.id}
-              className="group p-5 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 opacity-0 animate-fade-in"
-              style={{ animationDelay: `${500 + index * 50}ms` }}
-            >
-              {/* Header with tags and arrow */}
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag.label}
-                      className={`px-2 py-0.5 text-xs font-medium rounded ${tag.color}`}
-                    >
-                      {tag.label}
-                    </span>
-                  ))}
-                </div>
-                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-              
-              {/* Title */}
-              <h3 className="text-base font-bold mb-2">{project.title}</h3>
-              
-              {/* Description */}
-              <p className="text-sm text-muted-foreground line-clamp-2">
-                {project.description}
-              </p>
             </div>
           ))}
         </div>
