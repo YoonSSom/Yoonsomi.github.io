@@ -315,13 +315,23 @@ const AboutSection = () => {
                 </div>
               </div>
 
-              {/* 가치관 */}
+              {/* 가치관 - Product Engineer 마인드셋 */}
               <div className="p-6 rounded-2xl bg-card border border-border">
-                <h4 className="text-sm font-medium mb-3 text-primary">Work Philosophy</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  "부족한 것을 유지하지 않는 사람"이 되고자 합니다. 
-                  지난 과거를 바꿀 수 없다면, 더 나은 미래를 만들면 됩니다.
-                </p>
+                <h4 className="text-sm font-medium mb-3 text-primary">Product Mindset</h4>
+                <div className="space-y-3 text-sm text-muted-foreground">
+                  <p className="leading-relaxed">
+                    <span className="text-foreground font-medium">🎯 문제 정의부터 시작</span><br/>
+                    코드보다 '왜'가 먼저. 사용자의 진짜 문제를 찾습니다.
+                  </p>
+                  <p className="leading-relaxed">
+                    <span className="text-foreground font-medium">🔄 빠른 실험, 빠른 학습</span><br/>
+                    완벽한 출시보다 빠른 피드백. MVP로 검증하고 반복합니다.
+                  </p>
+                  <p className="leading-relaxed">
+                    <span className="text-foreground font-medium">📊 데이터 기반 의사결정</span><br/>
+                    감이 아닌 숫자로 판단. 가설을 세우고 측정합니다.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
