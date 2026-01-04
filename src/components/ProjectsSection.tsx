@@ -379,9 +379,11 @@ const ProjectsSection = () => {
               {/* Full Description */}
               <div className="mt-6">
                 <h4 className="text-sm font-semibold mb-3 text-muted-foreground">프로젝트 설명</h4>
-                <p className="text-sm leading-relaxed text-foreground/90">
-                  {selectedProject.fullDescription}
-                </p>
+                <div className="p-4 rounded-lg bg-muted/30 border border-border/50">
+                  <p className="text-sm leading-7 text-foreground whitespace-pre-line">
+                    {selectedProject.fullDescription}
+                  </p>
+                </div>
               </div>
 
               {/* External Link */}
