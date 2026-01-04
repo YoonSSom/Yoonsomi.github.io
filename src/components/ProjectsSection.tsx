@@ -367,7 +367,7 @@ const ProjectCard = ({
     <div
       ref={ref}
       onClick={onClick}
-      className={`group relative overflow-hidden rounded-lg bg-card border border-border/50 hover:border-primary/50 hover:shadow-md transition-all duration-300 cursor-pointer ${
+      className={`group relative overflow-hidden rounded-xl bg-card border border-border/50 hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer ${
         isVisible 
           ? "opacity-100 translate-y-0" 
           : "opacity-0 translate-y-8"
@@ -377,47 +377,46 @@ const ProjectCard = ({
         transitionProperty: "all"
       }}
     >
-      <div className="flex gap-4 p-4">
-        {/* Image - Small thumbnail */}
-        <div className="w-24 h-20 flex-shrink-0 rounded overflow-hidden">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
+      {/* Image */}
+      <div className="aspect-[2/1] overflow-hidden">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+      
+      {/* Content */}
+      <div className="p-5">
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {project.tags.slice(0, 3).map((tag) => (
+            <span
+              key={tag.label}
+              className={`px-2 py-0.5 text-xs font-medium rounded ${tag.color}`}
+            >
+              {tag.label}
+            </span>
+          ))}
         </div>
         
-        {/* Content */}
-        <div className="flex-1 min-w-0">
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1 mb-1.5">
-            {project.tags.slice(0, 2).map((tag) => (
-              <span
-                key={tag.label}
-                className={`px-1.5 py-0.5 text-[10px] font-medium rounded ${tag.color}`}
-              >
-                {tag.label}
-              </span>
-            ))}
-          </div>
-          
-          {/* Title */}
-          <h3 className="text-sm font-semibold mb-1 line-clamp-1 group-hover:text-primary transition-colors">
-            {project.title}
-          </h3>
-          
-          {/* Problem */}
-          <p className="text-xs text-muted-foreground line-clamp-1 mb-2">
-            {project.problem}
-          </p>
-          
-          {/* Footer */}
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] text-muted-foreground">{project.period}</span>
-            <span className="text-[10px] text-primary font-medium flex items-center gap-0.5">
-              자세히 <ExternalLink className="w-2.5 h-2.5" />
-            </span>
-          </div>
+        {/* Title */}
+        <h3 className="text-lg font-semibold mb-2 line-clamp-1 group-hover:text-primary transition-colors">
+          {project.title}
+        </h3>
+        
+        {/* Problem - 핵심 한 줄 */}
+        <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+          {project.problem}
+        </p>
+        
+        {/* Footer: Period + CTA */}
+        <div className="flex items-center justify-between pt-3 border-t border-border/50">
+          <span className="text-xs text-muted-foreground">{project.period}</span>
+          <span className="text-xs text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+            자세히 보기
+            <ExternalLink className="w-3 h-3" />
+          </span>
         </div>
       </div>
     </div>
