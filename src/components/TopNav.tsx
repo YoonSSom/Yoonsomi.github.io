@@ -23,18 +23,21 @@ const TopNav = ({ activeSection, onNavigate }: TopNavProps) => {
           Yoonsomi
         </button>
         
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-2">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
-              className={`text-sm transition-colors ${
+              className={`relative px-4 py-2 text-sm rounded-full transition-all duration-300 ${
                 activeSection === item.id 
-                  ? "text-primary font-medium" 
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary-foreground bg-primary font-medium shadow-lg shadow-primary/30" 
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
               {item.label}
+              {activeSection === item.id && (
+                <span className="absolute inset-0 rounded-full bg-primary/20 animate-pulse" />
+              )}
             </button>
           ))}
         </nav>

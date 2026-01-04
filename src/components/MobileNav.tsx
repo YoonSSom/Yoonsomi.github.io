@@ -47,13 +47,16 @@ const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
               <button
                 key={item.id}
                 onClick={() => handleNavigate(item.id)}
-                className={`text-left py-3 px-4 rounded-lg transition-colors ${
+                className={`relative text-left py-3 px-4 rounded-lg transition-all duration-300 ${
                   activeSection === item.id
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-card"
+                    ? "bg-primary text-primary-foreground font-medium shadow-lg shadow-primary/30"
+                    : "text-muted-foreground hover:bg-card hover:text-foreground"
                 }`}
               >
                 {item.label}
+                {activeSection === item.id && (
+                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary-foreground rounded-full" />
+                )}
               </button>
             ))}
             <Button 
