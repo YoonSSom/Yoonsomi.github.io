@@ -65,6 +65,7 @@ const projects: Project[] = [
       { label: "기획", color: "bg-blue-500/20 text-blue-400" },
       { label: "운영", color: "bg-yellow-500/20 text-yellow-400" },
     ],
+    link: "https://dessertlyn.lovable.app",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
     period: "2023.06 - 현재",
     team: "1인 운영",
