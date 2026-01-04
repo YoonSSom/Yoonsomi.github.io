@@ -10,7 +10,6 @@ interface MobileNavProps {
 const navItems = [
   { id: "welcome", label: "홈" },
   { id: "about", label: "소개" },
-  { id: "skills", label: "스킬" },
   { id: "projects", label: "프로젝트" },
   { id: "contact", label: "연락처" },
 ];
