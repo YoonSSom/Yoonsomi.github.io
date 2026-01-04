@@ -18,7 +18,6 @@ const Index = () => {
       case "welcome":
         return <HeroSection onNavigate={handleNavigate} />;
       case "about":
-      case "skills":
         return <AboutSection />;
       case "projects":
         return <ProjectsSection />;
