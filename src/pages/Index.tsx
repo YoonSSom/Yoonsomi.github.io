@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Sidebar from "@/components/Sidebar";
+import TopNav from "@/components/TopNav";
 import MobileNav from "@/components/MobileNav";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -11,7 +11,7 @@ const Index = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["welcome", "about", "projects", "contact"];
+      const sections = ["welcome", "about", "skills", "projects", "contact"];
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
       for (const section of sections) {
@@ -39,10 +39,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Sidebar activeSection={activeSection} onNavigate={handleNavigate} />
+      <TopNav activeSection={activeSection} onNavigate={handleNavigate} />
       <MobileNav activeSection={activeSection} onNavigate={handleNavigate} />
       
-      <main className="lg:ml-72">
+      <main className="pt-16">
         <HeroSection onNavigate={handleNavigate} />
         <AboutSection />
         <ProjectsSection />

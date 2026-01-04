@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Menu, X, Github, FileText, Mail } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface MobileNavProps {
   activeSection: string;
@@ -7,10 +8,11 @@ interface MobileNavProps {
 }
 
 const navItems = [
-  { id: "welcome", label: "WELCOME" },
-  { id: "about", label: "WHO AM I" },
-  { id: "projects", label: "WHAT DID I DO" },
-  { id: "contact", label: "GET IN TOUCH" },
+  { id: "welcome", label: "홈" },
+  { id: "about", label: "소개" },
+  { id: "skills", label: "스킬" },
+  { id: "projects", label: "프로젝트" },
+  { id: "contact", label: "연락처" },
 ];
 
 const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
@@ -22,62 +24,45 @@ const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
   };
 
   return (
-    <div className="lg:hidden">
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed top-6 right-6 z-50 p-2 bg-card rounded-lg border border-border"
-      >
-        <Menu className="w-6 h-6" />
-      </button>
+    <div className="md:hidden fixed top-0 left-0 right-0 z-50">
+      <div className="flex items-center justify-between px-4 py-4 bg-background/80 backdrop-blur-md border-b border-border/50">
+        <button 
+          onClick={() => handleNavigate("welcome")}
+          className="text-lg font-bold text-foreground"
+        >
+          Yoonsomi
+        </button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </Button>
+      </div>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm">
-          <button
-            onClick={() => setIsOpen(false)}
-            className="absolute top-6 right-6 p-2"
-          >
-            <X className="w-6 h-6" />
-          </button>
-
-          <nav className="flex flex-col items-center justify-center h-full space-y-8">
+        <div className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border">
+          <nav className="flex flex-col p-4 gap-2">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavigate(item.id)}
-                className={`text-lg uppercase tracking-[0.2em] transition-colors ${
+                className={`text-left py-3 px-4 rounded-lg transition-colors ${
                   activeSection === item.id
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-card"
                 }`}
               >
                 {item.label}
               </button>
             ))}
-
-            <div className="flex gap-6 pt-8 border-t border-border">
-              <a
-                href="https://github.com/YoonSoM"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Github className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.notion.so/it-s-my-Notion-496f12b2c46c4a7386dbbc0e5a6944a0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <FileText className="w-6 h-6" />
-              </a>
-              <a
-                href="mailto:ysomi010212@gmail.com"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Mail className="w-6 h-6" />
-              </a>
-            </div>
+            <Button 
+              className="mt-2 bg-gradient-to-r from-primary to-accent text-white border-0"
+              onClick={() => window.open('https://github.com/YoonSoM', '_blank')}
+            >
+              이력서 다운로드
+            </Button>
           </nav>
         </div>
       )}
