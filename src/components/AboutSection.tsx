@@ -42,10 +42,11 @@ const organizations = [
 
 // 핵심 역량 요약
 const highlights = [
-  "React/TypeScript 기반 프론트엔드 개발 2년+",
-  "Python + PyTorch 활용 AI/ML 프로젝트 5건+",
-  "실제 서비스 기획-개발-운영 경험 (커머스)",
-  "Kaggle 대회 상위 12% 달성",
+  "React/TypeScript 기반 웹 서비스 개발 (전자서명, 커머스)",
+  "Python + PyTorch 활용 AI/ML 프로젝트 8건+ (OCR, 객체탐지, Segmentation)",
+  "실제 서비스 기획→개발→운영 전 과정 경험 (디저트 커머스 월 2,400+ 방문자)",
+  "Kaggle HuBMAP 의료 영상 분할 대회 상위 12% 달성",
+  "GA4, GTM 기반 데이터 분석 및 SEO 최적화 경험",
 ];
 
 // 기술스택 - 카테고리별 정리
