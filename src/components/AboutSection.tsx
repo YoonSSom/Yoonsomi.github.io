@@ -19,7 +19,7 @@ const organizations = [
   },
   {
     name: "서울사이버대학교",
-    period: "2023.02 - 현재",
+    period: "2023.03 - 2025.02",
     type: "education",
     color: "from-blue-500/20 to-cyan-500/20",
     borderColor: "border-blue-500/30",
