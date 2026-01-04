@@ -1,99 +1,207 @@
 import profileImage from "@/assets/profile.jpg";
+import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target } from "lucide-react";
 
-const skills = {
-  backend: ["Java", "Python", "JavaScript (Node.js)", "C#"],
-  frontend: ["HTML", "CSS", "JavaScript", "반응형 디자인"],
-};
+// 핵심 역량 요약
+const highlights = [
+  "React/TypeScript 기반 프론트엔드 개발 2년+",
+  "Python + PyTorch 활용 AI/ML 프로젝트 5건+",
+  "실제 서비스 기획-개발-운영 경험 (커머스)",
+  "Kaggle 대회 상위 12% 달성",
+];
+
+// 기술스택 - 카테고리별 정리
+const skillCategories = [
+  {
+    icon: Code2,
+    title: "Frontend",
+    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+    level: "주력",
+  },
+  {
+    icon: Database,
+    title: "Backend & DB",
+    skills: ["Python", "Node.js", "Supabase", "PostgreSQL"],
+    level: "활용 가능",
+  },
+  {
+    icon: Palette,
+    title: "AI/ML",
+    skills: ["PyTorch", "OpenCV", "Hugging Face", "Computer Vision"],
+    level: "프로젝트 경험",
+  },
+];
+
+// 경력/교육 타임라인
+const timeline = [
+  {
+    period: "2023 - 2025",
+    title: "서울사이버대학교 컴퓨터공학",
+    type: "education",
+    description: "CS 기초 및 소프트웨어 공학 학습",
+  },
+  {
+    period: "2022",
+    title: "알파코 AI 부트캠프 2기 수료",
+    type: "experience",
+    description: "Python, ML/DL, 팀 프로젝트 6건 수행",
+  },
+  {
+    period: "2020 - 2022",
+    title: "배화여자대학교 비서행정",
+    type: "education",
+    description: "문서 작성, 커뮤니케이션 역량",
+  },
+];
+
+// 자격증
+const certifications = [
+  { name: "빅데이터전문가", year: "2022" },
+  { name: "코딩지도사 1급", year: "2022" },
+  { name: "ITQ (한글, 엑셀)", year: "2020" },
+];
 
 const AboutSection = () => {
   return (
-    <section id="about" className="min-h-screen py-24 px-6 lg:px-12">
+    <section id="about" className="min-h-screen py-20 px-6 lg:px-12">
       <div className="max-w-5xl mx-auto">
-        <h2 className="section-title text-gradient opacity-0 animate-fade-in">
-          사용자 중심의 개발자
-        </h2>
-        <p className="text-lg text-muted-foreground mb-16 max-w-2xl opacity-0 animate-fade-in" style={{ animationDelay: "100ms" }}>
-          실제 사용자에게 긍정적인 영향을 미칠 수 있는 웹 기술과 프레임워크를 활용하여
-          사용자 친화적이고 효율적인 애플리케이션을 개발하는 데 주력하는 것이 목표입니다.
-        </p>
+        {/* 섹션 헤더 */}
+        <div className="text-center mb-12">
+          <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">
+            ABOUT ME
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-gradient">이력 요약</span>
+          </h2>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Profile Card */}
-          <div className="project-card p-8 opacity-0 animate-fade-in" style={{ animationDelay: "200ms" }}>
-            <div className="flex items-center gap-6 mb-8">
-              <img
-                src={profileImage}
-                alt="윤소미"
-                className="w-24 h-24 rounded-full object-cover border-2 border-primary/50"
-              />
-              <div>
-                <h3 className="text-2xl font-display font-bold">윤소미</h3>
-                <p className="text-muted-foreground">2001.02.12</p>
-              </div>
-            </div>
+        {/* 핵심 역량 하이라이트 - 스캔하기 쉽게 */}
+        <div className="mb-12 p-6 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
+          <div className="flex items-center gap-2 mb-4">
+            <Target className="w-5 h-5 text-primary" />
+            <h3 className="font-semibold">핵심 역량</h3>
+          </div>
+          <ul className="grid md:grid-cols-2 gap-3">
+            {highlights.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2 text-sm">
+                <span className="text-primary mt-1">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-            <div className="space-y-6">
-              <div>
-                <h4 className="text-sm uppercase tracking-wider text-primary mb-3">학력</h4>
-                <div className="space-y-2 text-sm">
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* 좌측: 프로필 카드 */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24 space-y-6">
+              {/* 프로필 */}
+              <div className="p-6 rounded-2xl bg-card border border-border">
+                <div className="flex items-center gap-4 mb-6">
+                  <img
+                    src={profileImage}
+                    alt="윤소미"
+                    className="w-20 h-20 rounded-full object-cover border-2 border-primary/50"
+                  />
                   <div>
-                    <p className="font-medium">배화여자대학교 비서행정</p>
-                    <p className="text-muted-foreground">(2020 ~ 2022)</p>
+                    <h3 className="text-xl font-bold">윤소미</h3>
+                    <p className="text-sm text-muted-foreground">Frontend Developer</p>
+                    <p className="text-xs text-muted-foreground">ysomi010212@gmail.com</p>
                   </div>
-                  <div>
-                    <p className="font-medium">서울사이버대학교 컴퓨터공학</p>
-                    <p className="text-muted-foreground">(2023 ~ 2025)</p>
+                </div>
+                
+                {/* 자격증 */}
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Award className="w-4 h-4 text-primary" />
+                    <h4 className="text-sm font-medium">자격증</h4>
+                  </div>
+                  <div className="space-y-2">
+                    {certifications.map((cert) => (
+                      <div key={cert.name} className="flex justify-between text-sm">
+                        <span>{cert.name}</span>
+                        <span className="text-muted-foreground">{cert.year}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
 
-              <div>
-                <h4 className="text-sm uppercase tracking-wider text-primary mb-3">경력</h4>
-                <p className="text-sm">알파코 부트캠프 2기 수료 (2022)</p>
-                <p className="text-sm text-muted-foreground">웹사이트 구축 및 운영</p>
-              </div>
-
-              <div>
-                <h4 className="text-sm uppercase tracking-wider text-primary mb-3">자격증</h4>
-                <div className="flex flex-wrap gap-2">
-                  <span className="skill-tag">빅데이터전문가</span>
-                  <span className="skill-tag">코딩지도사 1급</span>
-                  <span className="skill-tag">ITQ (한글, 엑셀)</span>
-                </div>
+              {/* 가치관 */}
+              <div className="p-6 rounded-2xl bg-card border border-border">
+                <h4 className="text-sm font-medium mb-3 text-primary">Work Philosophy</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  "부족한 것을 유지하지 않는 사람"이 되고자 합니다. 
+                  지난 과거를 바꿀 수 없다면, 더 나은 미래를 만들면 됩니다.
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Skills */}
-          <div className="space-y-8">
-            <div className="project-card p-8 opacity-0 animate-fade-in" style={{ animationDelay: "300ms" }}>
-              <h4 className="text-sm uppercase tracking-wider text-primary mb-4">Backend Skills</h4>
-              <div className="flex flex-wrap gap-2">
-                {skills.backend.map((skill) => (
-                  <span key={skill} className="skill-tag">
-                    {skill}
-                  </span>
+          {/* 우측: 기술스택 + 타임라인 */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* 기술스택 */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">기술 스택</h3>
+              <div className="grid gap-4">
+                {skillCategories.map((category) => (
+                  <div
+                    key={category.title}
+                    className="p-5 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <category.icon className="w-5 h-5 text-primary" />
+                        <h4 className="font-medium">{category.title}</h4>
+                      </div>
+                      <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
+                        {category.level}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="text-sm px-3 py-1 rounded-md bg-muted"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
 
-            <div className="project-card p-8 opacity-0 animate-fade-in" style={{ animationDelay: "400ms" }}>
-              <h4 className="text-sm uppercase tracking-wider text-primary mb-4">Frontend Skills</h4>
-              <div className="flex flex-wrap gap-2">
-                {skills.frontend.map((skill) => (
-                  <span key={skill} className="skill-tag">
-                    {skill}
-                  </span>
-                ))}
+            {/* 타임라인 */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">경력 & 교육</h3>
+              <div className="relative">
+                {/* 타임라인 선 */}
+                <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-border" />
+                
+                <div className="space-y-6">
+                  {timeline.map((item, idx) => (
+                    <div key={idx} className="flex gap-4 relative">
+                      <div className="flex-shrink-0 z-10">
+                        {item.type === "education" ? (
+                          <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                            <GraduationCap className="w-3 h-3 text-primary" />
+                          </div>
+                        ) : (
+                          <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center">
+                            <Briefcase className="w-3 h-3 text-accent" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1 pb-4">
+                        <p className="text-xs text-muted-foreground mb-1">{item.period}</p>
+                        <h4 className="font-medium">{item.title}</h4>
+                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            <div className="project-card p-8 opacity-0 animate-fade-in" style={{ animationDelay: "500ms" }}>
-              <h4 className="text-sm uppercase tracking-wider text-accent mb-4">How I Work</h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                부족할 수 있지만 부족한 것을 유지하지 않는 사람이 되고 싶어 많은 노력을 하였습니다.
-                이미 지난 과거를 바꿀 수 없다면, 보다 더 나은 미래를 만들면 된다고 생각합니다.
-              </p>
             </div>
           </div>
         </div>
