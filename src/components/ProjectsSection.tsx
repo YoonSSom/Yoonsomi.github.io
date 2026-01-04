@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ExternalLink, Calendar, Users, Wrench, CheckCircle2, Circle } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
   Dialog,
   DialogContent,
@@ -208,21 +209,99 @@ const renderDescriptionWithHighlights = (text: string) => {
   });
 };
 
+const ProjectCard = ({ 
+  project, 
+  index, 
+  onClick 
+}: { 
+  project: Project; 
+  index: number; 
+  onClick: () => void;
+}) => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+
+  return (
+    <div
+      ref={ref}
+      onClick={onClick}
+      className={`group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-500 cursor-pointer ${
+        isVisible 
+          ? "opacity-100 translate-y-0" 
+          : "opacity-0 translate-y-12"
+      }`}
+      style={{ 
+        transitionDelay: `${index * 100}ms`,
+        transitionProperty: "all"
+      }}
+    >
+      {/* Image */}
+      <div className="aspect-[16/10] overflow-hidden relative">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        {/* Image overlay on hover */}
+        <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500" />
+      </div>
+      
+      {/* Content overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent group-hover:via-background/80 transition-colors duration-500" />
+      
+      <div className="absolute bottom-0 left-0 right-0 p-6">
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mb-3">
+          {project.tags.map((tag) => (
+            <span
+              key={tag.label}
+              className={`px-2.5 py-1 text-xs font-medium rounded-md ${tag.color} group-hover:scale-105 transition-transform duration-300`}
+            >
+              {tag.label}
+            </span>
+          ))}
+        </div>
+        
+        {/* Title */}
+        <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">{project.title}</h3>
+        
+        {/* Description */}
+        <p className="text-sm text-muted-foreground mb-4 line-clamp-2 group-hover:text-foreground/80 transition-colors duration-300">
+          {renderDescriptionWithHighlights(project.description)}
+        </p>
+        
+        {/* Link */}
+        <span className="inline-flex items-center gap-2 text-sm text-primary font-medium group-hover:gap-3 transition-all duration-300">
+          <ExternalLink className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
+          자세히 보기
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
 
   return (
     <section id="projects" className="min-h-screen py-24 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block opacity-0 animate-fade-in">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            headerVisible 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 translate-y-8"
+          }`}
+        >
+          <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
             PROJECTS
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 opacity-0 animate-fade-in" style={{ animationDelay: "100ms" }}>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             주요 <span className="text-gradient">프로젝트</span>
           </h2>
-          <p className="text-muted-foreground opacity-0 animate-fade-in" style={{ animationDelay: "150ms" }}>
+          <p className="text-muted-foreground">
             실제로 진행했던 프로젝트들을 소개합니다
           </p>
         </div>
@@ -230,54 +309,12 @@ const ProjectsSection = () => {
         {/* All Projects - 2 column grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <div
+            <ProjectCard
               key={project.id}
+              project={project}
+              index={index}
               onClick={() => setSelectedProject(project)}
-              className="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-500 opacity-0 animate-fade-in cursor-pointer"
-              style={{ animationDelay: `${200 + index * 100}ms` }}
-            >
-              {/* Image */}
-              <div className="aspect-[16/10] overflow-hidden relative">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                {/* Image overlay on hover */}
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500" />
-              </div>
-              
-              {/* Content overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent group-hover:via-background/80 transition-colors duration-500" />
-              
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag.label}
-                      className={`px-2.5 py-1 text-xs font-medium rounded-md ${tag.color} group-hover:scale-105 transition-transform duration-300`}
-                    >
-                      {tag.label}
-                    </span>
-                  ))}
-                </div>
-                
-                {/* Title */}
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">{project.title}</h3>
-                
-                {/* Description */}
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2 group-hover:text-foreground/80 transition-colors duration-300">
-                  {renderDescriptionWithHighlights(project.description)}
-                </p>
-                
-                {/* Link */}
-                <span className="inline-flex items-center gap-2 text-sm text-primary font-medium group-hover:gap-3 transition-all duration-300">
-                  <ExternalLink className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
-                  자세히 보기
-                </span>
-              </div>
-            </div>
+            />
           ))}
         </div>
       </div>
