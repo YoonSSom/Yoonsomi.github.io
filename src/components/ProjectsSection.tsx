@@ -157,7 +157,7 @@ const projects: Project[] = [
       { label: "최종 제출 및 회고", completed: true },
     ],
     metrics: [
-      { label: "최종 순위", value: "🏆 수상", description: "1,175팀 중 상위권 달성" },
+      { label: "최종 순위", value: "수상", description: "1,175팀 중 상위권 달성" },
       { label: "Dice Score", value: "0.847", description: "Public LB 기준" },
       { label: "실험 횟수", value: "47회", description: "체계적인 실험 기록" },
     ],
