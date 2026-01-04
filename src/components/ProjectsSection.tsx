@@ -212,7 +212,7 @@ const ProjectsSection = () => {
               </VisuallyHidden>
               
               {/* Image - Fixed at top */}
-              <div className="relative w-full aspect-[16/9] flex-shrink-0">
+              <div className="relative w-full h-48 flex-shrink-0">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
@@ -222,7 +222,7 @@ const ProjectsSection = () => {
               </div>
               
               {/* Scrollable Content */}
-              <div className="flex-1 overflow-y-auto p-6 -mt-12 relative z-10">
+              <div className="flex-1 overflow-y-auto p-6 -mt-8 relative z-10">
                 {/* Title */}
                 <h2 className="text-2xl font-bold mb-4">
                   {selectedProject.title}
