@@ -202,35 +202,37 @@ const ProjectsSection = () => {
 
       {/* Project Detail Modal */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-card border-border">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-hidden bg-card border-border p-0">
           {selectedProject && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-2xl font-bold pr-8">
-                  {selectedProject.title}
-                </DialogTitle>
-              </DialogHeader>
-              
-              {/* Image */}
-              <div className="aspect-[16/9] overflow-hidden rounded-lg mt-4">
+            <div className="flex flex-col">
+              {/* Image - Fixed at top */}
+              <div className="relative w-full aspect-[16/9] flex-shrink-0">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
               </div>
+              
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-y-auto p-6 -mt-12 relative z-10">
+                {/* Title */}
+                <h2 className="text-2xl font-bold mb-4">
+                  {selectedProject.title}
+                </h2>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-4">
-                {selectedProject.tags.map((tag) => (
-                  <span
-                    key={tag.label}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md ${tag.color}`}
-                  >
-                    {tag.label}
-                  </span>
-                ))}
-              </div>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {selectedProject.tags.map((tag) => (
+                    <span
+                      key={tag.label}
+                      className={`px-3 py-1.5 text-sm font-medium rounded-md ${tag.color}`}
+                    >
+                      {tag.label}
+                    </span>
+                  ))}
+                </div>
 
               {/* Project Info */}
               <div className="grid sm:grid-cols-3 gap-4 mt-6">
@@ -294,7 +296,8 @@ const ProjectsSection = () => {
                   </a>
                 </div>
               )}
-            </>
+              </div>
+            </div>
           )}
         </DialogContent>
       </Dialog>
