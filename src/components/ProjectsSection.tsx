@@ -433,14 +433,19 @@ const ProjectCard = ({
   );
 };
 
-const BulletList = ({ items, icon: Icon }: { items: string[]; icon?: React.ElementType }) => (
-  <ul className="space-y-1.5">
+const BulletList = ({ items, icon: Icon, highlight = false }: { items: string[]; icon?: React.ElementType; highlight?: boolean }) => (
+  <ul className="space-y-2">
     {items.map((item, idx) => (
-      <li key={idx} className="text-sm text-foreground/90 flex items-start gap-2">
+      <li 
+        key={idx} 
+        className={`text-sm leading-relaxed flex items-start gap-2.5 ${
+          highlight ? 'text-foreground' : 'text-foreground/80'
+        }`}
+      >
         {Icon ? (
-          <Icon className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
+          <Icon className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
         ) : (
-          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+          <span className="w-1.5 h-1.5 rounded-full bg-primary/70 mt-2 flex-shrink-0" />
         )}
         <span>{item}</span>
       </li>
@@ -490,9 +495,9 @@ const ProjectsSection = () => {
 
       {/* Project Detail Modal */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-2xl max-h-[85vh] overflow-hidden bg-card border-border p-0">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-hidden bg-card border-border p-0">
           {selectedProject && (
-            <div className="flex flex-col max-h-[85vh]">
+            <div className="flex flex-col max-h-[90vh]">
               <VisuallyHidden>
                 <DialogTitle>{selectedProject.title}</DialogTitle>
                 <DialogDescription>{selectedProject.summary}</DialogDescription>
@@ -501,69 +506,89 @@ const ProjectsSection = () => {
               {/* Scrollable Content */}
               <div className="flex-1 overflow-y-auto">
                 {/* Header Section */}
-                <div className="p-6 pb-4 border-b border-border/50">
-                  <div className="flex flex-wrap gap-1.5 mb-3">
+                <div className="p-8 pb-6 bg-gradient-to-br from-primary/5 to-accent/5">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {selectedProject.tags.map((tag) => (
                       <span
                         key={tag.label}
-                        className={`px-2 py-0.5 text-xs font-medium rounded ${tag.color}`}
+                        className={`px-3 py-1 text-xs font-medium rounded-full ${tag.color}`}
                       >
                         {tag.label}
                       </span>
                     ))}
                   </div>
-                  <h2 className="text-xl font-bold mb-2">{selectedProject.title}</h2>
-                  <p className="text-sm text-muted-foreground">{selectedProject.summary}</p>
-                </div>
-
-                {/* Quick Info */}
-                <div className="px-6 py-4 bg-muted/30 border-b border-border/50">
-                  <div className="grid grid-cols-2 gap-3">
+                  <h2 className="text-2xl font-bold mb-3">{selectedProject.title}</h2>
+                  <p className="text-base text-muted-foreground leading-relaxed">{selectedProject.summary}</p>
+                  
+                  {/* Quick Info - 헤더 안에 배치 */}
+                  <div className="flex items-center gap-6 mt-4 pt-4 border-t border-border/30">
                     <div className="flex items-center gap-2 text-sm">
-                      <Calendar className="w-4 h-4 text-muted-foreground" />
-                      <span>{selectedProject.period}</span>
+                      <Calendar className="w-4 h-4 text-primary" />
+                      <span className="font-medium">{selectedProject.period}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
-                      <Users className="w-4 h-4 text-muted-foreground" />
-                      <span>{selectedProject.team}</span>
+                      <Users className="w-4 h-4 text-primary" />
+                      <span className="font-medium">{selectedProject.team}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Main Content */}
-                <div className="p-6 space-y-6">
-                  {/* 문제/목표 */}
-                  <div>
-                    <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3 flex items-center gap-1.5">
-                      <Target className="w-3.5 h-3.5 text-primary" />
+                {/* Main Content - 2단 레이아웃 */}
+                <div className="p-8 space-y-8">
+                  
+                  {/* 문제/목표 - 강조 박스 */}
+                  <div className="p-5 rounded-xl bg-gradient-to-r from-primary/10 to-transparent border-l-4 border-primary">
+                    <h4 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
+                      <Target className="w-4 h-4 text-primary" />
                       문제 / 목표
                     </h4>
-                    <BulletList items={selectedProject.problemGoal} />
+                    <BulletList items={selectedProject.problemGoal} highlight />
                   </div>
 
-                  {/* 나의 역할 */}
+                  {/* 나의 역할 - 카드형 */}
                   <div>
-                    <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3 flex items-center gap-1.5">
-                      <Briefcase className="w-3.5 h-3.5 text-primary" />
+                    <h4 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
+                      <Briefcase className="w-4 h-4 text-primary" />
                       나의 역할
                     </h4>
-                    <div className="space-y-4">
+                    <div className="grid md:grid-cols-3 gap-4">
                       {selectedProject.myRole.planning.length > 0 && (
-                        <div>
-                          <p className="text-xs font-medium text-primary mb-2">기획 (요구사항/플로우/정책)</p>
-                          <BulletList items={selectedProject.myRole.planning} />
+                        <div className="p-4 rounded-lg bg-muted/50 border border-border/50">
+                          <p className="text-xs font-bold text-primary mb-3 uppercase tracking-wide">기획</p>
+                          <ul className="space-y-2">
+                            {selectedProject.myRole.planning.map((item, idx) => (
+                              <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2">
+                                <span className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       )}
                       {selectedProject.myRole.development.length > 0 && (
-                        <div>
-                          <p className="text-xs font-medium text-primary mb-2">개발 (설계/구현)</p>
-                          <BulletList items={selectedProject.myRole.development} />
+                        <div className="p-4 rounded-lg bg-muted/50 border border-border/50">
+                          <p className="text-xs font-bold text-primary mb-3 uppercase tracking-wide">개발</p>
+                          <ul className="space-y-2">
+                            {selectedProject.myRole.development.map((item, idx) => (
+                              <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2">
+                                <span className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       )}
                       {selectedProject.myRole.other.length > 0 && (
-                        <div>
-                          <p className="text-xs font-medium text-primary mb-2">기타 협업</p>
-                          <BulletList items={selectedProject.myRole.other} />
+                        <div className="p-4 rounded-lg bg-muted/50 border border-border/50">
+                          <p className="text-xs font-bold text-primary mb-3 uppercase tracking-wide">협업</p>
+                          <ul className="space-y-2">
+                            {selectedProject.myRole.other.map((item, idx) => (
+                              <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2">
+                                <span className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       )}
                     </div>
@@ -571,32 +596,35 @@ const ProjectsSection = () => {
 
                   {/* 사용 기술 */}
                   <div>
-                    <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3 flex items-center gap-1.5">
-                      <Wrench className="w-3.5 h-3.5 text-primary" />
+                    <h4 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
+                      <Wrench className="w-4 h-4 text-primary" />
                       사용 기술
                     </h4>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-2">
                       {selectedProject.techStack.map((tech) => (
-                        <span key={tech} className="px-2 py-1 text-xs bg-muted rounded">
+                        <span 
+                          key={tech} 
+                          className="px-3 py-1.5 text-sm bg-muted rounded-lg font-medium"
+                        >
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  {/* 성과 */}
-                  <div>
-                    <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3 flex items-center gap-1.5">
-                      <BarChart3 className="w-3.5 h-3.5 text-primary" />
+                  {/* 성과 - 강조 */}
+                  <div className="p-5 rounded-xl bg-gradient-to-r from-green-500/10 to-transparent border-l-4 border-green-500">
+                    <h4 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
+                      <BarChart3 className="w-4 h-4 text-green-500" />
                       성과 (전/후 비교 & 지표)
                     </h4>
-                    <BulletList items={selectedProject.results} icon={TrendingUp} />
+                    <BulletList items={selectedProject.results} icon={TrendingUp} highlight />
                   </div>
 
                   {/* 협업·커뮤니케이션 */}
-                  <div>
-                    <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3 flex items-center gap-1.5">
-                      <MessageSquare className="w-3.5 h-3.5 text-primary" />
+                  <div className="p-5 rounded-xl bg-muted/30 border border-border/50">
+                    <h4 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
+                      <MessageSquare className="w-4 h-4 text-primary" />
                       협업 · 커뮤니케이션
                     </h4>
                     <BulletList items={selectedProject.collaboration} icon={CheckCircle2} />
@@ -604,16 +632,16 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Footer - Links */}
-                <div className="px-6 py-4 border-t border-border/50 flex flex-wrap gap-2">
+                <div className="px-8 py-5 border-t border-border/50 bg-muted/20 flex flex-wrap gap-3">
                   {selectedProject.link && (
                     <a
                       href={selectedProject.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+                      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                     >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      데모
+                      <ExternalLink className="w-4 h-4" />
+                      데모 보기
                     </a>
                   )}
                   {selectedProject.github && (
@@ -621,9 +649,9 @@ const ProjectsSection = () => {
                       href={selectedProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm bg-muted rounded-md hover:bg-muted/80 transition-colors"
+                      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-muted rounded-lg hover:bg-muted/80 transition-colors"
                     >
-                      <GitBranch className="w-3.5 h-3.5" />
+                      <GitBranch className="w-4 h-4" />
                       GitHub
                     </a>
                   )}
@@ -632,9 +660,9 @@ const ProjectsSection = () => {
                       href={selectedProject.docs}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm bg-muted rounded-md hover:bg-muted/80 transition-colors"
+                      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-muted rounded-lg hover:bg-muted/80 transition-colors"
                     >
-                      <FileText className="w-3.5 h-3.5" />
+                      <FileText className="w-4 h-4" />
                       문서
                     </a>
                   )}
