@@ -378,7 +378,7 @@ const ProjectCard = ({
       }}
     >
       {/* Image */}
-      <div className="aspect-video overflow-hidden">
+      <div className="aspect-[2/1] overflow-hidden">
         <img
           src={project.image}
           alt={project.title}
