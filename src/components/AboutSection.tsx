@@ -53,20 +53,26 @@ const skillCategories = [
   {
     icon: Code2,
     title: "Frontend",
-    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "HTML/CSS"],
     level: "주력",
   },
   {
     icon: Database,
     title: "Backend & DB",
-    skills: ["Python", "Node.js", "Supabase", "PostgreSQL"],
+    skills: ["Python", "Node.js", "Supabase", "PostgreSQL", "Flask"],
     level: "활용 가능",
   },
   {
     icon: Palette,
     title: "AI/ML",
-    skills: ["PyTorch", "OpenCV", "Hugging Face", "Computer Vision"],
+    skills: ["PyTorch", "OpenCV", "YOLOv4", "U-Net", "Tesseract OCR", "Hugging Face"],
     level: "프로젝트 경험",
+  },
+  {
+    icon: Target,
+    title: "Tools & DevOps",
+    skills: ["Git", "GitHub Actions", "AWS", "GA4", "GTM", "Figma"],
+    level: "활용 가능",
   },
 ];
 
