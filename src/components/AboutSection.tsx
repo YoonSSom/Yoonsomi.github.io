@@ -1,5 +1,37 @@
 import profileImage from "@/assets/profile.jpg";
-import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target } from "lucide-react";
+import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Building2 } from "lucide-react";
+
+// 조직 정보 (그룹화용)
+const organizations = [
+  {
+    name: "디저트 린(Dessert Lyn)",
+    period: "2023.10 - 현재",
+    type: "experience",
+    color: "from-pink-500/20 to-orange-500/20",
+    borderColor: "border-pink-500/30",
+  },
+  {
+    name: "서울사이버대학교",
+    period: "2023.02 - 현재",
+    type: "education",
+    color: "from-blue-500/20 to-cyan-500/20",
+    borderColor: "border-blue-500/30",
+  },
+  {
+    name: "알파코",
+    period: "2022.03 - 2022.12",
+    type: "experience",
+    color: "from-purple-500/20 to-indigo-500/20",
+    borderColor: "border-purple-500/30",
+  },
+  {
+    name: "배화여자대학교",
+    period: "2020.02 - 2022.02",
+    type: "education",
+    color: "from-emerald-500/20 to-teal-500/20",
+    borderColor: "border-emerald-500/30",
+  },
+];
 
 // 핵심 역량 요약
 const highlights = [
@@ -302,49 +334,67 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* 타임라인 */}
+            {/* 조직별 그룹화된 타임라인 */}
             <div>
               <h3 className="text-lg font-semibold mb-4">경력 & 교육</h3>
-              <div className="relative">
-                {/* 타임라인 선 */}
-                <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-border" />
-                
-                <div className="space-y-6">
-                  {timeline.map((item, idx) => (
-                    <div key={idx} className="flex gap-4 relative">
-                      <div className="flex-shrink-0 z-10">
-                        {item.type === "education" ? (
-                          <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
-                            <GraduationCap className="w-3 h-3 text-primary" />
-                          </div>
-                        ) : (
-                          <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center">
-                            <Briefcase className="w-3 h-3 text-accent" />
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex-1 pb-4">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs text-muted-foreground">{item.period}</span>
-                          {item.organization && (
-                            <span className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary">
-                              {item.organization}
-                            </span>
+              <div className="space-y-6">
+                {organizations.map((org) => {
+                  const orgItems = timeline.filter((item) => item.organization === org.name);
+                  if (orgItems.length === 0) return null;
+                  
+                  return (
+                    <div
+                      key={org.name}
+                      className={`rounded-2xl border ${org.borderColor} bg-gradient-to-br ${org.color} overflow-hidden`}
+                    >
+                      {/* 조직 헤더 */}
+                      <div className="p-4 border-b border-border/50 flex items-center gap-3">
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                          org.type === "education" 
+                            ? "bg-primary/20" 
+                            : "bg-accent/20"
+                        }`}>
+                          {org.type === "education" ? (
+                            <GraduationCap className="w-5 h-5 text-primary" />
+                          ) : (
+                            <Building2 className="w-5 h-5 text-accent" />
                           )}
                         </div>
-                        <h4 className="font-medium mb-2">{item.title}</h4>
-                        <ul className="space-y-1">
-                          {item.details.map((detail, dIdx) => (
-                            <li key={dIdx} className="text-sm text-muted-foreground flex items-start gap-2">
-                              <span className="text-primary/60 mt-1.5">•</span>
-                              <span>{detail}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        <div>
+                          <h4 className="font-semibold">{org.name}</h4>
+                          <p className="text-xs text-muted-foreground">{org.period}</p>
+                        </div>
+                        <span className={`ml-auto text-xs px-2 py-1 rounded-full ${
+                          org.type === "education" 
+                            ? "bg-primary/20 text-primary" 
+                            : "bg-accent/20 text-accent"
+                        }`}>
+                          {org.type === "education" ? "교육" : "경력"}
+                        </span>
+                      </div>
+                      
+                      {/* 해당 조직의 항목들 */}
+                      <div className="p-4 space-y-4">
+                        {orgItems.map((item, idx) => (
+                          <div key={idx} className="relative pl-4 border-l-2 border-border/50">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-xs font-medium text-primary">{item.title}</span>
+                              <span className="text-xs text-muted-foreground">| {item.period}</span>
+                            </div>
+                            <ul className="space-y-1">
+                              {item.details.map((detail, dIdx) => (
+                                <li key={dIdx} className="text-sm text-muted-foreground flex items-start gap-2">
+                                  <span className="text-primary/60 mt-1">•</span>
+                                  <span>{detail}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                  ))}
-                </div>
+                  );
+                })}
               </div>
             </div>
           </div>
