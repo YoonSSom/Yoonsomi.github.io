@@ -395,10 +395,16 @@ const ProjectCard = ({
       <div className="aspect-[2/1] overflow-hidden relative">
         {/* Demo Badge */}
         {project.link && (
-          <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 bg-primary/90 text-primary-foreground px-2.5 py-1 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="absolute top-3 right-3 z-10 flex items-center gap-1.5 bg-primary/90 text-primary-foreground px-2.5 py-1 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm hover:bg-primary transition-colors cursor-pointer"
+          >
             <Play className="w-3 h-3 fill-current" />
             <span>Demo</span>
-          </div>
+          </a>
         )}
         <img
           src={project.image}
