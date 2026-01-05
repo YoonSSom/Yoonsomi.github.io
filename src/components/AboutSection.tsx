@@ -291,40 +291,40 @@ const certifications = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="min-h-screen py-20 px-6 lg:px-12">
+    <section id="about" className="min-h-screen py-16 md:py-20 px-4 md:px-6 lg:px-12">
       <div className="max-w-5xl mx-auto">
         {/* 섹션 헤더 */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">
             ABOUT ME
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
             <span className="text-gradient">이력 요약</span>
           </h2>
         </div>
 
         {/* 프로덕트 엔지니어 5대 역량 */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-6">
-            <Target className="w-5 h-5 text-primary" />
-            <h3 className="font-semibold text-lg">Product Engineer 핵심 역량</h3>
+        <div className="mb-8 md:mb-12">
+          <div className="flex items-center gap-2 mb-4 md:mb-6">
+            <Target className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+            <h3 className="font-semibold text-base md:text-lg">Product Engineer 핵심 역량</h3>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
             {productEngineerCompetencies.map((item) => (
               <div 
                 key={item.title} 
-                className="p-5 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/20 hover:border-primary/40 transition-colors"
+                className="p-4 md:p-5 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/20 hover:border-primary/40 transition-colors"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <item.icon className="w-5 h-5 text-primary" />
-                  <h4 className="font-semibold text-sm">{item.title}</h4>
+                  <item.icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                  <h4 className="font-semibold text-xs md:text-sm">{item.title}</h4>
                 </div>
-                <p className="text-xs text-muted-foreground mb-3">{item.description}</p>
-                <ul className="space-y-1.5">
+                <p className="text-[10px] md:text-xs text-muted-foreground mb-2 md:mb-3">{item.description}</p>
+                <ul className="space-y-1 md:space-y-1.5">
                   {item.examples.map((ex, idx) => (
-                    <li key={idx} className="text-xs flex items-start gap-2">
+                    <li key={idx} className="text-[10px] md:text-xs flex items-start gap-1.5 md:gap-2">
                       <span className="text-primary mt-0.5">✓</span>
-                      <span>{ex}</span>
+                      <span className="leading-relaxed">{ex}</span>
                     </li>
                   ))}
                 </ul>
@@ -333,34 +333,34 @@ const AboutSection = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 md:gap-8">
           {/* 좌측: 프로필 카드 */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-6">
+          <div className="lg:col-span-1 order-2 lg:order-1">
+            <div className="lg:sticky lg:top-24 space-y-4 md:space-y-6">
               {/* 프로필 */}
-              <div className="p-6 rounded-2xl bg-card border border-border">
-                <div className="flex items-center gap-4 mb-6">
+              <div className="p-4 md:p-6 rounded-2xl bg-card border border-border">
+                <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                   <img
                     src={profileImage}
                     alt="윤소미"
-                    className="w-20 h-20 rounded-full object-cover border-2 border-primary/50"
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-primary/50"
                   />
                   <div>
-                    <h3 className="text-xl font-bold">윤소미</h3>
-                    <p className="text-sm text-muted-foreground">Product Engineer</p>
-                    <p className="text-xs text-muted-foreground">ysomi010212@gmail.com</p>
+                    <h3 className="text-lg md:text-xl font-bold">윤소미</h3>
+                    <p className="text-xs md:text-sm text-muted-foreground">Product Engineer</p>
+                    <p className="text-[10px] md:text-xs text-muted-foreground">ysomi010212@gmail.com</p>
                   </div>
                 </div>
                 
                 {/* 자격증 */}
                 <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Award className="w-4 h-4 text-primary" />
-                    <h4 className="text-sm font-medium">자격증</h4>
+                  <div className="flex items-center gap-2 mb-2 md:mb-3">
+                    <Award className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
+                    <h4 className="text-xs md:text-sm font-medium">자격증</h4>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5 md:space-y-2">
                     {certifications.map((cert) => (
-                      <div key={cert.name} className="flex justify-between text-sm">
+                      <div key={cert.name} className="flex justify-between text-xs md:text-sm">
                         <span>{cert.name}</span>
                         <span className="text-muted-foreground">{cert.year}</span>
                       </div>
@@ -369,10 +369,10 @@ const AboutSection = () => {
                 </div>
               </div>
 
-              {/* 가치관 - Product Engineer 마인드셋 */}
-              <div className="p-6 rounded-2xl bg-card border border-border">
-                <h4 className="text-sm font-medium mb-3 text-primary">일하는 방식</h4>
-                <div className="space-y-3 text-sm text-muted-foreground">
+              {/* 가치관 - Product Engineer 마인드셋 - 모바일에서 숨김 */}
+              <div className="hidden md:block p-4 md:p-6 rounded-2xl bg-card border border-border">
+                <h4 className="text-xs md:text-sm font-medium mb-2 md:mb-3 text-primary">일하는 방식</h4>
+                <div className="space-y-2 md:space-y-3 text-xs md:text-sm text-muted-foreground">
                   <p className="leading-relaxed">
                     <span className="text-foreground font-medium">🎯 Why부터 시작</span><br/>
                     스펙 구현 전에 "왜 이 기능인가" 질문합니다.
@@ -395,30 +395,30 @@ const AboutSection = () => {
           </div>
 
           {/* 우측: 기술스택 + 타임라인 */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-6 md:space-y-8 order-1 lg:order-2">
             {/* 기술스택 */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">기술 스택</h3>
-              <div className="grid gap-4">
+              <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4">기술 스택</h3>
+              <div className="grid gap-3 md:gap-4">
                 {skillCategories.map((category) => (
                   <div
                     key={category.title}
-                    className="p-5 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors"
+                    className="p-4 md:p-5 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors"
                   >
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between mb-2 md:mb-3">
                       <div className="flex items-center gap-2">
-                        <category.icon className="w-5 h-5 text-primary" />
-                        <h4 className="font-medium">{category.title}</h4>
+                        <category.icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                        <h4 className="font-medium text-sm md:text-base">{category.title}</h4>
                       </div>
-                      <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
+                      <span className="text-[10px] md:text-xs px-2 py-0.5 md:py-1 rounded-full bg-primary/10 text-primary">
                         {category.level}
                       </span>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                       {category.skills.map((skill) => (
                         <span
                           key={skill}
-                          className="text-sm px-3 py-1 rounded-md bg-muted"
+                          className="text-xs md:text-sm px-2 md:px-3 py-0.5 md:py-1 rounded-md bg-muted"
                         >
                           {skill}
                         </span>
