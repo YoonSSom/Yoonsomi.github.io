@@ -404,14 +404,13 @@ const ProjectCard = ({
             onClick={(e) => e.stopPropagation()}
             className={`absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold shadow-xl backdrop-blur-md cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
               project.isLive 
-                ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white animate-pulse" 
+                ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white" 
                 : "bg-gradient-to-r from-primary to-purple-500 text-white hover:from-primary/90 hover:to-purple-500/90"
             }`}
           >
             {project.isLive ? (
               <>
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                 </span>
                 <span>Live</span>
