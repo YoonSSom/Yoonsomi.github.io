@@ -103,7 +103,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           <h3 className="text-xs font-medium text-center text-muted-foreground mb-3 uppercase tracking-wider">
             Featured Projects
           </h3>
-          <div className="grid md:grid-cols-2 gap-3 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto">
             {featuredProjects.map((project) => (
               <div
                 key={project.title}
