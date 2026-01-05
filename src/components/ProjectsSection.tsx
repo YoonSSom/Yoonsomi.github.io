@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
@@ -461,7 +461,23 @@ const BulletList = ({ items, icon: Icon, highlight = false }: { items: string[];
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [api, setApi] = useState<any>(null);
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
+
+  const onSelect = useCallback(() => {
+    if (!api) return;
+    setCurrentSlide(api.selectedScrollSnap());
+  }, [api]);
+
+  useEffect(() => {
+    if (!api) return;
+    onSelect();
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api, onSelect]);
 
   return (
     <section id="projects" className="min-h-screen py-24 px-4 md:px-6 lg:px-12">
@@ -494,6 +510,7 @@ const ProjectsSection = () => {
               loop: true,
             }}
             className="w-full"
+            setApi={setApi}
           >
             <CarouselContent className="-ml-2">
               {projects.map((project, index) => (
@@ -506,7 +523,24 @@ const ProjectsSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex items-center justify-center gap-4 mt-4">
+            
+            {/* Dot Indicators */}
+            <div className="flex items-center justify-center gap-1.5 mt-4">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => api?.scrollTo(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    currentSlide === index 
+                      ? "bg-primary w-4" 
+                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+            
+            <div className="flex items-center justify-center gap-4 mt-3">
               <CarouselPrevious className="static translate-y-0 bg-card border-border hover:bg-primary hover:text-primary-foreground" />
               <span className="text-xs text-muted-foreground">스와이프하여 더보기</span>
               <CarouselNext className="static translate-y-0 bg-card border-border hover:bg-primary hover:text-primary-foreground" />
