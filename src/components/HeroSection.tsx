@@ -54,7 +54,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   return (
     <section
       id="welcome"
-      className="h-screen flex items-center justify-center relative overflow-hidden py-4"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden py-20 md:py-4"
     >
       {/* Grid background */}
       <div className="absolute inset-0 grid-bg opacity-30" />
@@ -85,11 +85,11 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
         </div>
 
         {/* 프로덕트 엔지니어 핵심 역량 5가지 */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-6 max-w-4xl mx-auto">
+        <div className="flex overflow-x-auto md:grid md:grid-cols-5 gap-2 mb-6 max-w-4xl mx-auto pb-2 md:pb-0 scrollbar-hide">
           {coreCompetencies.map((item) => (
             <div
               key={item.title}
-              className="text-center p-3 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm hover:border-primary/50 transition-colors"
+              className="text-center p-3 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm hover:border-primary/50 transition-colors flex-shrink-0 w-32 md:w-auto"
             >
               <item.icon className="w-5 h-5 text-primary mx-auto mb-1.5" />
               <p className="text-xs font-medium leading-tight mb-0.5">{item.title}</p>
