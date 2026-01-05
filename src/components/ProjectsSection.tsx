@@ -555,9 +555,9 @@ const ProjectsSection = () => {
 
       {/* Project Detail Modal */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-hidden bg-card border-border p-0">
+        <DialogContent className="w-[95vw] max-w-3xl max-h-[85vh] md:max-h-[90vh] overflow-hidden bg-card border-border p-0">
           {selectedProject && (
-            <div className="flex flex-col max-h-[90vh]">
+            <div className="flex flex-col max-h-[85vh] md:max-h-[90vh]">
               <VisuallyHidden>
                 <DialogTitle>{selectedProject.title}</DialogTitle>
                 <DialogDescription>{selectedProject.summary}</DialogDescription>
@@ -566,86 +566,86 @@ const ProjectsSection = () => {
               {/* Scrollable Content */}
               <div className="flex-1 overflow-y-auto">
                 {/* Header Section */}
-                <div className="p-8 pb-6 bg-gradient-to-br from-primary/5 to-accent/5">
-                  <div className="flex flex-wrap gap-2 mb-4">
+                <div className="p-4 md:p-8 pb-4 md:pb-6 bg-gradient-to-br from-primary/5 to-accent/5">
+                  <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
                     {selectedProject.tags.map((tag) => (
                       <span
                         key={tag.label}
-                        className={`px-3 py-1 text-xs font-medium rounded-full ${tag.color}`}
+                        className={`px-2 md:px-3 py-0.5 md:py-1 text-[10px] md:text-xs font-medium rounded-full ${tag.color}`}
                       >
                         {tag.label}
                       </span>
                     ))}
                   </div>
-                  <h2 className="text-2xl font-bold mb-3">{selectedProject.title}</h2>
-                  <p className="text-base text-muted-foreground leading-relaxed">{selectedProject.summary}</p>
+                  <h2 className="text-lg md:text-2xl font-bold mb-2 md:mb-3">{selectedProject.title}</h2>
+                  <p className="text-xs md:text-base text-muted-foreground leading-relaxed">{selectedProject.summary}</p>
                   
-                  {/* Quick Info - 헤더 안에 배치 */}
-                  <div className="flex items-center gap-6 mt-4 pt-4 border-t border-border/30">
-                    <div className="flex items-center gap-2 text-sm">
-                      <Calendar className="w-4 h-4 text-primary" />
+                  {/* Quick Info */}
+                  <div className="flex items-center gap-4 md:gap-6 mt-3 md:mt-4 pt-3 md:pt-4 border-t border-border/30">
+                    <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm">
+                      <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
                       <span className="font-medium">{selectedProject.period}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <Users className="w-4 h-4 text-primary" />
+                    <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm">
+                      <Users className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
                       <span className="font-medium">{selectedProject.team}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Main Content - 2단 레이아웃 */}
-                <div className="p-8 space-y-8">
+                {/* Main Content */}
+                <div className="p-4 md:p-8 space-y-5 md:space-y-8">
                   
-                  {/* 문제/목표 - 강조 박스 */}
-                  <div className="p-5 rounded-xl bg-gradient-to-r from-primary/10 to-transparent border-l-4 border-primary">
-                    <h4 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
-                      <Target className="w-4 h-4 text-primary" />
+                  {/* 문제/목표 */}
+                  <div className="p-3 md:p-5 rounded-xl bg-gradient-to-r from-primary/10 to-transparent border-l-4 border-primary">
+                    <h4 className="text-xs md:text-sm font-bold text-foreground mb-2 md:mb-3 flex items-center gap-2">
+                      <Target className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
                       문제 / 목표
                     </h4>
                     <BulletList items={selectedProject.problemGoal} highlight />
                   </div>
 
-                  {/* 나의 역할 - 카드형 */}
+                  {/* 나의 역할 - 모바일에서 세로 배치 */}
                   <div>
-                    <h4 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
-                      <Briefcase className="w-4 h-4 text-primary" />
+                    <h4 className="text-xs md:text-sm font-bold text-foreground mb-3 md:mb-4 flex items-center gap-2">
+                      <Briefcase className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
                       나의 역할
                     </h4>
-                    <div className="grid md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                       {selectedProject.myRole.planning.length > 0 && (
-                        <div className="p-4 rounded-lg bg-muted/50 border border-border/50">
-                          <p className="text-xs font-bold text-primary mb-3 uppercase tracking-wide">기획</p>
-                          <ul className="space-y-2">
+                        <div className="p-3 md:p-4 rounded-lg bg-muted/50 border border-border/50">
+                          <p className="text-[10px] md:text-xs font-bold text-primary mb-2 md:mb-3 uppercase tracking-wide">기획</p>
+                          <ul className="space-y-1.5 md:space-y-2">
                             {selectedProject.myRole.planning.map((item, idx) => (
-                              <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2">
-                                <span className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
-                                <span>{item}</span>
+                              <li key={idx} className="text-[11px] md:text-sm text-foreground/80 flex items-start gap-1.5 md:gap-2">
+                                <span className="w-1 h-1 rounded-full bg-primary mt-1.5 md:mt-2 flex-shrink-0" />
+                                <span className="leading-relaxed">{item}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
                       )}
                       {selectedProject.myRole.development.length > 0 && (
-                        <div className="p-4 rounded-lg bg-muted/50 border border-border/50">
-                          <p className="text-xs font-bold text-primary mb-3 uppercase tracking-wide">개발</p>
-                          <ul className="space-y-2">
+                        <div className="p-3 md:p-4 rounded-lg bg-muted/50 border border-border/50">
+                          <p className="text-[10px] md:text-xs font-bold text-primary mb-2 md:mb-3 uppercase tracking-wide">개발</p>
+                          <ul className="space-y-1.5 md:space-y-2">
                             {selectedProject.myRole.development.map((item, idx) => (
-                              <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2">
-                                <span className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
-                                <span>{item}</span>
+                              <li key={idx} className="text-[11px] md:text-sm text-foreground/80 flex items-start gap-1.5 md:gap-2">
+                                <span className="w-1 h-1 rounded-full bg-primary mt-1.5 md:mt-2 flex-shrink-0" />
+                                <span className="leading-relaxed">{item}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
                       )}
                       {selectedProject.myRole.other.length > 0 && (
-                        <div className="p-4 rounded-lg bg-muted/50 border border-border/50">
-                          <p className="text-xs font-bold text-primary mb-3 uppercase tracking-wide">협업</p>
-                          <ul className="space-y-2">
+                        <div className="p-3 md:p-4 rounded-lg bg-muted/50 border border-border/50">
+                          <p className="text-[10px] md:text-xs font-bold text-primary mb-2 md:mb-3 uppercase tracking-wide">협업</p>
+                          <ul className="space-y-1.5 md:space-y-2">
                             {selectedProject.myRole.other.map((item, idx) => (
-                              <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2">
-                                <span className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
-                                <span>{item}</span>
+                              <li key={idx} className="text-[11px] md:text-sm text-foreground/80 flex items-start gap-1.5 md:gap-2">
+                                <span className="w-1 h-1 rounded-full bg-primary mt-1.5 md:mt-2 flex-shrink-0" />
+                                <span className="leading-relaxed">{item}</span>
                               </li>
                             ))}
                           </ul>
@@ -656,15 +656,15 @@ const ProjectsSection = () => {
 
                   {/* 사용 기술 */}
                   <div>
-                    <h4 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
-                      <Wrench className="w-4 h-4 text-primary" />
+                    <h4 className="text-xs md:text-sm font-bold text-foreground mb-3 md:mb-4 flex items-center gap-2">
+                      <Wrench className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
                       사용 기술
                     </h4>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                       {selectedProject.techStack.map((tech) => (
                         <span 
                           key={tech} 
-                          className="px-3 py-1.5 text-sm bg-muted rounded-lg font-medium"
+                          className="px-2 md:px-3 py-1 md:py-1.5 text-[11px] md:text-sm bg-muted rounded-lg font-medium"
                         >
                           {tech}
                         </span>
@@ -672,10 +672,10 @@ const ProjectsSection = () => {
                     </div>
                   </div>
 
-                  {/* 성과 - 강조 */}
-                  <div className="p-5 rounded-xl bg-gradient-to-r from-green-500/10 to-transparent border-l-4 border-green-500">
-                    <h4 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
-                      <BarChart3 className="w-4 h-4 text-green-500" />
+                  {/* 성과 */}
+                  <div className="p-3 md:p-5 rounded-xl bg-gradient-to-r from-green-500/10 to-transparent border-l-4 border-green-500">
+                    <h4 className="text-xs md:text-sm font-bold text-foreground mb-2 md:mb-3 flex items-center gap-2">
+                      <BarChart3 className="w-3.5 h-3.5 md:w-4 md:h-4 text-green-500" />
                       성과 (전/후 비교 & 지표)
                     </h4>
                     <BulletList items={selectedProject.results} icon={TrendingUp} highlight />
