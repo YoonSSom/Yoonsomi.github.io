@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare } from "lucide-react";
+import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
   Dialog,
@@ -8,7 +8,13 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 interface Project {
   id: string;
   title: string;
@@ -458,12 +464,12 @@ const ProjectsSection = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
 
   return (
-    <section id="projects" className="min-h-screen py-24 px-6 lg:px-12">
+    <section id="projects" className="min-h-screen py-24 px-4 md:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div 
           ref={headerRef}
-          className={`text-center mb-16 transition-all duration-700 ${
+          className={`text-center mb-10 md:mb-16 transition-all duration-700 ${
             headerVisible 
               ? "opacity-100 translate-y-0" 
               : "opacity-0 translate-y-8"
@@ -472,16 +478,44 @@ const ProjectsSection = () => {
           <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
             PROJECTS
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             주요 <span className="text-gradient">프로젝트</span>
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm md:text-base">
             문제 발견부터 성과 측정까지, End-to-End 프로젝트 경험
           </p>
         </div>
 
-        {/* All Projects - 3 column grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Mobile: Carousel */}
+        <div className="md:hidden">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2">
+              {projects.map((project, index) => (
+                <CarouselItem key={project.id} className="pl-2 basis-[85%]">
+                  <ProjectCard
+                    project={project}
+                    index={0}
+                    onClick={() => setSelectedProject(project)}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <CarouselPrevious className="static translate-y-0 bg-card border-border hover:bg-primary hover:text-primary-foreground" />
+              <span className="text-xs text-muted-foreground">스와이프하여 더보기</span>
+              <CarouselNext className="static translate-y-0 bg-card border-border hover:bg-primary hover:text-primary-foreground" />
+            </div>
+          </Carousel>
+        </div>
+
+        {/* Desktop: Grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.id}
