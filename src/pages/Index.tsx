@@ -33,7 +33,7 @@ const Index = () => {
       <TopNav activeSection={activeSection} onNavigate={handleNavigate} />
       <MobileNav activeSection={activeSection} onNavigate={handleNavigate} />
       
-      <main className="pt-16 min-h-screen">
+      <main className="pt-12 md:pt-16 min-h-screen">
         {renderSection()}
       </main>
     </div>
