@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TopNav from "@/components/TopNav";
 import MobileNav from "@/components/MobileNav";
 import HeroSection from "@/components/HeroSection";
@@ -8,13 +8,27 @@ import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("welcome");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [displaySection, setDisplaySection] = useState("welcome");
 
   const handleNavigate = (section: string) => {
-    setActiveSection(section);
+    if (section === activeSection) return;
+    
+    setIsTransitioning(true);
+    
+    // Wait for fade out, then switch section
+    setTimeout(() => {
+      setDisplaySection(section);
+      setActiveSection(section);
+      // Small delay then fade in
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 200);
   };
 
   const renderSection = () => {
-    switch (activeSection) {
+    switch (displaySection) {
       case "welcome":
         return <HeroSection onNavigate={handleNavigate} />;
       case "about":
@@ -34,7 +48,15 @@ const Index = () => {
       <MobileNav activeSection={activeSection} onNavigate={handleNavigate} />
       
       <main className="pt-12 md:pt-16 min-h-screen">
-        {renderSection()}
+        <div
+          className={`transition-all duration-300 ease-out ${
+            isTransitioning 
+              ? "opacity-0 translate-y-4" 
+              : "opacity-100 translate-y-0"
+          }`}
+        >
+          {renderSection()}
+        </div>
       </main>
     </div>
   );
