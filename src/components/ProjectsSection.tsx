@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare } from "lucide-react";
+import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
   Dialog,
@@ -392,7 +392,14 @@ const ProjectCard = ({
       }}
     >
       {/* Image */}
-      <div className="aspect-[2/1] overflow-hidden">
+      <div className="aspect-[2/1] overflow-hidden relative">
+        {/* Demo Badge */}
+        {project.link && (
+          <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 bg-primary/90 text-primary-foreground px-2.5 py-1 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm">
+            <Play className="w-3 h-3 fill-current" />
+            <span>Demo</span>
+          </div>
+        )}
         <img
           src={project.image}
           alt={project.title}
