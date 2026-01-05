@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play } from "lucide-react";
+import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play, Radio } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
   Dialog,
@@ -28,6 +28,7 @@ interface Project {
   collaboration: string[]; // 협업·커뮤니케이션
   tags: { label: string; color: string }[];
   link?: string;
+  isLive?: boolean;
   github?: string;
   docs?: string;
   image: string;
@@ -126,6 +127,7 @@ const projects: Project[] = [
       { label: "운영중", color: "bg-yellow-500/20 text-yellow-400" },
     ],
     link: "https://dessertlyn.lovable.app",
+    isLive: true,
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
     period: "2023.06 - 현재",
     team: "1인 (기획~운영)",
@@ -393,17 +395,33 @@ const ProjectCard = ({
     >
       {/* Image */}
       <div className="aspect-[2/1] overflow-hidden relative">
-        {/* Demo Badge */}
+        {/* Demo/Live Badge */}
         {project.link && (
           <a
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="absolute top-3 right-3 z-10 flex items-center gap-1.5 bg-primary/90 text-primary-foreground px-2.5 py-1 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm hover:bg-primary transition-colors cursor-pointer"
+            className={`absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold shadow-xl backdrop-blur-md cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+              project.isLive 
+                ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white animate-pulse" 
+                : "bg-gradient-to-r from-primary to-purple-500 text-white hover:from-primary/90 hover:to-purple-500/90"
+            }`}
           >
-            <Play className="w-3 h-3 fill-current" />
-            <span>Demo</span>
+            {project.isLive ? (
+              <>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                </span>
+                <span>Live</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-3 h-3 fill-current" />
+                <span>Demo</span>
+              </>
+            )}
           </a>
         )}
         <img
