@@ -378,89 +378,118 @@ const ProjectCard = ({
   onClick: () => void;
 }) => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+  
+  // 3D rotation angles for each card position
+  const getRotation = (idx: number) => {
+    const rotations = [
+      { rotateY: -8, rotateX: 5 },
+      { rotateY: 0, rotateX: 0 },
+      { rotateY: 8, rotateX: 5 },
+      { rotateY: -6, rotateX: 4 },
+      { rotateY: 3, rotateX: 3 },
+      { rotateY: -5, rotateX: 6 },
+      { rotateY: 7, rotateX: 4 },
+    ];
+    return rotations[idx % rotations.length];
+  };
+  
+  const rotation = getRotation(index);
 
   return (
     <div
       ref={ref}
-      onClick={onClick}
-      className={`group relative overflow-hidden rounded-xl bg-card border border-border/50 hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer ${
+      className={`perspective-1000 ${
         isVisible 
           ? "opacity-100 translate-y-0" 
-          : "opacity-0 translate-y-8"
+          : "opacity-0 translate-y-12"
       }`}
       style={{ 
-        transitionDelay: `${index * 80}ms`,
-        transitionProperty: "all"
+        transitionDelay: `${index * 100}ms`,
+        transitionDuration: "700ms",
+        transitionProperty: "all",
+        perspective: "1000px"
       }}
     >
-      {/* Image */}
-      <div className="aspect-[2/1] overflow-hidden relative">
-        {/* Demo/Live Badge */}
-        {project.link && (
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className={`absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold shadow-xl backdrop-blur-md cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
-              project.isLive 
-                ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white" 
-                : "bg-gradient-to-r from-primary to-purple-500 text-white hover:from-primary/90 hover:to-purple-500/90"
-            }`}
-          >
-            {project.isLive ? (
-              <>
-                <span className="relative flex h-2 w-2">
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                </span>
-                <span>Live</span>
-              </>
-            ) : (
-              <>
-                <Play className="w-3 h-3 fill-current" />
-                <span>Demo</span>
-              </>
-            )}
-          </a>
-        )}
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-      </div>
-      
-      {/* Content */}
-      <div className="p-4">
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1 mb-2">
-          {project.tags.slice(0, 3).map((tag) => (
-            <span
-              key={tag.label}
-              className={`px-2 py-0.5 text-[10px] font-medium rounded ${tag.color}`}
+      <div
+        onClick={onClick}
+        className="group relative overflow-hidden rounded-3xl bg-card cursor-pointer transition-all duration-500 hover:scale-105"
+        style={{ 
+          transform: `rotateY(${rotation.rotateY}deg) rotateX(${rotation.rotateX}deg)`,
+          transformStyle: "preserve-3d",
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 10px 20px -5px rgba(0, 0, 0, 0.3)"
+        }}
+      >
+        {/* Image */}
+        <div className="aspect-[4/3] overflow-hidden relative">
+          {/* Demo/Live Badge */}
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className={`absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold shadow-xl backdrop-blur-md cursor-pointer transition-all duration-300 hover:scale-110 ${
+                project.isLive 
+                  ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white" 
+                  : "bg-gradient-to-r from-primary to-purple-500 text-white hover:from-primary/90 hover:to-purple-500/90"
+              }`}
             >
-              {tag.label}
-            </span>
-          ))}
+              {project.isLive ? (
+                <>
+                  <span className="relative flex h-2 w-2">
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                  </span>
+                  <span>Live</span>
+                </>
+              ) : (
+                <>
+                  <Play className="w-3 h-3 fill-current" />
+                  <span>Demo</span>
+                </>
+              )}
+            </a>
+          )}
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+          {/* Image overlay gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </div>
         
-        {/* Title */}
-        <h3 className="text-sm font-semibold mb-1.5 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
-          {project.title}
-        </h3>
-        
-        {/* Summary */}
-        <p className="text-xs text-muted-foreground line-clamp-2 mb-3">
-          {project.summary}
-        </p>
-        
-        {/* Footer: Period + CTA */}
-        <div className="flex items-center justify-between pt-2 border-t border-border/50">
-          <span className="text-[10px] text-muted-foreground">{project.period}</span>
-          <span className="text-[10px] text-primary font-medium flex items-center gap-1 group-hover:gap-1.5 transition-all">
-            자세히
-            <ExternalLink className="w-2.5 h-2.5" />
-          </span>
+        {/* Content */}
+        <div className="p-5 bg-gradient-to-b from-card to-card/95">
+          {/* Tags */}
+          <div className="flex flex-wrap gap-1.5 mb-3">
+            {project.tags.slice(0, 3).map((tag) => (
+              <span
+                key={tag.label}
+                className={`px-2.5 py-1 text-[10px] font-semibold rounded-full ${tag.color}`}
+              >
+                {tag.label}
+              </span>
+            ))}
+          </div>
+          
+          {/* Title */}
+          <h3 className="text-base font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors leading-snug">
+            {project.title}
+          </h3>
+          
+          {/* Summary */}
+          <p className="text-xs text-muted-foreground line-clamp-2 mb-4 leading-relaxed">
+            {project.summary}
+          </p>
+          
+          {/* Footer: Period + CTA */}
+          <div className="flex items-center justify-between pt-3 border-t border-border/30">
+            <span className="text-[11px] text-muted-foreground font-medium">{project.period}</span>
+            <span className="text-[11px] text-primary font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+              자세히 보기
+              <ExternalLink className="w-3 h-3" />
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -570,16 +599,21 @@ const ProjectsSection = () => {
           </Carousel>
         </div>
 
-        {/* Desktop: Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              onClick={() => setSelectedProject(project)}
-            />
-          ))}
+        {/* Desktop: 3D Perspective Grid */}
+        <div className="hidden md:block">
+          <div 
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
+            style={{ perspective: "2000px" }}
+          >
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                onClick={() => setSelectedProject(project)}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
