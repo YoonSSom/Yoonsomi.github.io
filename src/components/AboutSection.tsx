@@ -1,5 +1,5 @@
 import profileImage from "@/assets/profile.jpg";
-import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Building2 } from "lucide-react";
+import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Building2, Languages } from "lucide-react";
 
 // 조직 정보 (그룹화용)
 const organizations = [
@@ -289,6 +289,11 @@ const certifications = [
   { name: "ITQ (한글, 엑셀)", year: "2020" },
 ];
 
+// 어학
+const languages = [
+  { name: "JPT", score: "400" },
+];
+
 const AboutSection = () => {
   return (
     <section id="about" className="min-h-screen py-16 md:py-20 px-4 md:px-6 lg:px-12">
@@ -365,8 +370,24 @@ const AboutSection = () => {
                         <span className="text-muted-foreground">{cert.year}</span>
                       </div>
                     ))}
+                </div>
+
+                {/* 어학 */}
+                <div className="mt-4">
+                  <div className="flex items-center gap-2 mb-2 md:mb-3">
+                    <Languages className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
+                    <h4 className="text-xs md:text-sm font-medium">어학</h4>
+                  </div>
+                  <div className="space-y-1.5 md:space-y-2">
+                    {languages.map((lang) => (
+                      <div key={lang.name} className="flex justify-between text-xs md:text-sm">
+                        <span>{lang.name}</span>
+                        <span className="text-muted-foreground">{lang.score}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
+              </div>
               </div>
 
               {/* 가치관 - Product Engineer 마인드셋 - 모바일에서 숨김 */}
