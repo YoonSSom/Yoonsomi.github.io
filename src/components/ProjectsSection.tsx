@@ -569,15 +569,15 @@ const SlideViewer = ({ slides }: { slides: string[] }) => {
       
       {/* Slide Container */}
       <div className="relative group">
-        {/* Main Image */}
+        {/* Main Image - constrained to fit within modal */}
         <div 
-          className="relative aspect-video rounded-lg overflow-hidden bg-black cursor-pointer"
+          className="relative w-full max-h-[40vh] md:max-h-[50vh] rounded-lg overflow-hidden bg-black cursor-pointer flex items-center justify-center"
           onClick={() => setIsFullscreen(true)}
         >
           <img
             src={slides[currentIndex]}
             alt={`슬라이드 ${currentIndex + 1}`}
-            className="w-full h-full object-contain"
+            className="max-w-full max-h-[40vh] md:max-h-[50vh] w-auto h-auto object-contain"
           />
         </div>
         
