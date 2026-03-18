@@ -411,26 +411,10 @@ const ProjectCard = ({
 }) => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
   
-  // 3D rotation angles for each card position
-  const getRotation = (idx: number) => {
-    const rotations = [
-      { rotateY: -8, rotateX: 5 },
-      { rotateY: 0, rotateX: 0 },
-      { rotateY: 8, rotateX: 5 },
-      { rotateY: -6, rotateX: 4 },
-      { rotateY: 3, rotateX: 3 },
-      { rotateY: -5, rotateX: 6 },
-      { rotateY: 7, rotateX: 4 },
-    ];
-    return rotations[idx % rotations.length];
-  };
-  
-  const rotation = getRotation(index);
-
   return (
     <div
       ref={ref}
-      className={`perspective-1000 ${
+      className={`${
         isVisible 
           ? "opacity-100 translate-y-0" 
           : "opacity-0 translate-y-12"
@@ -439,17 +423,11 @@ const ProjectCard = ({
         transitionDelay: `${index * 100}ms`,
         transitionDuration: "700ms",
         transitionProperty: "all",
-        perspective: "1000px"
       }}
     >
       <div
         onClick={onClick}
-        className="group relative overflow-hidden rounded-3xl bg-card cursor-pointer transition-all duration-500 hover:scale-105"
-        style={{ 
-          transform: `rotateY(${rotation.rotateY}deg) rotateX(${rotation.rotateX}deg)`,
-          transformStyle: "preserve-3d",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 10px 20px -5px rgba(0, 0, 0, 0.3)"
-        }}
+        className="group relative overflow-hidden rounded-3xl bg-card border border-border cursor-pointer transition-all duration-500 hover:scale-105 hover:border-primary/50 hover:shadow-lg"
       >
         {/* Image */}
         <div className="aspect-[4/3] overflow-hidden relative">
