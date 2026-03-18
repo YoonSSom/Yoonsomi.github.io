@@ -723,10 +723,7 @@ const ProjectsSection = () => {
 
         {/* Desktop: 3D Perspective Grid */}
         <div className="hidden md:block">
-          <div 
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
-            style={{ perspective: "2000px" }}
-          >
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {projects.map((project, index) => (
               <ProjectCard
                 key={project.id}
