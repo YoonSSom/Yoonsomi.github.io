@@ -14,36 +14,6 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-// Import todosign slides
-import slide1 from "@/assets/todosign-slides/page_1.jpg";
-import slide2 from "@/assets/todosign-slides/page_2.jpg";
-import slide3 from "@/assets/todosign-slides/page_3.jpg";
-import slide4 from "@/assets/todosign-slides/page_4.jpg";
-import slide5 from "@/assets/todosign-slides/page_5.jpg";
-import slide6 from "@/assets/todosign-slides/page_6.jpg";
-import slide7 from "@/assets/todosign-slides/page_7.jpg";
-import slide8 from "@/assets/todosign-slides/page_8.jpg";
-import slide9 from "@/assets/todosign-slides/page_9.jpg";
-import slide10 from "@/assets/todosign-slides/page_10.jpg";
-import slide11 from "@/assets/todosign-slides/page_11.jpg";
-import slide12 from "@/assets/todosign-slides/page_12.jpg";
-import slide13 from "@/assets/todosign-slides/page_13.jpg";
-import slide14 from "@/assets/todosign-slides/page_14.jpg";
-import slide15 from "@/assets/todosign-slides/page_15.jpg";
-import slide16 from "@/assets/todosign-slides/page_16.jpg";
-import slide17 from "@/assets/todosign-slides/page_17.jpg";
-import slide18 from "@/assets/todosign-slides/page_18.jpg";
-import slide19 from "@/assets/todosign-slides/page_19.jpg";
-import slide20 from "@/assets/todosign-slides/page_20.jpg";
-import slide21 from "@/assets/todosign-slides/page_21.jpg";
-import slide22 from "@/assets/todosign-slides/page_22.jpg";
-import slide23 from "@/assets/todosign-slides/page_23.jpg";
-
-const todosignSlides = [
-  slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8,
-  slide9, slide10, slide11, slide12, slide13, slide14, slide15, slide16,
-  slide17, slide18, slide19, slide20, slide21, slide22, slide23
-];
 
 interface Project {
   id: string;
