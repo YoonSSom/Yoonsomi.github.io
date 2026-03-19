@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play, Radio, ChevronLeft, ChevronRight, Image } from "lucide-react";
+import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play, Radio } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
   Dialog,
@@ -14,36 +14,6 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-// Import todosign slides
-import slide1 from "@/assets/todosign-slides/page_1.jpg";
-import slide2 from "@/assets/todosign-slides/page_2.jpg";
-import slide3 from "@/assets/todosign-slides/page_3.jpg";
-import slide4 from "@/assets/todosign-slides/page_4.jpg";
-import slide5 from "@/assets/todosign-slides/page_5.jpg";
-import slide6 from "@/assets/todosign-slides/page_6.jpg";
-import slide7 from "@/assets/todosign-slides/page_7.jpg";
-import slide8 from "@/assets/todosign-slides/page_8.jpg";
-import slide9 from "@/assets/todosign-slides/page_9.jpg";
-import slide10 from "@/assets/todosign-slides/page_10.jpg";
-import slide11 from "@/assets/todosign-slides/page_11.jpg";
-import slide12 from "@/assets/todosign-slides/page_12.jpg";
-import slide13 from "@/assets/todosign-slides/page_13.jpg";
-import slide14 from "@/assets/todosign-slides/page_14.jpg";
-import slide15 from "@/assets/todosign-slides/page_15.jpg";
-import slide16 from "@/assets/todosign-slides/page_16.jpg";
-import slide17 from "@/assets/todosign-slides/page_17.jpg";
-import slide18 from "@/assets/todosign-slides/page_18.jpg";
-import slide19 from "@/assets/todosign-slides/page_19.jpg";
-import slide20 from "@/assets/todosign-slides/page_20.jpg";
-import slide21 from "@/assets/todosign-slides/page_21.jpg";
-import slide22 from "@/assets/todosign-slides/page_22.jpg";
-import slide23 from "@/assets/todosign-slides/page_23.jpg";
-
-const todosignSlides = [
-  slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8,
-  slide9, slide10, slide11, slide12, slide13, slide14, slide15, slide16,
-  slide17, slide18, slide19, slide20, slide21, slide22, slide23
-];
 
 interface Project {
   id: string;
@@ -66,7 +36,7 @@ interface Project {
   image: string;
   period: string;
   team: string;
-  slides?: string[]; // 첨부 슬라이드 이미지
+  
 }
 
 const projects: Project[] = [
@@ -114,7 +84,7 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
     period: "2024.01 - 2024.03",
     team: "팀 (기획 담당)",
-    slides: todosignSlides,
+    
   },
   {
     id: "commercial",
@@ -526,117 +496,6 @@ const BulletList = ({ items, icon: Icon, highlight = false }: { items: string[];
   </ul>
 );
 
-const SlideViewer = ({ slides }: { slides: string[] }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const goToPrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  };
-
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  };
-
-  return (
-    <div className="p-3 md:p-5 rounded-xl bg-muted/30 border border-border/50">
-      <h4 className="text-xs md:text-sm font-bold text-foreground mb-3 md:mb-4 flex items-center gap-2">
-        <Image className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
-        기획안 슬라이드 ({currentIndex + 1} / {slides.length})
-      </h4>
-      
-      {/* Slide Container */}
-      <div className="relative group">
-        {/* Main Image - constrained to fit within modal */}
-        <div 
-          className="relative w-full max-h-[40vh] md:max-h-[50vh] rounded-lg overflow-hidden bg-black cursor-pointer flex items-center justify-center"
-          onClick={() => setIsFullscreen(true)}
-        >
-          <img
-            src={slides[currentIndex]}
-            alt={`슬라이드 ${currentIndex + 1}`}
-            className="max-w-full max-h-[40vh] md:max-h-[50vh] w-auto h-auto object-contain"
-          />
-        </div>
-        
-        {/* Navigation Arrows */}
-        <button
-          onClick={(e) => { e.stopPropagation(); goToPrev(); }}
-          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
-          aria-label="이전 슬라이드"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-        <button
-          onClick={(e) => { e.stopPropagation(); goToNext(); }}
-          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
-          aria-label="다음 슬라이드"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
-      </div>
-
-      {/* Thumbnail Navigation */}
-      <div className="mt-3 flex gap-1.5 overflow-x-auto pb-2 scrollbar-hide">
-        {slides.map((slide, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            className={`flex-shrink-0 w-14 h-10 md:w-16 md:h-11 rounded overflow-hidden border-2 transition-all ${
-              idx === currentIndex 
-                ? "border-primary opacity-100" 
-                : "border-transparent opacity-60 hover:opacity-80"
-            }`}
-          >
-            <img
-              src={slide}
-              alt={`썸네일 ${idx + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </button>
-        ))}
-      </div>
-
-      {/* Fullscreen Modal */}
-      <Dialog open={isFullscreen} onOpenChange={setIsFullscreen}>
-        <DialogContent className="max-w-[95vw] max-h-[95vh] p-2 bg-black border-none">
-          <VisuallyHidden>
-            <DialogTitle>슬라이드 확대 보기</DialogTitle>
-            <DialogDescription>기획안 슬라이드 상세 보기</DialogDescription>
-          </VisuallyHidden>
-          <div className="relative flex items-center justify-center h-[85vh]">
-            <img
-              src={slides[currentIndex]}
-              alt={`슬라이드 ${currentIndex + 1}`}
-              className="max-w-full max-h-full object-contain"
-            />
-            
-            {/* Fullscreen Navigation */}
-            <button
-              onClick={goToPrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-              aria-label="이전 슬라이드"
-            >
-              <ChevronLeft className="w-8 h-8" />
-            </button>
-            <button
-              onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-              aria-label="다음 슬라이드"
-            >
-              <ChevronRight className="w-8 h-8" />
-            </button>
-            
-            {/* Page indicator */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/10 text-white text-sm">
-              {currentIndex + 1} / {slides.length}
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </div>
-  );
-};
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -873,10 +732,6 @@ const ProjectsSection = () => {
                     <BulletList items={selectedProject.collaboration} icon={CheckCircle2} />
                   </div>
 
-                  {/* 첨부 슬라이드 */}
-                  {selectedProject.slides && selectedProject.slides.length > 0 && (
-                    <SlideViewer slides={selectedProject.slides} />
-                  )}
                 </div>
 
                 {/* Footer - Links */}
