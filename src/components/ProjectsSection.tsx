@@ -880,7 +880,7 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Footer - Links */}
-                <div className="px-8 py-5 border-t border-border/50 bg-muted/20 flex flex-wrap gap-3">
+                <div className="px-4 md:px-8 py-4 md:py-5 border-t border-border/50 bg-muted/20 flex flex-wrap gap-3">
                   {selectedProject.link && (
                     <a
                       href={selectedProject.link}
