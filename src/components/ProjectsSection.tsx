@@ -84,7 +84,7 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
     period: "2024.01 - 2024.03",
     team: "팀 (기획 담당)",
-    slides: todosignSlides,
+    
   },
   {
     id: "commercial",
