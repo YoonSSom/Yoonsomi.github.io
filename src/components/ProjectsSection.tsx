@@ -865,9 +865,9 @@ const ProjectsSection = () => {
                   </div>
 
                   {/* 협업·커뮤니케이션 */}
-                  <div className="p-5 rounded-xl bg-muted/30 border border-border/50">
-                    <h4 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
-                      <MessageSquare className="w-4 h-4 text-primary" />
+                  <div className="p-3 md:p-5 rounded-xl bg-muted/30 border border-border/50">
+                    <h4 className="text-xs md:text-sm font-bold text-foreground mb-2 md:mb-3 flex items-center gap-2">
+                      <MessageSquare className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
                       협업 · 커뮤니케이션
                     </h4>
                     <BulletList items={selectedProject.collaboration} icon={CheckCircle2} />
