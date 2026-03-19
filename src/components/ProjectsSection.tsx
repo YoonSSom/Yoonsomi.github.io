@@ -732,10 +732,6 @@ const ProjectsSection = () => {
                     <BulletList items={selectedProject.collaboration} icon={CheckCircle2} />
                   </div>
 
-                  {/* 첨부 슬라이드 */}
-                  {selectedProject.slides && selectedProject.slides.length > 0 && (
-                    <SlideViewer slides={selectedProject.slides} />
-                  )}
                 </div>
 
                 {/* Footer - Links */}
