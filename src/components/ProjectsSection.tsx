@@ -738,7 +738,7 @@ const ProjectsSection = () => {
 
       {/* Project Detail Modal */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="w-[95vw] max-w-3xl max-h-[85vh] md:max-h-[90vh] overflow-hidden bg-card border-border p-0">
+        <DialogContent className="w-[95vw] max-w-3xl max-h-[85vh] md:max-h-[90vh] overflow-hidden bg-card border-border p-0 pr-0">
           {selectedProject && (
             <div className="flex flex-col max-h-[85vh] md:max-h-[90vh]">
               <VisuallyHidden>
