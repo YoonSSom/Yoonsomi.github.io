@@ -36,7 +36,7 @@ interface Project {
   image: string;
   period: string;
   team: string;
-  slides?: string[]; // 첨부 슬라이드 이미지
+  
 }
 
 const projects: Project[] = [
