@@ -749,7 +749,7 @@ const ProjectsSection = () => {
               {/* Scrollable Content */}
               <div className="flex-1 overflow-y-auto">
                 {/* Header Section */}
-                <div className="p-4 md:p-8 pb-4 md:pb-6 bg-gradient-to-br from-primary/5 to-accent/5">
+                <div className="p-4 md:p-8 pb-4 md:pb-6 pt-8 md:pt-10 bg-gradient-to-br from-primary/5 to-accent/5">
                   <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
                     {selectedProject.tags.map((tag) => (
                       <span
@@ -865,9 +865,9 @@ const ProjectsSection = () => {
                   </div>
 
                   {/* 협업·커뮤니케이션 */}
-                  <div className="p-5 rounded-xl bg-muted/30 border border-border/50">
-                    <h4 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
-                      <MessageSquare className="w-4 h-4 text-primary" />
+                  <div className="p-3 md:p-5 rounded-xl bg-muted/30 border border-border/50">
+                    <h4 className="text-xs md:text-sm font-bold text-foreground mb-2 md:mb-3 flex items-center gap-2">
+                      <MessageSquare className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
                       협업 · 커뮤니케이션
                     </h4>
                     <BulletList items={selectedProject.collaboration} icon={CheckCircle2} />
@@ -880,7 +880,7 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Footer - Links */}
-                <div className="px-8 py-5 border-t border-border/50 bg-muted/20 flex flex-wrap gap-3">
+                <div className="px-4 md:px-8 py-4 md:py-5 border-t border-border/50 bg-muted/20 flex flex-wrap gap-3">
                   {selectedProject.link && (
                     <a
                       href={selectedProject.link}
