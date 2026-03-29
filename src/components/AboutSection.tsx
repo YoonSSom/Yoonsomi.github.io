@@ -4,7 +4,7 @@ import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Buil
 // 조직 정보 (그룹화용)
 const organizations = [
   {
-    name: "비대면 수술 동의서 전자서명 서비스",
+    name: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
     period: "2025.12 - 2026.01",
     type: "experience",
     color: "from-sky-500/20 to-blue-500/20",
@@ -121,7 +121,7 @@ const skillCategories = [
 const timeline = [
   {
     period: "2025.12 - 2026.01",
-    organization: "비대면 수술 동의서 전자서명 서비스",
+    organization: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
     title: "프론트엔드 개발",
     type: "experience",
     details: [

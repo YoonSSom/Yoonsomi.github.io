@@ -42,7 +42,7 @@ interface Project {
 const projects: Project[] = [
   {
     id: "todosign",
-    title: "비대면 수술 동의서 전자서명 서비스",
+    title: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
     summary: "AI 아바타 설명과 전자서명을 결합해, 고령 환자의 수술 이해도를 높이고 의료진의 설명 부담과 법적 리스크를 줄인 비대면 수술동의 서비스",
     problemGoal: [
       "수술동의서가 어렵고 이해하기 힘듦",
