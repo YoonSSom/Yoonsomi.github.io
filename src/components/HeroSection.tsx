@@ -26,6 +26,16 @@ const experienceCards = [
     desc: "단순 모델 구현을 넘어 실제 서비스 적용까지 고려한 안전 시스템 기획 경험",
     project: "실시간 졸음 운전 감지 시스템",
   },
+  {
+    type: "신뢰도개선형",
+    desc: "데이터 기반으로 평가 시스템의 신뢰도를 개선한 서비스 기획 경험",
+    project: "리뷰 기반 상품 평점 신뢰도 개선 시스템",
+  },
+  {
+    type: "서비스설계형",
+    desc: "기술을 활용해 비효율적인 검수 프로세스를 서비스 구조로 개선한 기획 경험",
+    project: "자동차 파손 자동 판별 시스템",
+  },
 ];
 
 const HeroSection = ({ onNavigate }: HeroSectionProps) => {
