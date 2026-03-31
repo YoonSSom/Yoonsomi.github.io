@@ -1,30 +1,25 @@
-import { Github, BookOpen, Mail, ArrowRight, Target, BarChart3, Users, Scale, MessageSquare } from "lucide-react";
+import { Github, BookOpen, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
   onNavigate: (section: string) => void;
 }
 
-// 프로덕트 엔지니어 핵심 역량 5가지
-const coreCompetencies = [
-  { icon: Target, title: "문제 정의", desc: "Why 먼저" },
-  { icon: BarChart3, title: "데이터 기반", desc: "지표로 판단" },
-  { icon: Users, title: "사용자 중심", desc: "임팩트 우선" },
-  { icon: Scale, title: "트레이드오프", desc: "양쪽 조율" },
-  { icon: MessageSquare, title: "협업", desc: "명확한 소통" },
-];
-
-// 대표 프로젝트 2개
-const featuredProjects = [
+const experienceCards = [
   {
-    title: "비대면 전자서명 서비스",
-    metric: "완료율 94%",
-    tags: ["Why 먼저", "사용자 중심"],
+    type: "문제해결형",
+    desc: "복잡한 의료 프로세스의 문제를 정의하고, 기술을 활용해 실제 서비스 구조로 해결한 문제해결형 기획 경험",
+    project: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
   },
   {
-    title: "디저트 커머스 운영",
-    metric: "광고비 ₩0",
-    tags: ["데이터 기반", "협업"],
+    type: "데이터기반형",
+    desc: "데이터 분석과 실험을 기반으로 유입과 전환을 개선하며 성과를 만든 데이터 기반 기획 경험",
+    project: "디저트 커머스 웹사이트",
+  },
+  {
+    type: "기술이해형",
+    desc: "OCR 파이프라인 구조를 분석하고 성능 개선을 설계하며 기술적 제약을 이해한 기획 경험",
+    project: "한국어 메뉴판 OCR 서비스 개선",
   },
 ];
 
@@ -58,35 +53,23 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           </p>
         </div>
 
-        {/* 핵심 역량 5가지 - 한 줄 */}
-        <div className="flex justify-center gap-1.5 md:gap-3 lg:gap-4 mb-4 lg:mb-8 flex-wrap">
-          {coreCompetencies.map((item) => (
+        {/* 경험 카드 3가지 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4 max-w-3xl lg:max-w-4xl mx-auto mb-4 lg:mb-8">
+          {experienceCards.map((card) => (
             <div
-              key={item.title}
-              className="text-center px-2 py-1.5 md:px-3 md:py-2 lg:px-5 lg:py-3 rounded-md lg:rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm"
-            >
-              <item.icon className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-6 lg:h-6 text-primary mx-auto mb-0.5 lg:mb-1" />
-              <p className="text-[10px] md:text-xs lg:text-sm font-medium leading-tight">{item.title}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* 대표 프로젝트 - 간결하게 */}
-        <div className="grid grid-cols-2 gap-2 lg:gap-4 max-w-md lg:max-w-xl mx-auto mb-4 lg:mb-8">
-          {featuredProjects.map((project) => (
-            <div
-              key={project.title}
+              key={card.type}
               onClick={() => onNavigate("projects")}
-              className="group p-2.5 md:p-3 lg:p-5 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm hover:border-primary/50 transition-all cursor-pointer"
+              className="group p-3 lg:p-5 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm hover:border-primary/50 transition-all cursor-pointer"
             >
-              <div className="flex items-center justify-between mb-1 lg:mb-2">
-                <h4 className="text-[11px] md:text-xs lg:text-base font-semibold group-hover:text-primary transition-colors truncate">
-                  {project.title}
-                </h4>
-              </div>
-              <span className="text-[10px] md:text-xs lg:text-lg font-bold text-primary">
-                {project.metric}
+              <span className="inline-block px-2 py-0.5 mb-1.5 lg:mb-2 rounded-full bg-primary/10 text-primary text-[10px] lg:text-xs font-semibold">
+                {card.type}
               </span>
+              <p className="text-[11px] lg:text-sm text-muted-foreground mb-1.5 lg:mb-3 leading-relaxed line-clamp-3">
+                {card.desc}
+              </p>
+              <p className="text-xs lg:text-sm font-semibold group-hover:text-primary transition-colors">
+                {card.project}
+              </p>
             </div>
           ))}
         </div>
