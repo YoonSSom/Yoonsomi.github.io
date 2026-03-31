@@ -59,7 +59,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
         </div>
 
         {/* 경험 카드 3가지 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4 max-w-3xl lg:max-w-4xl mx-auto mb-4 lg:mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 max-w-4xl lg:max-w-5xl mx-auto mb-4 lg:mb-8">
           {experienceCards.map((card) => (
             <div
               key={card.type}
