@@ -191,56 +191,6 @@ const projects: Project[] = [
     team: "1인 프로젝트 (기획 ~ 운영)",
   },
   {
-    id: "medical-segmentation",
-    title: "Hacking The Human Body Hubmap 대회",
-    summary: "HuBMAP 데이터셋 기반 Semantic Segmentation을 통해 FTU를 자동 분할하고, 다양한 데이터 처리 및 앙상블 전략으로 모델 성능을 개선한 프로젝트",
-    problemGoal: [
-      "FTU 분할은 의료 연구에서 필수적이지만 수작업 비용이 매우 큼",
-      "제공된 이미지 해상도(최대 3000×3000)로 인해 메모리 및 학습 효율 문제 발생",
-      "테스트 데이터의 해상도가 다양하여 일반화 성능 확보가 어려움",
-      "목표: Dice Score 기준 Baseline 대비 +5% 이상 성능 개선, 대용량 이미지 처리 효율 개선, 다양한 데이터 분포에 대응 가능한 모델 구축",
-    ],
-    myRole: {
-      planning: [
-        "EDA 기반 데이터 특성 분석 및 가설 수립",
-        "RLE 기반 마스크 처리로 메모리 효율 개선 전략 설계",
-        "이미지 타일링(256×256, 512×512) 및 stride 기반 데이터 확장 전략 수립",
-        "Multi-scale dataset 구성 및 Multi-class 라벨링 전략 설계",
-      ],
-      development: [
-        "U-Net 기반 segmentation 모델 구현 (EfficientNet b1/b3/b5, ResNeSt 101/200/269 encoder 비교 실험)",
-        "K-Fold Cross Validation 및 Fast-AI 기반 Head training → Full fine-tuning 적용",
-        "Inference 최적화: size 512, reduce 3, threshold 0.225 최적 파라미터 도출",
-        "Heterogeneous ensemble (EfficientNet + ResNeSt, 다양한 해상도 조합) 및 TTA 적용",
-      ],
-      other: [
-        "Notion 기반 가설–결과 기록 및 주 5회 실험 리뷰 미팅",
-        "GitHub PR 기반 코드 리뷰",
-      ],
-    },
-    techStack: ["Python", "PyTorch", "Fast-AI", "MMSegmentation", "Albumentations", "OpenCV", "Pandas", "Sklearn", "W&B", "Google Colab", "AWS"],
-    results: [
-      "Public Score: 0.78 / Private Score: 0.76 (Final)",
-      "Rank: 124 / 1,245 팀 (상위 약 12%)",
-      "Stride 적용 시 성능 유의미하게 향상 (stride 128 → 10,943개, stride 64 → 34,412개)",
-      "모델 복잡도에 따른 최적 데이터셋 차이 확인 (b1/b3 → 256+stride128, b5 → stride64)",
-    ],
-    collaboration: [
-      "역할 분담: 데이터 전처리 / 모델링 / 앙상블 최적화",
-      "Notion 기반 가설–결과 기록, 주 5회 실험 리뷰 미팅",
-      "GitHub PR 기반 코드 리뷰로 품질 관리",
-    ],
-    tags: [
-      { label: "ML Pipeline", color: "bg-cyan-500/20 text-cyan-400" },
-      { label: "실험관리", color: "bg-purple-500/20 text-purple-400" },
-      { label: "Top 12%", color: "bg-pink-500/20 text-pink-400" },
-    ],
-    github: "https://github.com/username/hubmap-segmentation",
-    image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=500&fit=crop",
-    period: "2022.09 - 2022.12",
-    team: "팀 프로젝트 (3인)",
-  },
-  {
     id: "ocr",
     title: "다국어 메뉴판 번역 시스템",
     summary: "이미지 전처리 최적화로 OCR 정확도 89% 달성, 외국인 관광객 메뉴 이해 문제 해결",
