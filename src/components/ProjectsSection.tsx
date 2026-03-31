@@ -602,6 +602,32 @@ const ProjectsSection = () => {
             ))}
           </div>
         </div>
+
+        {/* Technical Projects Section */}
+        <div className="mt-16 md:mt-24">
+          <div className="text-center mb-10 md:mb-16">
+            <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
+              TECHNICAL
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              기술 <span className="text-gradient">프로젝트</span>
+            </h2>
+            <p className="text-muted-foreground text-sm md:text-base">
+              ML/AI 기반 기술 심화 프로젝트
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            {technicalProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                onClick={() => setSelectedProject(project)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Project Detail Modal */}
