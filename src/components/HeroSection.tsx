@@ -50,11 +50,11 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           </div>
           
           <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 lg:mb-4 leading-tight">
-            안녕하세요, <span className="text-gradient">윤소미</span>입니다
+            <span className="text-muted-foreground">"이게 될까요?"</span>를 <span className="text-gradient">"이게 되네요"</span>로 바꾸는 기획자
           </h1>
           
-          <p className="text-sm md:text-base lg:text-xl text-muted-foreground">
-            <span className="text-foreground font-semibold">Why부터 시작하는</span> Product Engineer
+          <p className="text-lg md:text-2xl lg:text-3xl font-semibold">
+            안녕하세요, 윤소미입니다
           </p>
         </div>
 
