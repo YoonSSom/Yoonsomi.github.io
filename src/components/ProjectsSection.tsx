@@ -66,7 +66,7 @@ const projects: Project[] = [
     },
     techStack: ["React (Responsive Web)", "LLM 기반 Q&A", "STT/TTS", "WebRTC", "TLS 1.3", "AES-256", "PASS / SMS 인증"],
     results: [
-      "설명 시간: 15분 → 6분 (약 60% 감소)",
+      "설명 시간: 60분 → 30분 (약 50% 감소)",
       "환자 이해도: 약 80% 향상",
       "반복 질문: 약 70% 감소",
       "법적 증거 확보: 녹취/녹화 기반 100% 기록 가능",
