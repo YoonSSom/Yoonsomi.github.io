@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,44 +6,75 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 15% 15%;
+    /* Dark theme inspired by reference */
+    --background: 210 20% 8%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 220 15% 15%;
+    --card: 210 20% 12%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 15%;
+    --popover: 210 20% 12%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 215 70% 45%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 180 70% 50%;
+    --primary-foreground: 210 20% 8%;
 
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 15% 25%;
+    --secondary: 210 20% 15%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 10% 46%;
+    --muted: 210 15% 20%;
+    --muted-foreground: 210 10% 55%;
 
-    --accent: 215 70% 45%;
+    --accent: 280 80% 65%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 215 70% 45%;
+    --border: 210 15% 20%;
+    --input: 210 15% 20%;
+    --ring: 180 70% 50%;
 
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 15% 15%;
-    --sidebar-primary: 215 70% 45%;
+    --radius: 0.75rem;
+    
+    --sidebar-background: 210 20% 8%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 180 70% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 96%;
-    --sidebar-accent-foreground: 220 15% 25%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 215 70% 45%;
+    --sidebar-accent: 210 20% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 210 15% 20%;
+    --sidebar-ring: 180 70% 50%;
+  }
+
+  .dark {
+    --background: 210 20% 8%;
+    --foreground: 0 0% 98%;
+    --card: 210 20% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 210 20% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 180 70% 50%;
+    --primary-foreground: 210 20% 8%;
+    --secondary: 210 20% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 210 15% 20%;
+    --muted-foreground: 210 10% 55%;
+    --accent: 280 80% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 210 15% 20%;
+    --input: 210 15% 20%;
+    --ring: 180 70% 50%;
+    --sidebar-background: 210 20% 8%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 180 70% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 210 15% 20%;
+    --sidebar-ring: 180 70% 50%;
   }
 }
 
@@ -53,41 +84,66 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Noto Sans KR', 'Inter', sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
+  h1, h2, h3 {
+    font-family: 'Noto Sans KR', sans-serif;
     font-weight: 700;
   }
 }
 
 @layer utilities {
-  .section-container {
-    @apply max-w-5xl mx-auto px-6 lg:px-8;
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
   }
-
-  .section-padding {
-    @apply py-20 md:py-28;
+  
+  .grid-bg {
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
-
+  
+  .glow {
+    box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.5);
+  }
+  
+  .nav-link {
+    @apply relative text-sm text-muted-foreground transition-all duration-300 hover:text-foreground;
+  }
+  
+  .nav-link.active {
+    @apply text-primary;
+  }
+  
+  .skill-tag {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-secondary text-foreground/80 border border-border;
+  }
+  
+  .project-card {
+    @apply relative overflow-hidden rounded-2xl bg-card border border-border transition-all duration-500 hover:border-primary/50 hover:glow;
+  }
+  
   .section-title {
-    @apply text-2xl md:text-3xl font-bold mb-2 text-foreground;
+    @apply text-4xl md:text-5xl font-bold mb-6;
   }
-
-  .section-subtitle {
-    @apply text-sm text-muted-foreground mb-10 md:mb-12;
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-
-  .card-base {
-    @apply bg-card border border-border rounded-lg p-6;
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
 
-/* Clean scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -95,15 +151,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 3px;
+  background: hsl(var(--muted));
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
+  background: hsl(var(--primary));
 }
