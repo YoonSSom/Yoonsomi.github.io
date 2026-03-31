@@ -88,7 +88,7 @@ const technicalProjects: Project[] = [
     github: "https://github.com/username/hubmap-segmentation",
     image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=500&fit=crop",
     period: "2022.09 - 2022.12",
-    team: "팀 프로젝트 (3인)",
+    team: "팀 프로젝트 (5인)",
   },
 ];
 
