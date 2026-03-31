@@ -21,6 +21,11 @@ const experienceCards = [
     desc: "OCR 파이프라인 구조를 분석하고 성능 개선을 설계하며 기술적 제약을 이해한 기획 경험",
     project: "한국어 메뉴판 OCR 서비스 개선",
   },
+  {
+    type: "서비스확장형",
+    desc: "단순 모델 구현을 넘어 실제 서비스 적용까지 고려한 안전 시스템 기획 경험",
+    project: "실시간 졸음 운전 감지 시스템",
+  },
 ];
 
 const HeroSection = ({ onNavigate }: HeroSectionProps) => {
