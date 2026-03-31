@@ -234,7 +234,7 @@ const projects: Project[] = [
     github: "https://github.com/username/menu-ocr",
     image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=500&fit=crop",
     period: "2022.03 - 2022.06",
-    team: "Google Colab 기반 실험",
+    team: "팀 프로젝트 (5인)",
   },
   {
     id: "drowsy-detection",
