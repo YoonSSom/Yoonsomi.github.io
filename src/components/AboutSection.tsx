@@ -5,7 +5,7 @@ import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Buil
 const organizations = [
   {
     name: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
-    period: "2025.12 - 2026.01",
+    period: "2024.01 – 2024.03",
     type: "experience",
     color: "from-sky-500/20 to-blue-500/20",
     borderColor: "border-sky-500/30",
