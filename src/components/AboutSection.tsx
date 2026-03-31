@@ -5,7 +5,7 @@ import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Buil
 const organizations = [
   {
     name: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
-    period: "2025.12 - 2026.01",
+    period: "2024.01 – 2024.03",
     type: "experience",
     color: "from-sky-500/20 to-blue-500/20",
     borderColor: "border-sky-500/30",
@@ -120,16 +120,17 @@ const skillCategories = [
 // 경력/교육 타임라인
 const timeline = [
   {
-    period: "2025.12 - 2026.01",
+    period: "2024.01 – 2024.03",
     organization: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
-    title: "프론트엔드 개발",
+    title: "기획 담당",
     type: "experience",
     details: [
-      "역할: React 기반 프론트엔드 개발 담당",
-      "비대면 환경에서 수술 동의서 전자서명 프로세스 구현",
-      "환자 본인인증 및 서명 캡처 기능 개발",
-      "PDF 동의서 생성 및 다운로드 기능 구현",
-      "반응형 UI/UX 설계로 모바일 환경 최적화",
+      "역할: 서비스 기획 담당 (팀 프로젝트)",
+      "AS-IS 수술 동의 프로세스 분석 및 TO-BE 구조 설계",
+      "페르소나 정의 및 사용자 흐름(UX Flow) 설계",
+      "핵심 기능 도출 및 우선순위 정의 (AI 설명, Q&A, 이해도 체크, 전자서명)",
+      "AI와 의료진 역할 분담 정책 수립",
+      "의료진 인터뷰 기반 요구사항 도출 및 기획 문서 작성",
     ],
   },
   {
