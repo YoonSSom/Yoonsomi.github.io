@@ -21,6 +21,11 @@ const experienceCards = [
     desc: "OCR 파이프라인 구조를 분석하고 성능 개선을 설계하며 기술적 제약을 이해한 기획 경험",
     project: "한국어 메뉴판 OCR 서비스 개선",
   },
+  {
+    type: "서비스확장형",
+    desc: "단순 모델 구현을 넘어 실제 서비스 적용까지 고려한 안전 시스템 기획 경험",
+    project: "실시간 졸음 운전 감지 시스템",
+  },
 ];
 
 const HeroSection = ({ onNavigate }: HeroSectionProps) => {
@@ -54,7 +59,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
         </div>
 
         {/* 경험 카드 3가지 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4 max-w-3xl lg:max-w-4xl mx-auto mb-4 lg:mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 max-w-4xl lg:max-w-5xl mx-auto mb-4 lg:mb-8">
           {experienceCards.map((card) => (
             <div
               key={card.type}
