@@ -1,4 +1,4 @@
-import { Github, BookOpen, Mail, ArrowRight } from "lucide-react";
+import { Github, BookOpen, Mail, ArrowRight, Lightbulb, BarChart3, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
@@ -8,16 +8,25 @@ interface HeroSectionProps {
 const experienceCards = [
   {
     type: "문제해결형",
+    icon: Lightbulb,
+    iconColor: "text-amber-400",
+    bgColor: "bg-amber-400/10",
     desc: "복잡한 의료 프로세스의 문제를 정의하고, 기술을 활용해 실제 서비스 구조로 해결한 문제해결형 기획 경험",
     project: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
   },
   {
     type: "데이터기반형",
+    icon: BarChart3,
+    iconColor: "text-emerald-400",
+    bgColor: "bg-emerald-400/10",
     desc: "데이터 분석과 실험을 기반으로 유입과 전환을 개선하며 성과를 만든 데이터 기반 기획 경험",
     project: "디저트 커머스 웹사이트",
   },
   {
     type: "기술이해형",
+    icon: Cpu,
+    iconColor: "text-sky-400",
+    bgColor: "bg-sky-400/10",
     desc: "OCR 파이프라인 구조를 분석하고 성능 개선을 설계하며 기술적 제약을 이해한 기획 경험",
     project: "한국어 메뉴판 OCR 서비스 개선",
   },
@@ -55,23 +64,32 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
 
         {/* 경험 카드 3가지 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4 max-w-4xl lg:max-w-5xl mx-auto mb-4 lg:mb-8">
-          {experienceCards.map((card) => (
-            <div
-              key={card.type}
-              onClick={() => onNavigate("projects")}
-              className="group p-3 lg:p-5 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm hover:border-primary/50 transition-all cursor-pointer"
-            >
-              <span className="inline-block px-2 py-0.5 mb-1.5 lg:mb-2 rounded-full bg-primary/10 text-primary text-[10px] lg:text-xs font-semibold">
-                {card.type}
-              </span>
-              <p className="text-[11px] lg:text-sm text-muted-foreground mb-1.5 lg:mb-3 leading-relaxed line-clamp-3">
-                {card.desc}
-              </p>
-              <p className="text-xs lg:text-sm font-semibold group-hover:text-primary transition-colors">
-                {card.project}
-              </p>
-            </div>
-          ))}
+          {experienceCards.map((card) => {
+            const IconComp = card.icon;
+            return (
+              <div
+                key={card.type}
+                onClick={() => onNavigate("projects")}
+                className="group p-3 lg:p-5 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm hover:border-primary/50 transition-all cursor-pointer"
+              >
+                <div className="flex items-center gap-2 mb-1.5 lg:mb-2">
+                  <div className={`w-6 h-6 lg:w-8 lg:h-8 rounded-lg ${card.bgColor} flex items-center justify-center`}>
+                    <IconComp className={`w-3.5 h-3.5 lg:w-4 lg:h-4 ${card.iconColor}`} />
+                  </div>
+                  <span className="text-[10px] lg:text-xs font-semibold text-primary">
+                    {card.type}
+                  </span>
+                </div>
+                <p className="text-[11px] lg:text-sm text-muted-foreground mb-1.5 lg:mb-3 leading-relaxed line-clamp-3">
+                  {card.desc}
+                </p>
+                <p className="text-xs lg:text-sm font-semibold group-hover:text-primary transition-colors flex items-center gap-1">
+                  {card.project}
+                  <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </p>
+              </div>
+            );
+          })}
         </div>
 
         {/* CTA 버튼 */}
