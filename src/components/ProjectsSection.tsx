@@ -691,10 +691,12 @@ const ProjectsSection = () => {
                   {/* 문제/목표 */}
                   <div className="p-3 md:p-5 rounded-xl bg-gradient-to-r from-primary/10 to-transparent border-l-4 border-primary">
                     <h4 className="text-xs md:text-sm font-bold text-foreground mb-2 md:mb-3 flex items-center gap-2">
-                      <Target className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
+                      <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Target className="w-3.5 h-3.5 text-primary" />
+                      </div>
                       문제 / 목표
                     </h4>
-                    <BulletList items={selectedProject.problemGoal} highlight />
+                    <BulletList items={selectedProject.problemGoal} icon={Circle} highlight />
                   </div>
 
                   {/* 나의 역할 - 모바일에서 세로 배치 */}
