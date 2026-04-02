@@ -498,8 +498,8 @@ const ProjectCard = ({
   );
 };
 
-const BulletList = ({ items, icon: Icon, highlight = false }: { items: string[]; icon?: React.ElementType; highlight?: boolean }) => (
-  <ul className="space-y-2">
+const BulletList = ({ items, icon: Icon, highlight = false, iconColor = "text-primary" }: { items: string[]; icon?: React.ElementType; highlight?: boolean; iconColor?: string }) => (
+  <ul className="space-y-2.5">
     {items.map((item, idx) => (
       <li 
         key={idx} 
@@ -508,7 +508,9 @@ const BulletList = ({ items, icon: Icon, highlight = false }: { items: string[];
         }`}
       >
         {Icon ? (
-          <Icon className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+          <div className="w-5 h-5 rounded-md bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <Icon className={`w-3 h-3 ${iconColor} flex-shrink-0`} />
+          </div>
         ) : (
           <span className="w-1.5 h-1.5 rounded-full bg-primary/70 mt-2 flex-shrink-0" />
         )}
