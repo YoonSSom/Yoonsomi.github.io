@@ -699,20 +699,26 @@ const ProjectsSection = () => {
                     <BulletList items={selectedProject.problemGoal} icon={Circle} highlight />
                   </div>
 
-                  {/* 나의 역할 - 모바일에서 세로 배치 */}
                   <div>
                     <h4 className="text-xs md:text-sm font-bold text-foreground mb-3 md:mb-4 flex items-center gap-2">
-                      <Briefcase className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
+                      <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Briefcase className="w-3.5 h-3.5 text-primary" />
+                      </div>
                       나의 역할
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                       {selectedProject.myRole.planning.length > 0 && (
                         <div className="p-3 md:p-4 rounded-lg bg-muted/50 border border-border/50">
-                          <p className="text-[10px] md:text-xs font-bold text-primary mb-2 md:mb-3 uppercase tracking-wide">기획</p>
+                          <div className="flex items-center gap-2 mb-2 md:mb-3">
+                            <div className="w-5 h-5 rounded-md bg-amber-400/10 flex items-center justify-center">
+                              <FileText className="w-3 h-3 text-amber-400" />
+                            </div>
+                            <p className="text-[10px] md:text-xs font-bold text-amber-400 uppercase tracking-wide">기획</p>
+                          </div>
                           <ul className="space-y-1.5 md:space-y-2">
                             {selectedProject.myRole.planning.map((item, idx) => (
                               <li key={idx} className="text-[11px] md:text-sm text-foreground/80 flex items-start gap-1.5 md:gap-2">
-                                <span className="w-1 h-1 rounded-full bg-primary mt-1.5 md:mt-2 flex-shrink-0" />
+                                <span className="w-1 h-1 rounded-full bg-amber-400 mt-1.5 md:mt-2 flex-shrink-0" />
                                 <span className="leading-relaxed">{item}</span>
                               </li>
                             ))}
@@ -721,11 +727,16 @@ const ProjectsSection = () => {
                       )}
                       {selectedProject.myRole.development.length > 0 && (
                         <div className="p-3 md:p-4 rounded-lg bg-muted/50 border border-border/50">
-                          <p className="text-[10px] md:text-xs font-bold text-primary mb-2 md:mb-3 uppercase tracking-wide">개발</p>
+                          <div className="flex items-center gap-2 mb-2 md:mb-3">
+                            <div className="w-5 h-5 rounded-md bg-sky-400/10 flex items-center justify-center">
+                              <Wrench className="w-3 h-3 text-sky-400" />
+                            </div>
+                            <p className="text-[10px] md:text-xs font-bold text-sky-400 uppercase tracking-wide">개발</p>
+                          </div>
                           <ul className="space-y-1.5 md:space-y-2">
                             {selectedProject.myRole.development.map((item, idx) => (
                               <li key={idx} className="text-[11px] md:text-sm text-foreground/80 flex items-start gap-1.5 md:gap-2">
-                                <span className="w-1 h-1 rounded-full bg-primary mt-1.5 md:mt-2 flex-shrink-0" />
+                                <span className="w-1 h-1 rounded-full bg-sky-400 mt-1.5 md:mt-2 flex-shrink-0" />
                                 <span className="leading-relaxed">{item}</span>
                               </li>
                             ))}
@@ -734,11 +745,16 @@ const ProjectsSection = () => {
                       )}
                       {selectedProject.myRole.other.length > 0 && (
                         <div className="p-3 md:p-4 rounded-lg bg-muted/50 border border-border/50">
-                          <p className="text-[10px] md:text-xs font-bold text-primary mb-2 md:mb-3 uppercase tracking-wide">협업</p>
+                          <div className="flex items-center gap-2 mb-2 md:mb-3">
+                            <div className="w-5 h-5 rounded-md bg-purple-400/10 flex items-center justify-center">
+                              <MessageSquare className="w-3 h-3 text-purple-400" />
+                            </div>
+                            <p className="text-[10px] md:text-xs font-bold text-purple-400 uppercase tracking-wide">협업</p>
+                          </div>
                           <ul className="space-y-1.5 md:space-y-2">
                             {selectedProject.myRole.other.map((item, idx) => (
                               <li key={idx} className="text-[11px] md:text-sm text-foreground/80 flex items-start gap-1.5 md:gap-2">
-                                <span className="w-1 h-1 rounded-full bg-primary mt-1.5 md:mt-2 flex-shrink-0" />
+                                <span className="w-1 h-1 rounded-full bg-purple-400 mt-1.5 md:mt-2 flex-shrink-0" />
                                 <span className="leading-relaxed">{item}</span>
                               </li>
                             ))}
