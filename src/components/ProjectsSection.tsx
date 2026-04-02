@@ -767,14 +767,16 @@ const ProjectsSection = () => {
                   {/* 사용 기술 */}
                   <div>
                     <h4 className="text-xs md:text-sm font-bold text-foreground mb-3 md:mb-4 flex items-center gap-2">
-                      <Wrench className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
+                      <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Wrench className="w-3.5 h-3.5 text-primary" />
+                      </div>
                       사용 기술
                     </h4>
                     <div className="flex flex-wrap gap-1.5 md:gap-2">
                       {selectedProject.techStack.map((tech) => (
                         <span 
                           key={tech} 
-                          className="px-2 md:px-3 py-1 md:py-1.5 text-[11px] md:text-sm bg-muted rounded-lg font-medium"
+                          className="px-2.5 md:px-3 py-1 md:py-1.5 text-[11px] md:text-sm bg-muted rounded-lg font-medium border border-border/50"
                         >
                           {tech}
                         </span>
@@ -785,16 +787,20 @@ const ProjectsSection = () => {
                   {/* 성과 */}
                   <div className="p-3 md:p-5 rounded-xl bg-gradient-to-r from-green-500/10 to-transparent border-l-4 border-green-500">
                     <h4 className="text-xs md:text-sm font-bold text-foreground mb-2 md:mb-3 flex items-center gap-2">
-                      <BarChart3 className="w-3.5 h-3.5 md:w-4 md:h-4 text-green-500" />
+                      <div className="w-6 h-6 rounded-lg bg-green-500/10 flex items-center justify-center">
+                        <BarChart3 className="w-3.5 h-3.5 text-green-500" />
+                      </div>
                       성과 (전/후 비교 & 지표)
                     </h4>
-                    <BulletList items={selectedProject.results} icon={TrendingUp} highlight />
+                    <BulletList items={selectedProject.results} icon={TrendingUp} highlight iconColor="text-green-500" />
                   </div>
 
                   {/* 협업·커뮤니케이션 */}
                   <div className="p-3 md:p-5 rounded-xl bg-muted/30 border border-border/50">
                     <h4 className="text-xs md:text-sm font-bold text-foreground mb-2 md:mb-3 flex items-center gap-2">
-                      <MessageSquare className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" />
+                      <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <MessageSquare className="w-3.5 h-3.5 text-primary" />
+                      </div>
                       협업 · 커뮤니케이션
                     </h4>
                     <BulletList items={selectedProject.collaboration} icon={CheckCircle2} />
