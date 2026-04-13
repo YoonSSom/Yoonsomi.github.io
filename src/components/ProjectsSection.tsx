@@ -198,7 +198,7 @@ const projects: Project[] = [
     ],
     link: "https://dessertlyn.lovable.app",
     isLive: true,
-    image: "https://dessertlyn.lovable.app/assets/hero-main-CTZM5TzR.png",
+    image: "/dessertlyn-preview.png",
     period: "2023.06 – 현재",
     team: "1인 프로젝트 (기획 ~ 개발 ~ 운영)",
   },
