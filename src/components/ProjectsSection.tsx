@@ -141,7 +141,7 @@ const projects: Project[] = [
       { label: "AI·UX", color: "bg-pink-500/20 text-pink-400" },
     ],
     link: "https://todosign.lovable.app",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
+    image: "/todosign-preview.png",
     period: "2024.01 – 2024.03",
     team: "Agile 기반 협업 프로젝트 (PM / 서비스 기획)",
   },
