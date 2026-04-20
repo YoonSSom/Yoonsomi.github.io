@@ -522,7 +522,18 @@ const BulletList = ({ items, icon: Icon, highlight = false, iconColor = "text-pr
    TodoSign Detail – PPT 슬라이드 기반 풍부한 상세 뷰
    "아산병원 비대면 서명 기획안 (KT 2팀)" PDF 콘텐츠 기반
    ============================================================ */
-const TodoSignDetail = ({ project }: { project: Project }) => {
+export const TODOSIGN_PROJECT_META = {
+  tags: [
+    { label: "PM/기획", color: "bg-cyan-500/20 text-cyan-400" },
+    { label: "헬스케어 DX", color: "bg-purple-500/20 text-purple-400" },
+    { label: "AI·UX", color: "bg-pink-500/20 text-pink-400" },
+  ],
+  period: "2024.01 – 2024.03",
+  team: "Agile 기반 협업 프로젝트 (PM / 서비스 기획)",
+  link: "https://todosign.lovable.app",
+};
+
+export const TodoSignDetail = ({ project }: { project: { tags: { label: string; color: string }[]; period: string; team: string; link?: string } }) => {
   const sections = [
     { id: "intro", label: "01. 서비스 소개" },
     { id: "problem", label: "02. 문제 정의" },
