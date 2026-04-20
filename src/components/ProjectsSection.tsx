@@ -654,8 +654,7 @@ const ProjectsSection = () => {
               {selectedProject.id === "todosign" ? (
                 <TodoSignDetail project={selectedProject} />
               ) : (
-              {/* Scrollable Content */}
-              (<div className="flex-1 overflow-y-auto">
+                <div className="flex-1 overflow-y-auto">
                 {/* Header Section */}
                 <div className="p-4 md:p-8 pb-4 md:pb-6 pt-8 md:pt-10 bg-gradient-to-br from-primary/5 to-accent/5">
                   <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
@@ -843,7 +842,8 @@ const ProjectsSection = () => {
                     </a>
                   )}
                 </div>
-              </div>
+                </div>
+              )}
             </div>
           )}
         </DialogContent>
