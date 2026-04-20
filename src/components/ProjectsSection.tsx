@@ -924,6 +924,14 @@ const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState<any>(null);
+
+  const handleProjectClick = (project: Project) => {
+    if (project.id === "todosign") {
+      window.open("/projects/todosign", "_blank", "noopener,noreferrer");
+      return;
+    }
+    setSelectedProject(project);
+  };
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
 
   const onSelect = useCallback(() => {
