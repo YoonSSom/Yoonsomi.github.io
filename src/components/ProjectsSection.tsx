@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play, Radio } from "lucide-react";
+import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play, Radio, AlertTriangle, UserRound, Stethoscope, ShieldCheck, Sparkles, Mic, Lock, Layers, Rocket, HelpCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
   Dialog,
@@ -7,7 +7,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   Carousel,
   CarouselContent,
@@ -649,13 +648,14 @@ const ProjectsSection = () => {
         <DialogContent className="w-[95vw] max-w-3xl max-h-[85vh] md:max-h-[90vh] overflow-hidden bg-card border-border p-0">
           {selectedProject && (
             <div className="flex flex-col max-h-[85vh] md:max-h-[90vh]">
-              <VisuallyHidden>
-                <DialogTitle>{selectedProject.title}</DialogTitle>
-                <DialogDescription>{selectedProject.summary}</DialogDescription>
-              </VisuallyHidden>
-              
+              <DialogTitle className="sr-only">{selectedProject.title}</DialogTitle>
+              <DialogDescription className="sr-only">{selectedProject.summary}</DialogDescription>
+
+              {selectedProject.id === "todosign" ? (
+                <TodoSignDetail project={selectedProject} />
+              ) : (
               {/* Scrollable Content */}
-              <div className="flex-1 overflow-y-auto">
+              (<div className="flex-1 overflow-y-auto">
                 {/* Header Section */}
                 <div className="p-4 md:p-8 pb-4 md:pb-6 pt-8 md:pt-10 bg-gradient-to-br from-primary/5 to-accent/5">
                   <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
