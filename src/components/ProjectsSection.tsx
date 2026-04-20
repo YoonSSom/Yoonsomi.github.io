@@ -987,7 +987,7 @@ const ProjectsSection = () => {
                   <ProjectCard
                     project={project}
                     index={0}
-                    onClick={() => setSelectedProject(project)}
+                    onClick={() => handleProjectClick(project)}
                   />
                 </CarouselItem>
               ))}
@@ -1019,7 +1019,7 @@ const ProjectsSection = () => {
                 key={project.id}
                 project={project}
                 index={index}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => handleProjectClick(project)}
               />
             ))}
           </div>
