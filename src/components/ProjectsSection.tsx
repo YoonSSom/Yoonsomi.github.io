@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play, Radio } from "lucide-react";
+import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play, Radio, AlertTriangle, UserRound, Stethoscope, ShieldCheck, Sparkles, Mic, Lock, Layers, Rocket, HelpCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
   Dialog,
@@ -7,7 +7,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   Carousel,
   CarouselContent,
@@ -519,6 +518,396 @@ const BulletList = ({ items, icon: Icon, highlight = false, iconColor = "text-pr
   </ul>
 );
 
+/* ============================================================
+   TodoSign Detail – PPT 슬라이드 기반 풍부한 상세 뷰
+   "아산병원 비대면 서명 기획안 (KT 2팀)" PDF 콘텐츠 기반
+   ============================================================ */
+const TodoSignDetail = ({ project }: { project: Project }) => {
+  const sections = [
+    { id: "intro", label: "01. 서비스 소개" },
+    { id: "problem", label: "02. 문제 정의" },
+    { id: "persona", label: "03. 페르소나" },
+    { id: "market", label: "04. 시장 현황" },
+    { id: "solution", label: "05. 솔루션 제안" },
+    { id: "feature", label: "06. 서비스 특징" },
+    { id: "demo", label: "07. 데모 화면" },
+    { id: "impact", label: "08. 기대효과" },
+    { id: "future", label: "09. 향후 계획" },
+    { id: "summary", label: "10. 핵심 요약" },
+  ];
+
+  return (
+    <div className="flex-1 overflow-y-auto bg-background">
+      {/* Hero / Cover */}
+      <header className="relative px-5 md:px-10 pt-10 md:pt-14 pb-8 md:pb-10 bg-gradient-to-br from-primary/15 via-accent/10 to-transparent border-b border-border/40">
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag) => (
+            <span key={tag.label} className={`px-3 py-1 text-[11px] md:text-xs font-semibold rounded-full ${tag.color}`}>
+              {tag.label}
+            </span>
+          ))}
+        </div>
+        <p className="text-xs md:text-sm text-primary font-semibold tracking-wider uppercase mb-2">Team. 투두싸인 (TodoSign)</p>
+        <h1 className="text-xl md:text-3xl font-bold leading-tight mb-3">
+          AI 비대면 수술동의서 전자서명 서비스
+        </h1>
+        <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-5">
+          노령환자를 위한 혁신적 의료 동의 솔루션 — AI 아바타 설명 + 실시간 음성대화로
+          <br className="hidden md:block" />
+          ‘설명 → 이해 → 동의’의 단절된 프로세스를 연결합니다.
+        </p>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs md:text-sm">
+          <div className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-primary" /><span className="font-medium">{project.period}</span></div>
+          <div className="flex items-center gap-1.5"><Users className="w-4 h-4 text-primary" /><span className="font-medium">{project.team}</span></div>
+          <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-primary hover:underline font-semibold">
+            <ExternalLink className="w-4 h-4" />Demo. todosign.lovable.app
+          </a>
+        </div>
+      </header>
+
+      {/* Anchor Nav */}
+      <nav className="sticky top-0 z-10 bg-card/95 backdrop-blur border-b border-border/40 overflow-x-auto scrollbar-hide">
+        <ul className="flex gap-1 px-3 md:px-6 py-2 min-w-max">
+          {sections.map((s) => (
+            <li key={s.id}>
+              <a href={`#${s.id}`} className="block px-3 py-1.5 text-[11px] md:text-xs font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md whitespace-nowrap transition-colors">
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div className="px-5 md:px-10 py-8 md:py-12 space-y-12 md:space-y-16">
+
+        {/* 01. 서비스 배경 */}
+        <section id="intro" className="scroll-mt-16">
+          <SectionHeader icon={Sparkles} number="01" title="서비스 배경" subtitle="노령인구 증가와 수술동의서의 문제점" />
+          <p className="text-sm md:text-base text-foreground/80 leading-relaxed mb-5">
+            급격히 증가하는 고령 환자들은 복잡한 의료용어와 수술동의서를 이해하는 데 심각한 어려움을 겪고 있습니다.
+          </p>
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            <InfoCard title="고령층 수술 건수 급증" desc="전체 수술 환자 중 65세 이상 비율 지속적 증가 추세" />
+            <InfoCard title="동의서 이해도 저하" desc="인지 능력 저하로 인한 수술 동의 과정의 어려움 가중" />
+          </div>
+        </section>
+
+        {/* 02. 문제 정의 */}
+        <section id="problem" className="scroll-mt-16">
+          <SectionHeader icon={AlertTriangle} number="02" title="문제 정의" subtitle="증가하는 의료 분쟁, 동의서가 핵심입니다" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-6">
+            <StatCard value="2,500+" label="의료분쟁 조정 신청" desc="매년 발생하는 건수, 지속 증가 추세" />
+            <StatCard value="48%" label="설명의무 위반 주장" desc="전체 분쟁 중 ‘설명부족’ 주장 비율" accent />
+            <StatCard value="No.1" label="입증 책임의 중요성" desc="‘충분히 설명했음’의 객관적 증거" />
+          </div>
+          <div className="p-4 md:p-5 rounded-xl bg-muted/40 border border-border/50">
+            <p className="text-xs md:text-sm font-bold mb-2 text-foreground">왜 분쟁이 발생할까요?</p>
+            <p className="text-xs md:text-sm text-foreground/75 leading-relaxed">
+              환자는 “충분히 이해하지 못했다”고 주장하고, 의료진은 “충분히 설명했다”고 주장하는 입장의 차이 때문입니다.
+              이를 해결하려면 <span className="text-primary font-semibold">녹취 기록 · 화면 녹화 · 타임스탬프</span>의 객관적 증거 확보가 필수입니다.
+            </p>
+          </div>
+          <p className="text-[11px] text-muted-foreground mt-3">출처: 한국의료분쟁조정중재원 통계연보 (2023)</p>
+        </section>
+
+        {/* 03. 페르소나 */}
+        <section id="persona" className="scroll-mt-16">
+          <SectionHeader icon={UserRound} number="03" title="페르소나 분석" subtitle="환자 + 의료진, 양측의 어려움" />
+          <div className="grid md:grid-cols-2 gap-4">
+            <PersonaCard
+              icon={UserRound}
+              name="김영숙 님 (65세, 여성)"
+              role="자궁내막암 초기 진단"
+              tags={["#의학지식_부족", "#디지털_취약계층", "#보호자_부재", "#심리적_불안"]}
+              state="불안 · 혼란 · 위축"
+              pains={[
+                "빠른 설명 속도와 어려운 의료 용어",
+                "복잡한 동의서 체크 항목",
+                "‘집도의 변경’, ‘수술범위 추가’ 등 불안 문구",
+                "상세 합병증 목록으로 인한 심리적 패닉",
+                "질문 포인트를 몰라 침묵",
+                "진료실을 나가면 내용을 거의 기억하지 못함",
+              ]}
+            />
+            <PersonaCard
+              icon={Stethoscope}
+              name="이민우 전문의 (12년차)"
+              role="부인 종양 전문의"
+              tags={["#업무_과중", "#반복_설명", "#법적_리스크", "#시간_부족"]}
+              state="피로 · 압박 · 부담"
+              pains={[
+                "복잡한 항목으로 환자당 설명 시간 과도",
+                "환자 이해도 확인의 어려움",
+                "반복 질문으로 인한 진료/수술 일정 지연",
+                "보호자 대상 재설명 부담",
+                "동의서 누락·서명 오류 시 행정 부담",
+                "민감한 설명 시 환자 반발 우려",
+              ]}
+            />
+          </div>
+        </section>
+
+        {/* 04. 시장 현황 */}
+        <section id="market" className="scroll-mt-16">
+          <SectionHeader icon={BarChart3} number="04" title="시장 현황" subtitle="전자서명 시장 성장 中, 의료 특화 서비스는 부재" />
+          <div className="overflow-x-auto rounded-xl border border-border/50">
+            <table className="w-full text-[11px] md:text-sm">
+              <thead className="bg-muted/60">
+                <tr>
+                  <th className="text-left p-2.5 md:p-3 font-semibold">서비스</th>
+                  <th className="p-2.5 md:p-3 font-semibold">비대면<br/>전자서명</th>
+                  <th className="p-2.5 md:p-3 font-semibold">본인<br/>인증</th>
+                  <th className="p-2.5 md:p-3 font-semibold">의료법<br/>준수</th>
+                  <th className="p-2.5 md:p-3 font-semibold">AI 설명<br/>(상호작용)</th>
+                  <th className="p-2.5 md:p-3 font-semibold">녹취/녹화<br/>증거확보</th>
+                </tr>
+              </thead>
+              <tbody className="text-foreground/80">
+                <CompareRow name="카카오페이 인증" tag="일반 범용" cells={[true, true, false, false, false]} />
+                <CompareRow name="네이버 인증서" tag="일반 범용" cells={[true, true, false, false, false]} />
+                <CompareRow name="기존 전자동의서" tag="의료 (대면)" cells={[false, true, true, false, false]} />
+                <CompareRow name="TodoSign" tag="의료 특화" cells={[true, true, true, true, true]} highlight />
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-xs md:text-sm text-foreground/80 p-3 md:p-4 rounded-lg bg-primary/5 border-l-4 border-primary">
+            ⚡ 현재 시장에는 <strong>AI가 수술 내용을 설명해주고 질의응답이 가능한 비대면 의료 동의 서비스는 전무</strong>한 실정입니다.
+          </p>
+        </section>
+
+        {/* 05. 솔루션 제안 */}
+        <section id="solution" className="scroll-mt-16">
+          <SectionHeader icon={Rocket} number="05" title="솔루션 제안" subtitle="수술동의 프로세스의 혁신적 변화" />
+          <p className="text-sm md:text-base text-foreground/80 leading-relaxed mb-5">
+            디바이스 무관, <strong className="text-primary">SMS 링크 하나</strong>로 완성되는 동의 절차.
+            환자는 별도의 앱 설치 없이 모든 절차를 완료하며, AI 아바타와의 대화 내용은 법적 효력이 있는 증거물로 자동 저장됩니다.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <FlowStep step="01" title="병원 (준비)" desc="환자 정보 입력 후 SMS 링크 발송" />
+            <FlowStep step="02" title="환자 (TodoSign)" desc="링크 접속 → 본인인증 → AI 아바타 설명 → Q&A → 전자서명" />
+            <FlowStep step="03" title="시스템 (완료)" desc="병원 EMR 자동 연동 + 녹취/녹화 증거 저장" />
+          </div>
+        </section>
+
+        {/* 06. 서비스 특징 */}
+        <section id="feature" className="scroll-mt-16">
+          <SectionHeader icon={Layers} number="06" title="서비스 특징" subtitle="65세 이상 사용자 최적화 + 의료 분쟁 완벽 대비" />
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            <FeatureCard icon={Sparkles} title="쉬운 용어 변환" desc="복잡한 전문 의료용어를 노령층이 이해하기 쉬운 일상 언어로 자동 풀이" />
+            <FeatureCard icon={Mic} title="AI 음성 상담" desc="궁금증을 음성으로 남기면 AI가 즉시 인식하여 답변, 의료진에게도 전달" />
+            <FeatureCard icon={ShieldCheck} title="안전한 본인확인" desc="휴대폰/접수번호 인증 + 실시간 얼굴 인식으로 철저한 신원 검증" />
+            <FeatureCard icon={UserRound} title="고령층 UX" desc="큰 글씨, 명확한 대비, 터치 영역 확장, 중요 결정 더블체크 팝업" />
+            <FeatureCard icon={Radio} title="전 과정 음성 녹음 + 화면 녹화" desc="AI 설명과 환자의 답변, 화면 조작을 실시간 저장 (객관적 증거)" />
+            <FeatureCard icon={Lock} title="보안 & 암호화" desc="AES-256 암호화 + TLS 1.3 + 개인정보 비식별화 처리" />
+          </div>
+
+          <div className="mt-6 p-4 md:p-5 rounded-xl bg-muted/30 border border-border/50">
+            <p className="text-xs md:text-sm font-bold mb-3 text-foreground">기술 아키텍처</p>
+            <div className="grid md:grid-cols-2 gap-3 text-xs md:text-sm text-foreground/75">
+              <div>
+                <p className="font-semibold text-foreground mb-1">Client Side</p>
+                <p>Responsive Web (React / Lovable) · WebRTC / Stream 미디어 처리</p>
+              </div>
+              <div>
+                <p className="font-semibold text-foreground mb-1">External API</p>
+                <p>PASS 본인인증 · SMS 알림 · HL7 / FHIR 기반 병원 EMR 연동 (Option)</p>
+              </div>
+            </div>
+            <p className="mt-3 text-[11px] md:text-xs text-primary">🔒 전 구간 데이터 암호화(TLS 1.3) 및 개인정보 비식별화 처리</p>
+          </div>
+        </section>
+
+        {/* 07. 데모 화면 */}
+        <section id="demo" className="scroll-mt-16">
+          <SectionHeader icon={Play} number="07" title="데모 화면" subtitle="투두싸인 서비스 핵심 화면" />
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            <InfoCard title="심플한 UI" desc="복잡한 메뉴를 제거하고 ‘동의서 작성’이라는 핵심 과업에만 집중하도록 설계" />
+            <InfoCard title="신뢰감 전달" desc="의료 서비스에 걸맞은 전문적인 톤앤매너와 문구로 사용자 불안감 해소" />
+            <InfoCard title="양방향 소통" desc="환자가 음성으로 질문 → AI가 즉시 인식하여 답변" />
+            <InfoCard title="접근성 강화" desc="청력이 약한 노령층을 위해 큰 자막과 또렷한 음성으로 안내" />
+          </div>
+          <a href={project.link} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+            <ExternalLink className="w-4 h-4" /> 실제 데모 보기 (todosign.lovable.app)
+          </a>
+        </section>
+
+        {/* 08. 기대효과 */}
+        <section id="impact" className="scroll-mt-16">
+          <SectionHeader icon={TrendingUp} number="08" title="기대효과" subtitle="투두싸인이 만들어낼 변화" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
+            <StatCard value="+80%" label="수술 이해도 향상" desc="환자 인터뷰 기반 추정" accent />
+            <StatCard value="60%" label="설명 시간 단축" desc="의료진 업무 효율화" />
+            <StatCard value="70%" label="반복 설명 감소" desc="진료/수술 일정 지연 해소" />
+          </div>
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            <InfoCard title="👤 환자 중심 의료 실현" desc="어렵고 무서운 수술 동의 과정을 환자의 눈높이에 맞춤" />
+            <InfoCard title="🏥 병원 브랜드 가치 제고" desc="환자의 안전·권리를 최우선으로 하는 ‘믿을 수 있는 병원’ 이미지" />
+            <InfoCard title="🌐 의료 접근성 보장 (ESG)" desc="디지털 소외 계층인 노령층을 포용하는 UX" />
+            <InfoCard title="⚖️ 법적 리스크 완화" desc="객관적 증거 자동 확보로 의료 분쟁 사전 방지" />
+          </div>
+        </section>
+
+        {/* 09. 향후 계획 */}
+        <section id="future" className="scroll-mt-16">
+          <SectionHeader icon={Rocket} number="09" title="향후 계획" subtitle="TodoSign의 성장 로드맵" />
+          <div className="space-y-3">
+            <PhaseRow phase="Phase 1" status="현재 진행 중" items={["MVP 개발 완료", "데모 서비스 운영", "핵심 기능 안정화", "초기 사용자 테스트"]} active />
+            <PhaseRow phase="Phase 2" status="확장" items={["다양한 의료 동의서 (검사·시술·입원 약정)", "다국어 지원 (외국인 환자 AI 통역)", "병원 EMR 본격 연동"]} />
+            <PhaseRow phase="Phase 3" status="플랫폼화" items={["의료 AI 플랫폼화", "종합 환자 케어 솔루션", "B2B 확장"]} />
+          </div>
+        </section>
+
+        {/* 10. 핵심 요약 */}
+        <section id="summary" className="scroll-mt-16">
+          <SectionHeader icon={CheckCircle2} number="10" title="핵심 요약" subtitle="투두싸인이 해결하는 것" />
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            <SummaryCard tag="환자 (Patient)" title="쉽고 명확한 수술 이해" desc="AI 아바타의 친절한 설명과 무제한 Q&A로 심리적 안정 확보" />
+            <SummaryCard tag="의료진 (Doctor)" title="업무 효율 + 법적 안전망" desc="설명 시간 단축 + 객관적 증거 자동 저장으로 분쟁 리스크 완화" />
+          </div>
+
+          <div className="mt-6 p-5 md:p-6 rounded-2xl bg-gradient-to-br from-primary/15 via-accent/10 to-transparent border border-primary/20 text-center">
+            <HelpCircle className="w-7 h-7 text-primary mx-auto mb-3" />
+            <p className="text-base md:text-lg font-bold mb-1">질문이 있으신가요?</p>
+            <p className="text-xs md:text-sm text-muted-foreground">
+              투두싸인은 여러분의 의견을 경청합니다. 수술 동의서의 새로운 표준, 함께 만들어가겠습니다.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      {/* Footer */}
+      <footer className="px-5 md:px-10 py-5 border-t border-border/50 bg-muted/20 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-[11px] md:text-xs text-muted-foreground">
+          원본: 아산병원 비대면 서명 기획안 (KT 2팀) · 23 슬라이드
+        </p>
+        {project.link && (
+          <a href={project.link} target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
+            <ExternalLink className="w-4 h-4" /> 데모 보기
+          </a>
+        )}
+      </footer>
+    </div>
+  );
+};
+
+/* ----- TodoSignDetail sub-components ----- */
+const SectionHeader = ({ icon: Icon, number, title, subtitle }: { icon: React.ElementType; number: string; title: string; subtitle: string }) => (
+  <div className="mb-5 md:mb-6">
+    <div className="flex items-center gap-3 mb-2">
+      <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-primary/15 flex items-center justify-center">
+        <Icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+      </div>
+      <span className="text-[11px] md:text-xs font-bold text-primary tracking-widest">{number}</span>
+    </div>
+    <h3 className="text-lg md:text-2xl font-bold mb-1">{title}</h3>
+    <p className="text-xs md:text-sm text-muted-foreground">{subtitle}</p>
+  </div>
+);
+
+const InfoCard = ({ title, desc }: { title: string; desc: string }) => (
+  <div className="p-4 rounded-xl bg-card border border-border/50 hover:border-primary/40 transition-colors">
+    <p className="text-sm md:text-base font-semibold mb-1.5 text-foreground">{title}</p>
+    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
+  </div>
+);
+
+const StatCard = ({ value, label, desc, accent = false }: { value: string; label: string; desc: string; accent?: boolean }) => (
+  <div className={`p-4 md:p-5 rounded-xl border ${accent ? "bg-primary/10 border-primary/30" : "bg-muted/40 border-border/50"}`}>
+    <p className={`text-2xl md:text-4xl font-extrabold mb-1 ${accent ? "text-primary" : "text-foreground"}`}>{value}</p>
+    <p className="text-xs md:text-sm font-semibold text-foreground mb-1">{label}</p>
+    <p className="text-[11px] md:text-xs text-muted-foreground leading-relaxed">{desc}</p>
+  </div>
+);
+
+const PersonaCard = ({ icon: Icon, name, role, tags, state, pains }: { icon: React.ElementType; name: string; role: string; tags: string[]; state: string; pains: string[] }) => (
+  <div className="p-4 md:p-5 rounded-xl bg-card border border-border/50">
+    <div className="flex items-start gap-3 mb-3">
+      <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
+        <Icon className="w-5 h-5 text-primary" />
+      </div>
+      <div>
+        <p className="text-sm md:text-base font-bold">{name}</p>
+        <p className="text-xs text-muted-foreground">{role}</p>
+      </div>
+    </div>
+    <div className="flex flex-wrap gap-1 mb-3">
+      {tags.map((t) => (
+        <span key={t} className="text-[10px] md:text-xs px-2 py-0.5 rounded-full bg-muted text-foreground/70">{t}</span>
+      ))}
+    </div>
+    <p className="text-[11px] md:text-xs font-semibold text-primary mb-3">현재 상태: {state}</p>
+    <p className="text-[11px] md:text-xs font-bold text-foreground mb-2">동의 과정 주요 Pain Points</p>
+    <ul className="space-y-1.5">
+      {pains.map((p, i) => (
+        <li key={i} className="text-[11px] md:text-xs text-foreground/75 flex items-start gap-2">
+          <span className="font-bold text-primary flex-shrink-0">0{i + 1}</span>
+          <span className="leading-relaxed">{p}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const CompareRow = ({ name, tag, cells, highlight = false }: { name: string; tag: string; cells: boolean[]; highlight?: boolean }) => (
+  <tr className={`border-t border-border/40 ${highlight ? "bg-primary/10" : ""}`}>
+    <td className="p-2.5 md:p-3">
+      <p className={`font-semibold ${highlight ? "text-primary" : "text-foreground"}`}>{name}</p>
+      <p className="text-[10px] md:text-xs text-muted-foreground">{tag}</p>
+    </td>
+    {cells.map((v, i) => (
+      <td key={i} className="p-2.5 md:p-3 text-center">
+        {v ? <span className="text-green-500 font-bold">✔</span> : <span className="text-muted-foreground/50">✖</span>}
+      </td>
+    ))}
+  </tr>
+);
+
+const FlowStep = ({ step, title, desc }: { step: string; title: string; desc: string }) => (
+  <div className="p-4 rounded-xl bg-card border border-border/50 relative">
+    <span className="absolute -top-3 left-4 px-2 py-0.5 text-[10px] md:text-xs font-bold bg-primary text-primary-foreground rounded-md">STEP {step}</span>
+    <p className="text-sm md:text-base font-bold mt-2 mb-1">{title}</p>
+    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
+  </div>
+);
+
+const FeatureCard = ({ icon: Icon, title, desc }: { icon: React.ElementType; title: string; desc: string }) => (
+  <div className="p-4 rounded-xl bg-card border border-border/50 flex gap-3">
+    <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+      <Icon className="w-4 h-4 text-primary" />
+    </div>
+    <div>
+      <p className="text-sm md:text-base font-semibold mb-1">{title}</p>
+      <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
+    </div>
+  </div>
+);
+
+const PhaseRow = ({ phase, status, items, active = false }: { phase: string; status: string; items: string[]; active?: boolean }) => (
+  <div className={`p-4 rounded-xl border ${active ? "bg-primary/10 border-primary/30" : "bg-muted/30 border-border/50"}`}>
+    <div className="flex items-center gap-2 mb-2">
+      <p className={`text-sm md:text-base font-bold ${active ? "text-primary" : "text-foreground"}`}>{phase}</p>
+      <span className={`text-[10px] md:text-xs px-2 py-0.5 rounded-full font-semibold ${active ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>{status}</span>
+    </div>
+    <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1">
+      {items.map((it, i) => (
+        <li key={i} className="text-xs md:text-sm text-foreground/80 flex items-start gap-2">
+          <span className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
+          {it}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const SummaryCard = ({ tag, title, desc }: { tag: string; title: string; desc: string }) => (
+  <div className="p-5 rounded-xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/20">
+    <p className="text-[11px] md:text-xs font-bold text-primary uppercase tracking-wider mb-2">{tag}</p>
+    <p className="text-base md:text-lg font-bold mb-2">{title}</p>
+    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
+  </div>
+);
+
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -649,13 +1038,13 @@ const ProjectsSection = () => {
         <DialogContent className="w-[95vw] max-w-3xl max-h-[85vh] md:max-h-[90vh] overflow-hidden bg-card border-border p-0">
           {selectedProject && (
             <div className="flex flex-col max-h-[85vh] md:max-h-[90vh]">
-              <VisuallyHidden>
-                <DialogTitle>{selectedProject.title}</DialogTitle>
-                <DialogDescription>{selectedProject.summary}</DialogDescription>
-              </VisuallyHidden>
-              
-              {/* Scrollable Content */}
-              <div className="flex-1 overflow-y-auto">
+              <DialogTitle className="sr-only">{selectedProject.title}</DialogTitle>
+              <DialogDescription className="sr-only">{selectedProject.summary}</DialogDescription>
+
+              {selectedProject.id === "todosign" ? (
+                <TodoSignDetail project={selectedProject} />
+              ) : (
+                <div className="flex-1 overflow-y-auto">
                 {/* Header Section */}
                 <div className="p-4 md:p-8 pb-4 md:pb-6 pt-8 md:pt-10 bg-gradient-to-br from-primary/5 to-accent/5">
                   <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
@@ -843,7 +1232,8 @@ const ProjectsSection = () => {
                     </a>
                   )}
                 </div>
-              </div>
+                </div>
+              )}
             </div>
           )}
         </DialogContent>
