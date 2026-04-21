@@ -22,9 +22,10 @@ const HeroSection = ({ onNavigate, hideHeadline = false }: HeroSectionProps) => 
               dismiss it animates from the center of the screen into this slot. */}
           <div
             id="hero-headline"
-            className={`transition-opacity duration-300 ${
-              hideHeadline ? "opacity-0" : "opacity-100"
-            }`}
+            // No fade transition — visibility flips instantly the moment the
+            // intro overlay unmounts so there's never a duplicate render or
+            // cross-fade overlap with the moving intro text.
+            style={{ visibility: hideHeadline ? "hidden" : "visible" }}
           >
             <h1 className="font-bold leading-tight tracking-tight whitespace-nowrap text-[clamp(1rem,4.6vw,3.75rem)]">
               <span className="text-muted-foreground">"이게 될까요?"</span>를{" "}
