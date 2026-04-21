@@ -985,7 +985,7 @@ const DessertLynDetail = ({ project }: { project: Project }) => {
         <section id="metrics" className="scroll-mt-16">
           <SectionHeader icon={TrendingUp} number="02" title="핵심 성과" subtitle="광고비 ₩0, 데이터로 만든 유기적 성장" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            <StatCard value="2,400+" label="월 방문자" desc="목표 대비 120% 달성, 광고비 ₩0" accent />
+            <StatCard value="100" label="월 방문자" desc="" accent />
             <StatCard value="3.2%" label="전환율" desc="업계 평균 대비 약 160% 수준" />
             <StatCard value="30+" label="A/B 실험" desc="가설–실험–검증 구조 정립" />
             <StatCard value="2:34" label="평균 체류 시간" desc="높은 콘텐츠 몰입도 확인" />
