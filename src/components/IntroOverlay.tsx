@@ -78,7 +78,12 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
     }
 
     // After the FLIP finishes, unmount and let the hero headline take over.
-    setTimeout(onDismiss, DURATION);
+    // Wait one extra frame past the animation end so the landed transform is
+    // fully committed before we swap to the static homepage element — this
+    // prevents any single-frame flicker from a duplicate render.
+    setTimeout(() => {
+      requestAnimationFrame(onDismiss);
+    }, DURATION);
   };
 
   useEffect(() => {
