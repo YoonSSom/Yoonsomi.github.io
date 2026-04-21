@@ -12,6 +12,10 @@ const Index = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displaySection, setDisplaySection] = useState("welcome");
   const [showIntro, setShowIntro] = useState(true);
+  // Keep the hero headline hidden until the intro's FLIP transition lands
+  // on top of it; flipping to visible at the same instant the overlay
+  // unmounts produces a seamless handoff.
+  const [introExiting, setIntroExiting] = useState(false);
 
   const handleNavigate = (section: string) => {
     if (section === activeSection) return;
@@ -40,7 +44,10 @@ const Index = () => {
             <div className="absolute top-[40%] right-[10%] w-80 h-80 bg-accent/20 rounded-full blur-[110px] pointer-events-none" />
             <div className="absolute bottom-[10%] left-[30%] w-72 h-72 bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
             <div className="relative z-10">
-              <HeroSection onNavigate={handleNavigate} />
+              <HeroSection
+                onNavigate={handleNavigate}
+                hideHeadline={showIntro && !introExiting}
+              />
               <ProjectsSection hideHeader />
             </div>
           </div>
@@ -58,7 +65,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {showIntro && <IntroOverlay onDismiss={() => setShowIntro(false)} />}
+      {showIntro && (
+        <IntroOverlay
+          onDismiss={() => {
+            setShowIntro(false);
+            setIntroExiting(false);
+          }}
+          onExitStart={() => setIntroExiting(true)}
+        />
+      )}
       <TopNav activeSection={activeSection} onNavigate={handleNavigate} />
       <MobileNav activeSection={activeSection} onNavigate={handleNavigate} />
       
