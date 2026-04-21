@@ -1116,7 +1116,7 @@ const ProjectsSection = ({ hideHeader = false }: ProjectsSectionProps = {}) => {
   }, [api, onSelect]);
 
   return (
-    <section id="projects" className={`${hideHeader ? "pt-0 pb-16 md:pb-24" : "pt-2 pb-16 md:pt-4 md:pb-24"} px-4 md:px-6 lg:px-12 relative`}>
+    <section id="projects" className={`${hideHeader ? "pt-12 md:pt-20 lg:pt-28 pb-16 md:pb-24" : "pt-2 pb-16 md:pt-4 md:pb-24"} px-4 md:px-6 lg:px-12 relative`}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         {!hideHeader && (
@@ -1141,7 +1141,7 @@ const ProjectsSection = ({ hideHeader = false }: ProjectsSectionProps = {}) => {
         )}
 
         {/* Mobile: Carousel */}
-        <div className="md:hidden">
+        <div className="md:hidden animate-fade-in" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
           <Carousel
             opts={{
               align: "start",
@@ -1184,12 +1184,20 @@ const ProjectsSection = ({ hideHeader = false }: ProjectsSectionProps = {}) => {
         <div className="hidden md:block">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {projects.map((project, index) => (
-              <ProjectCard
+              <div
                 key={project.id}
-                project={project}
-                index={index}
-                onClick={() => setSelectedProject(project)}
-              />
+                className="animate-fade-in"
+                style={{
+                  animationDelay: `${150 + index * 120}ms`,
+                  animationFillMode: "both",
+                }}
+              >
+                <ProjectCard
+                  project={project}
+                  index={index}
+                  onClick={() => setSelectedProject(project)}
+                />
+              </div>
             ))}
           </div>
         </div>
