@@ -61,10 +61,14 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
       const from = sourceEl.getBoundingClientRect();
       const to = targetEl.getBoundingClientRect();
 
-      const dx = to.left + to.width / 2 - (from.left + from.width / 2);
-      const dy = to.top + to.height / 2 - (from.top + from.height / 2);
+      // Align by top-left corner instead of center. Markup is identical
+      // (same clamp font sizes + whitespace-nowrap), so the boxes match
+      // exactly — preventing a horizontal "snap" when the static hero
+      // element takes over from the animated one.
+      const dx = to.left - from.left;
+      const dy = to.top - from.top;
 
-      sourceEl.style.transformOrigin = "50% 50%";
+      sourceEl.style.transformOrigin = "0 0";
       // Position-only transition: translate the element to its destination
       // without any scaling so the text size stays constant throughout.
       sourceEl.animate(
