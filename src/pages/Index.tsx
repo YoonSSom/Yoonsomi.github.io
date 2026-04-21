@@ -46,7 +46,7 @@ const Index = () => {
             <div className="relative z-10">
               <HeroSection
                 onNavigate={handleNavigate}
-                hideHeadline={showIntro && !introExiting}
+                hideHeadline={showIntro}
               />
               <ProjectsSection hideHeader />
             </div>
