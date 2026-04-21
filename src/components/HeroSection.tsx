@@ -1,8 +1,10 @@
 interface HeroSectionProps {
   onNavigate: (section: string) => void;
+  /** When true, hide the headline (intro overlay is showing/animating it instead). */
+  hideHeadline?: boolean;
 }
 
-const HeroSection = ({ onNavigate }: HeroSectionProps) => {
+const HeroSection = ({ onNavigate, hideHeadline = false }: HeroSectionProps) => {
   return (
     <section
       id="welcome"
@@ -15,14 +17,23 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
             <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-green-400 animate-pulse" />
             <span className="text-[10px] lg:text-sm text-muted-foreground">현재 구직 중</span>
           </div>
-          
-          <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 lg:mb-4 leading-tight">
-            <span className="text-muted-foreground">"이게 될까요?"</span>를 <span className="text-gradient">"이게 되네요"</span>로 바꾸는 기획자
-          </h1>
-          
-          <p className="text-lg md:text-2xl lg:text-3xl font-semibold">
-            안녕하세요, 윤소미입니다
-          </p>
+
+          {/* Shared-element target. The same text lives in IntroOverlay; on
+              dismiss it animates from the center of the screen into this slot. */}
+          <div
+            id="hero-headline"
+            className={`transition-opacity duration-300 ${
+              hideHeadline ? "opacity-0" : "opacity-100"
+            }`}
+          >
+            <h1 className="font-bold leading-tight tracking-tight whitespace-nowrap text-[clamp(1rem,4.6vw,3.75rem)]">
+              <span className="text-muted-foreground">"이게 될까요?"</span>를{" "}
+              <span className="text-gradient">"이게 되네요"</span>로 바꾸는 기획자
+            </h1>
+            <p className="mt-2 lg:mt-4 font-semibold text-foreground/90 whitespace-nowrap text-[clamp(0.875rem,2.6vw,1.875rem)]">
+              안녕하세요 윤소미입니다.
+            </p>
+          </div>
         </div>
       </div>
     </section>
