@@ -61,14 +61,22 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
       const from = sourceEl.getBoundingClientRect();
       const to = targetEl.getBoundingClientRect();
 
-      // Align by top-left corner instead of center. Markup is identical
-      // (same clamp font sizes + whitespace-nowrap), so the boxes match
-      // exactly — preventing a horizontal "snap" when the static hero
-      // element takes over from the animated one.
+      // Lock the element into a viewport-fixed coordinate system BEFORE
+      // animating. We pin it to its current on-screen rect, then translate
+      // to the hero target's exact viewport coordinates. Because both the
+      // start and end frames live in the same fixed coordinate space (and
+      // the hero static element's getBoundingClientRect gives us its true
+      // final viewport position), there is zero reflow/snap at handoff.
+      sourceEl.style.position = "fixed";
+      sourceEl.style.left = `${from.left}px`;
+      sourceEl.style.top = `${from.top}px`;
+      sourceEl.style.width = `${from.width}px`;
+      sourceEl.style.margin = "0";
+      sourceEl.style.transformOrigin = "0 0";
+
       const dx = to.left - from.left;
       const dy = to.top - from.top;
 
-      sourceEl.style.transformOrigin = "0 0";
       // Position-only transition: translate the element to its destination
       // without any scaling so the text size stays constant throughout.
       sourceEl.animate(
