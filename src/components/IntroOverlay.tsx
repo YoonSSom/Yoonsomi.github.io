@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MousePointer2 } from "lucide-react";
 
 interface IntroOverlayProps {
   onDismiss: () => void;
+  /** Called the instant the user triggers exit, so the host can prep the
+      target (e.g. keep the hero headline hidden until the FLIP completes). */
+  onExitStart?: () => void;
 }
 
-const IntroOverlay = ({ onDismiss }: IntroOverlayProps) => {
+const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
   const [isExiting, setIsExiting] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const textRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setShowHint(true), 1800);
@@ -17,7 +22,37 @@ const IntroOverlay = ({ onDismiss }: IntroOverlayProps) => {
   const handleDismiss = () => {
     if (isExiting) return;
     setIsExiting(true);
-    setTimeout(onDismiss, 600);
+    onExitStart?.();
+
+    // FLIP: animate the centered intro text into the hero headline slot.
+    const sourceEl = textRef.current;
+    const targetEl = document.getElementById("hero-headline");
+    const bgEl = bgRef.current;
+
+    // Fade the background/hint out independently so it doesn't drag the text.
+    if (bgEl) {
+      bgEl.style.transition = "opacity 500ms ease-out";
+      bgEl.style.opacity = "0";
+    }
+
+    const DURATION = 700;
+    const EASING = "cubic-bezier(0.22, 1, 0.36, 1)"; // smooth ease-in-out-ish
+
+    if (sourceEl && targetEl) {
+      const from = sourceEl.getBoundingClientRect();
+      const to = targetEl.getBoundingClientRect();
+
+      const dx = to.left + to.width / 2 - (from.left + from.width / 2);
+      const dy = to.top + to.height / 2 - (from.top + from.height / 2);
+      const scale = to.width / from.width;
+
+      sourceEl.style.transformOrigin = "50% 50%";
+      sourceEl.style.transition = `transform ${DURATION}ms ${EASING}`;
+      sourceEl.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+    }
+
+    // After the FLIP finishes, unmount and let the hero headline take over.
+    setTimeout(onDismiss, DURATION);
   };
 
   useEffect(() => {
@@ -32,36 +67,35 @@ const IntroOverlay = ({ onDismiss }: IntroOverlayProps) => {
   return (
     <div
       onClick={handleDismiss}
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-background cursor-pointer overflow-hidden transition-opacity duration-500 ${
-        isExiting ? "opacity-0" : "opacity-100"
-      }`}
+      className="fixed inset-0 z-[100] flex items-center justify-center cursor-pointer overflow-hidden"
     >
-      {/* Background layers */}
-      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-[110px] pointer-events-none" />
+      {/* Background layers — fade out independently of the shared text. */}
+      <div ref={bgRef} className="absolute inset-0 bg-background">
+        <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-[110px] pointer-events-none" />
+      </div>
 
       <div className="relative z-10 px-5 sm:px-6 w-full max-w-[92vw] md:max-w-3xl lg:max-w-5xl flex flex-col items-center text-center">
-        {/* Line 1 — headline (forced single line, never reflows into line 2) */}
-        <h1
-          className="opacity-0 animate-fade-in font-bold leading-tight tracking-tight text-foreground whitespace-nowrap text-[clamp(1rem,4.6vw,3.75rem)]"
-          style={{ animationDelay: "200ms", animationFillMode: "forwards" }}
+        {/* Shared text element. Identical markup/classes to the hero headline,
+            so a simple translate+scale produces a seamless transition. */}
+        <div
+          ref={textRef}
+          className="opacity-0 animate-fade-in will-change-transform"
+          style={{ animationDelay: "150ms", animationFillMode: "forwards" }}
         >
-          <span className="text-muted-foreground">"이게 될까요?"</span>를{" "}
-          <span className="text-gradient">"이게 되네요"</span>로 바꾸는 기획자
-        </h1>
-
-        {/* Forced line break between Line 1 and Line 2 */}
-        <p
-          className="opacity-0 animate-fade-in mt-3 md:mt-4 font-semibold text-foreground/90 whitespace-nowrap text-[clamp(0.875rem,2.6vw,1.875rem)]"
-          style={{ animationDelay: "900ms", animationFillMode: "forwards" }}
-        >
-          안녕하세요 윤소미입니다.
-        </p>
+          <h1 className="font-bold leading-tight tracking-tight text-foreground whitespace-nowrap text-[clamp(1rem,4.6vw,3.75rem)]">
+            <span className="text-muted-foreground">"이게 될까요?"</span>를{" "}
+            <span className="text-gradient">"이게 되네요"</span>로 바꾸는 기획자
+          </h1>
+          <p className="mt-2 lg:mt-4 font-semibold text-foreground/90 whitespace-nowrap text-[clamp(0.875rem,2.6vw,1.875rem)]">
+            안녕하세요 윤소미입니다.
+          </p>
+        </div>
 
         <div
           className={`mt-12 flex items-center justify-center gap-2.5 text-xs md:text-sm text-muted-foreground tracking-widest uppercase transition-opacity duration-700 ${
-            showHint ? "opacity-100" : "opacity-0"
+            showHint && !isExiting ? "opacity-100" : "opacity-0"
           }`}
         >
           <span className="relative flex items-center justify-center w-6 h-6 md:w-7 md:h-7">
