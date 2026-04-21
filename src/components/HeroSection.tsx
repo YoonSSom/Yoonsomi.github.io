@@ -29,13 +29,18 @@ const HeroSection = ({ onNavigate, hideHeadline = false }: HeroSectionProps) => 
             className="inline-block text-left align-top"
             style={{ visibility: hideHeadline ? "hidden" : "visible" }}
           >
-            <h1 className="font-bold leading-tight tracking-tight whitespace-nowrap text-[clamp(1rem,4.6vw,3.75rem)]">
-              <span className="text-muted-foreground">"이게 될까요?"</span>를{" "}
-              <span className="text-gradient">"이게 되네요"</span>로 바꾸는 기획자
-            </h1>
-            <p className="mt-2 lg:mt-4 font-semibold text-foreground/90 whitespace-nowrap text-[clamp(0.875rem,2.6vw,1.875rem)]">
-              안녕하세요 윤소미입니다.
-            </p>
+            {/* Line 1 = base headline. Line 2 is absolutely positioned and
+                horizontally centered to Line 1, sitting just below it like
+                an anchored subtitle rather than a separate flow block. */}
+            <div className="relative inline-block">
+              <h1 className="font-bold leading-tight tracking-tight whitespace-nowrap text-[clamp(1rem,4.6vw,3.75rem)]">
+                <span className="text-muted-foreground">"이게 될까요?"</span>를{" "}
+                <span className="text-gradient">"이게 되네요"</span>로 바꾸는 기획자
+              </h1>
+              <p className="absolute left-1/2 -translate-x-1/2 top-full mt-1 lg:mt-2 font-semibold text-foreground/90 whitespace-nowrap text-[clamp(0.875rem,2.6vw,1.875rem)]">
+                안녕하세요 윤소미입니다.
+              </p>
+            </div>
           </div>
         </div>
       </div>
