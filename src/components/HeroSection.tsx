@@ -28,7 +28,7 @@ const HeroSection = ({ onNavigate, hideHeadline = false }: HeroSectionProps) => 
               no post-transition shift. */}
           <div
             id="hero-headline"
-            className="inline-block text-left align-top"
+            className="inline-block text-center align-top"
             style={{ visibility: hideHeadline ? "hidden" : "visible" }}
           >
             {/* Line 1 = base headline. Line 2 is absolutely positioned and
