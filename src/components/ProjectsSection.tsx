@@ -909,6 +909,188 @@ const SummaryCard = ({ tag, title, desc }: { tag: string; title: string; desc: s
 );
 
 
+/* ============================================================
+   DessertLyn Detail – PPT 슬라이드 기반 상세 뷰
+   "디저트 린 – 수제 디저트 커머스 (SEO & 데이터 기반 성장)"
+   ============================================================ */
+const DessertLynDetail = ({ project }: { project: Project }) => {
+  const sections = [
+    { id: "intro", label: "01. 프로젝트 소개" },
+    { id: "metrics", label: "02. 핵심 성과" },
+    { id: "problem", label: "03. 문제 / 목표" },
+    { id: "tech", label: "04. 기술 스택" },
+    { id: "planning", label: "05. 기획 – SEO & 퍼널" },
+    { id: "dev", label: "06. 개발 – 풀스택" },
+    { id: "collab", label: "07. 협업 – 데이터 문화" },
+  ];
+
+  return (
+    <div className="flex-1 overflow-y-auto bg-background">
+      {/* Hero / Cover */}
+      <header className="relative px-5 md:px-10 pt-10 md:pt-14 pb-8 md:pb-10 bg-gradient-to-br from-primary/15 via-accent/10 to-transparent border-b border-border/40">
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag) => (
+            <span key={tag.label} className={`px-3 py-1 text-[11px] md:text-xs font-semibold rounded-full ${tag.color}`}>
+              {tag.label}
+            </span>
+          ))}
+        </div>
+        <p className="text-xs md:text-sm text-primary font-semibold tracking-wider uppercase mb-2">Brand. 디저트 린 (Dessert Lyn)</p>
+        <h1 className="text-xl md:text-3xl font-bold leading-tight mb-3">
+          디저트 린 – 수제 디저트 커머스
+        </h1>
+        <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-5">
+          프랑스 정통 레시피 기반 수제 디저트 브랜드 ‘디저트 린’의 웹사이트를 기획·개발·운영하며,
+          <br className="hidden md:block" />
+          광고비 없이 월 방문자 <span className="text-primary font-semibold">2,400명</span>과 전환율 <span className="text-primary font-semibold">3.2%</span>를 달성한 1인 풀스택 프로젝트입니다.
+        </p>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs md:text-sm">
+          <div className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-primary" /><span className="font-medium">{project.period}</span></div>
+          <div className="flex items-center gap-1.5"><Users className="w-4 h-4 text-primary" /><span className="font-medium">{project.team}</span></div>
+          {project.link && (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-primary hover:underline font-semibold">
+              <ExternalLink className="w-4 h-4" />Live. dessertlyn.lovable.app
+            </a>
+          )}
+        </div>
+      </header>
+
+      {/* Anchor Nav */}
+      <nav className="sticky top-0 z-10 bg-card/95 backdrop-blur border-b border-border/40 overflow-x-auto scrollbar-hide">
+        <ul className="flex gap-1 px-3 md:px-6 py-2 min-w-max">
+          {sections.map((s) => (
+            <li key={s.id}>
+              <a href={`#${s.id}`} className="block px-3 py-1.5 text-[11px] md:text-xs font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md whitespace-nowrap transition-colors">
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div className="px-5 md:px-10 py-8 md:py-12 space-y-12 md:space-y-16">
+
+        {/* 01. 프로젝트 소개 */}
+        <section id="intro" className="scroll-mt-16">
+          <SectionHeader icon={Cookie} number="01" title="프로젝트 소개" subtitle="1인 프로젝트로 운영 중인 수제 디저트 브랜드" />
+          <p className="text-sm md:text-base text-foreground/80 leading-relaxed">
+            오프라인 매장 중심의 수제 디저트 브랜드를 위한 온라인 채널을 구축하고,
+            기획부터 개발·운영·데이터 분석까지 전 과정을 단독으로 수행한 그로스 프로젝트입니다.
+            ‘두바이 초콜릿’, ‘휘낭시에’, ‘마들렌’ 등 시그니처 메뉴를 중심으로 SEO 기반 유기적 유입과
+            데이터 기반 의사결정 체계를 구축했습니다.
+          </p>
+        </section>
+
+        {/* 02. 핵심 성과 */}
+        <section id="metrics" className="scroll-mt-16">
+          <SectionHeader icon={TrendingUp} number="02" title="핵심 성과" subtitle="광고비 ₩0, 데이터로 만든 유기적 성장" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            <StatCard value="2,400+" label="월 방문자" desc="목표 대비 120% 달성, 광고비 ₩0" accent />
+            <StatCard value="3.2%" label="전환율" desc="업계 평균 대비 약 160% 수준" />
+            <StatCard value="30+" label="A/B 실험" desc="가설–실험–검증 구조 정립" />
+            <StatCard value="2:34" label="평균 체류 시간" desc="높은 콘텐츠 몰입도 확인" />
+          </div>
+        </section>
+
+        {/* 03. 문제 / 목표 */}
+        <section id="problem" className="scroll-mt-16">
+          <SectionHeader icon={AlertTriangle} number="03" title="문제 / 목표" subtitle="오프라인 한계와 광고 의존 구조의 탈피" />
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4 mb-5">
+            <InfoCard title="오프라인 한계" desc="매장 중심 운영으로 신규 고객 유입에 구조적 한계 존재" />
+            <InfoCard title="온라인 노출 부재" desc="두바이 초콜릿·휘낭시에·마들렌 등 시그니처 메뉴의 검색 노출 전무" />
+            <InfoCard title="광고 의존 구조" desc="광고비 의존도가 높아 비용 대비 효율이 낮음" />
+            <InfoCard title="목표 (KPI)" desc="광고비 없이 월 방문자 2,000명 · 전환율 2% 이상 달성" />
+          </div>
+        </section>
+
+        {/* 04. 기술 스택 */}
+        <section id="tech" className="scroll-mt-16">
+          <SectionHeader icon={Wrench} number="04" title="사용 기술 스택" subtitle="Frontend · Analytics · SEO 도구" />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {[
+              { icon: Code2, label: "React + Vite", desc: "반응형 SPA 기반" },
+              { icon: Layers, label: "Tailwind CSS", desc: "다크톤 프리미엄 UI" },
+              { icon: BarChart3, label: "GA4 + GTM", desc: "이벤트 트래킹 & 퍼널" },
+              { icon: Search, label: "Search Console", desc: "키워드/CTR 분석" },
+              { icon: Sparkles, label: "Lovable", desc: "풀스택 빌드 환경" },
+            ].map((t) => (
+              <div key={t.label} className="p-4 rounded-xl bg-card border border-border/50 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <t.icon className="w-4 h-4 text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm md:text-base font-semibold">{t.label}</p>
+                  <p className="text-[11px] md:text-xs text-muted-foreground">{t.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 05. 기획 – SEO & 퍼널 */}
+        <section id="planning" className="scroll-mt-16">
+          <SectionHeader icon={Search} number="05" title="기획 – SEO & 퍼널 설계" subtitle="검색 의도 기반 콘텐츠 구조와 데이터 퍼널" />
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            <FeatureCard icon={Search} title="롱테일 키워드 발굴" desc="Google Search Console 기반 ‘수제 도넛’, ‘두바이 초콜릿’, ‘휘낭시에 맛집’ 등 검색 의도 기반 키워드 발굴" />
+            <FeatureCard icon={FileText} title="메타태그 / CTR 개선" desc="CTR 낮은 페이지 메타태그 개선으로 검색 노출 및 유기적 트래픽 확보" />
+            <FeatureCard icon={LineChart} title="퍼널 설계" desc="GA4 기반 ‘유입 → 메뉴 조회 → 매장 방문/주문’ 퍼널 설계 및 이탈 구간 분석" />
+            <FeatureCard icon={BarChart3} title="KPI 대시보드" desc="주간 단위 KPI 대시보드 구축 및 전환율 추적" />
+            <FeatureCard icon={Target} title="이벤트 정의" desc="GTM 기반 메뉴 탭 클릭, CTA 클릭, 인스타그램 연결 등 주요 행동 이벤트 정의" />
+            <FeatureCard icon={GitBranch} title="A/B 실험 백로그" desc="CTA 문구/이미지/배치 실험, 카테고리별 성과 비교 (30건+ 축적)" />
+            <FeatureCard icon={Smartphone} title="모바일 UX 설계" desc="메뉴 탭 네비게이션, 인기메뉴·두바이초코세트·휘낭시에·마들렌 카테고리 구조 설계" />
+            <FeatureCard icon={ShoppingBag} title="시그니처 강화" desc="히트 메뉴 중심의 카테고리 노출 우선순위 재배치" />
+          </div>
+        </section>
+
+        {/* 06. 개발 – 풀스택 */}
+        <section id="dev" className="scroll-mt-16">
+          <SectionHeader icon={Code2} number="06" title="개발 – 풀스택 구현" subtitle="반응형 브랜드 웹사이트와 SEO 최적화" />
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            <FeatureCard icon={Layers} title="반응형 웹사이트 구축" desc="Lovable(React + Vite) 기반 브랜드 웹사이트 풀 페이지 구현" />
+            <FeatureCard icon={Sparkles} title="핵심 페이지 구현" desc="히어로 섹션, 메뉴 탭 UI, 매장 소개, 인스타그램 연동" />
+            <FeatureCard icon={Rocket} title="Core Web Vitals" desc="LCP 2.1초 달성, SEO 메타태그·OG·구조화 데이터 적용" />
+            <FeatureCard icon={BarChart3} title="이벤트 트래킹" desc="GA4 + GTM 이벤트 트래킹 설계 및 구축" />
+            <FeatureCard icon={Smartphone} title="다크톤 프리미엄 UI" desc="Tailwind CSS 기반 반응형 스타일링 및 브랜드 톤 적용" />
+          </div>
+        </section>
+
+        {/* 07. 협업 – 데이터 문화 */}
+        <section id="collab" className="scroll-mt-16">
+          <SectionHeader icon={MessageSquare} number="07" title="협업 – 데이터 문화 구축" subtitle="비전문가도 데이터 기반 판단이 가능한 구조" />
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            <InfoCard title="데이터 리포트 해석 교육" desc="비개발 사업자 대상 GA4 / Search Console 리포트 해석 교육" />
+            <InfoCard title="의사결정 가이드 문서화" desc="SEO 및 데이터 기반 의사결정 가이드 문서 제작" />
+            <InfoCard title="주간 성과 리뷰 미팅" desc="비전문가도 데이터 기반 판단이 가능한 문화 구축" />
+            <InfoCard title="실험 로그 축적" desc="가설–실험–결과 로그 30건 이상 축적, 의사결정 투명성 확보" />
+          </div>
+
+          <div className="mt-6 p-5 md:p-6 rounded-2xl bg-gradient-to-br from-primary/15 via-accent/10 to-transparent border border-primary/20 text-center">
+            <Megaphone className="w-7 h-7 text-primary mx-auto mb-3" />
+            <p className="text-base md:text-lg font-bold mb-1">광고비 ₩0, 데이터로 만든 유기적 성장</p>
+            <p className="text-xs md:text-sm text-muted-foreground">
+              ‘이게 될까요?’를 ‘이게 되네요’로 — SEO와 실험 데이터로 증명한 1인 그로스 사례
+            </p>
+          </div>
+        </section>
+      </div>
+
+      {/* Footer */}
+      <footer className="px-5 md:px-10 py-5 border-t border-border/50 bg-muted/20 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-[11px] md:text-xs text-muted-foreground">
+          원본: 디저트 린 프로젝트 기획안 · 1 슬라이드
+        </p>
+        {project.link && (
+          <a href={project.link} target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
+            <ExternalLink className="w-4 h-4" /> 홈페이지 바로가기
+          </a>
+        )}
+      </footer>
+    </div>
+  );
+};
+
+
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
