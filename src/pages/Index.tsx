@@ -12,10 +12,6 @@ const Index = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displaySection, setDisplaySection] = useState("welcome");
   const [showIntro, setShowIntro] = useState(true);
-  // Keep the hero headline hidden until the intro's FLIP transition lands
-  // on top of it; flipping to visible at the same instant the overlay
-  // unmounts produces a seamless handoff.
-  const [introExiting, setIntroExiting] = useState(false);
 
   const handleNavigate = (section: string) => {
     if (section === activeSection) return;
@@ -67,11 +63,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {showIntro && (
         <IntroOverlay
-          onDismiss={() => {
-            setShowIntro(false);
-            setIntroExiting(false);
-          }}
-          onExitStart={() => setIntroExiting(true)}
+          onDismiss={() => setShowIntro(false)}
         />
       )}
       <TopNav activeSection={activeSection} onNavigate={handleNavigate} />
