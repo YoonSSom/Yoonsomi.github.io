@@ -23,7 +23,7 @@ const HeroSection = ({ onNavigate, hideHeadline = false }: HeroSectionProps) => 
             </div>
           </div>
 
-          <div className="block text-center">
+          <div className="flex justify-center">
             <SharedHeadline id="hero-headline" hidden={hideHeadline} />
           </div>
         </div>
