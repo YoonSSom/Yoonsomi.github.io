@@ -12,6 +12,27 @@ const Index = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displaySection, setDisplaySection] = useState("welcome");
   const [showIntro, setShowIntro] = useState(true);
+  // Once true, the rest of the homepage chrome (nav, status pill, projects,
+  // background blobs, etc.) is allowed to fade in. Stays false while the
+  // intro is on screen AND while the FLIP transition is mid-flight.
+  const [contentRevealed, setContentRevealed] = useState(false);
+
+  // Reveal homepage content only AFTER the intro overlay has fully
+  // dismissed (i.e. the shared text has landed in its final position).
+  // Honors prefers-reduced-motion by skipping the fade delay.
+  useEffect(() => {
+    if (showIntro) return;
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      setContentRevealed(true);
+      return;
+    }
+    // One frame after dismiss so the headline is committed before chrome fades in.
+    const id = requestAnimationFrame(() => setContentRevealed(true));
+    return () => cancelAnimationFrame(id);
+  }, [showIntro]);
 
   const handleNavigate = (section: string) => {
     if (section === activeSection) return;
@@ -34,17 +55,30 @@ const Index = () => {
       case "welcome":
         return (
           <div className="relative overflow-hidden">
-            {/* Shared background layer for hero + projects */}
-            <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
-            <div className="absolute top-[10%] left-[15%] w-72 h-72 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute top-[40%] right-[10%] w-80 h-80 bg-accent/20 rounded-full blur-[110px] pointer-events-none" />
-            <div className="absolute bottom-[10%] left-[30%] w-72 h-72 bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
+            {/* Shared background layer for hero + projects — fades in with chrome. */}
+            <div
+              className={`transition-opacity duration-500 ease-out ${
+                contentRevealed ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+              <div className="absolute top-[10%] left-[15%] w-72 h-72 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
+              <div className="absolute top-[40%] right-[10%] w-80 h-80 bg-accent/20 rounded-full blur-[110px] pointer-events-none" />
+              <div className="absolute bottom-[10%] left-[30%] w-72 h-72 bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
+            </div>
             <div className="relative z-10">
               <HeroSection
                 onNavigate={handleNavigate}
                 hideHeadline={showIntro}
+                revealChrome={contentRevealed}
               />
-              <ProjectsSection hideHeader />
+              <div
+                className={`transition-opacity duration-500 ease-out ${
+                  contentRevealed ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+              >
+                <ProjectsSection hideHeader />
+              </div>
             </div>
           </div>
         );
@@ -66,14 +100,21 @@ const Index = () => {
           onDismiss={() => setShowIntro(false)}
         />
       )}
-      <TopNav activeSection={activeSection} onNavigate={handleNavigate} />
-      <MobileNav activeSection={activeSection} onNavigate={handleNavigate} />
-      
+      {/* Nav fades in only after the intro shared-element transition completes. */}
+      <div
+        className={`transition-opacity duration-500 ease-out ${
+          contentRevealed ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <TopNav activeSection={activeSection} onNavigate={handleNavigate} />
+        <MobileNav activeSection={activeSection} onNavigate={handleNavigate} />
+      </div>
+
       <main className="pt-12 md:pt-16 min-h-screen">
         <div
           className={`transition-all duration-300 ease-out ${
-            isTransitioning 
-              ? "opacity-0 translate-y-4" 
+            isTransitioning
+              ? "opacity-0 translate-y-4"
               : "opacity-100 translate-y-0"
           }`}
         >
