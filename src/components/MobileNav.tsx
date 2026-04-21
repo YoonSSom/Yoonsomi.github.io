@@ -58,11 +58,16 @@ const MobileNav = ({ activeSection, onNavigate }: MobileNavProps) => {
                 )}
               </button>
             ))}
-            <Button 
+            <Button
+              asChild
               className="mt-2 bg-gradient-to-r from-primary to-accent text-white border-0"
-              onClick={() => window.open('https://github.com/YoonSoM', '_blank')}
             >
-              이력서 다운로드
+              <a
+                href={`${import.meta.env.BASE_URL}resume/2026_%EC%9D%B4%EB%A0%A5%EC%84%9C_%EC%9C%A4%EC%86%8C%EB%AF%B8.pdf`}
+                download="2026_이력서_윤소미.pdf"
+              >
+                이력서 다운로드
+              </a>
             </Button>
           </nav>
         </div>
