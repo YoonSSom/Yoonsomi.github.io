@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MousePointer2 } from "lucide-react";
 
 interface IntroOverlayProps {
   onDismiss: () => void;
@@ -56,13 +57,23 @@ const IntroOverlay = ({ onDismiss }: IntroOverlayProps) => {
           윤소미입니다.
         </p>
 
-        <p
-          className={`mt-12 text-xs md:text-sm text-muted-foreground tracking-widest uppercase transition-opacity duration-700 ${
+        <div
+          className={`mt-12 flex items-center justify-center gap-2.5 text-xs md:text-sm text-muted-foreground tracking-widest uppercase transition-opacity duration-700 ${
             showHint ? "opacity-100" : "opacity-0"
           }`}
         >
-          Click anywhere to enter
-        </p>
+          <span className="relative flex items-center justify-center w-6 h-6 md:w-7 md:h-7">
+            {/* expanding click rings */}
+            <span className="absolute inset-0 rounded-full border border-primary/60 animate-intro-click-ring" />
+            <span
+              className="absolute inset-0 rounded-full border border-primary/40 animate-intro-click-ring"
+              style={{ animationDelay: "0.6s" }}
+            />
+            {/* pointer icon */}
+            <MousePointer2 className="relative w-3.5 h-3.5 md:w-4 md:h-4 text-primary animate-intro-click-tap" />
+          </span>
+          <span>Click anywhere to enter</span>
+        </div>
       </div>
     </div>
   );
