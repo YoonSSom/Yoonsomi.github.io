@@ -10,7 +10,9 @@ const HeroSection = ({ onNavigate, hideHeadline = false }: HeroSectionProps) => 
       id="welcome"
       className="pt-8 pb-2 lg:pt-12 lg:pb-4 flex items-center justify-center relative z-10"
     >
-      <div className="w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-4 relative z-10">
+      {/* Padding matches IntroOverlay's centered wrapper (px-5 sm:px-6) so
+          the headline lands at the same horizontal offset after transition. */}
+      <div className="w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-5 sm:px-6 relative z-10">
         {/* 상단: 한 줄 직무 요약 */}
         <div className="text-center">
           <div className="inline-flex items-center gap-2 px-2.5 py-1 lg:px-4 lg:py-1.5 rounded-full bg-card/50 border border-border/50 mb-3 lg:mb-5 backdrop-blur-sm">
