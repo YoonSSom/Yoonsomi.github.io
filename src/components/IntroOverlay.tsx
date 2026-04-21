@@ -24,10 +24,29 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
     setIsExiting(true);
     onExitStart?.();
 
+    // Honor reduced-motion: skip the FLIP, do a quick fade only.
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
     // FLIP: animate the centered intro text into the hero headline slot.
     const sourceEl = textRef.current;
     const targetEl = document.getElementById("hero-headline");
     const bgEl = bgRef.current;
+
+    if (prefersReducedMotion) {
+      const REDUCED_DURATION = 150;
+      if (bgEl) {
+        bgEl.style.transition = `opacity ${REDUCED_DURATION}ms linear`;
+        bgEl.style.opacity = "0";
+      }
+      if (sourceEl) {
+        sourceEl.style.transition = `opacity ${REDUCED_DURATION}ms linear`;
+        sourceEl.style.opacity = "0";
+      }
+      setTimeout(onDismiss, REDUCED_DURATION);
+      return;
+    }
 
     // Fade the background/hint out independently so it doesn't drag the text.
     if (bgEl) {
