@@ -129,7 +129,7 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
         </div>
 
         <div
-          className={`mt-12 flex items-center justify-center gap-2.5 text-xs md:text-sm text-muted-foreground tracking-widest uppercase transition-opacity duration-700 ${
+          className={`mt-24 md:mt-32 flex items-center justify-center gap-2.5 text-xs md:text-sm text-muted-foreground tracking-widest uppercase transition-opacity duration-700 ${
             showHint && !isExiting ? "opacity-100" : "opacity-0"
           }`}
         >
