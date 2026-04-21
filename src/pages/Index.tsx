@@ -55,17 +55,30 @@ const Index = () => {
       case "welcome":
         return (
           <div className="relative overflow-hidden">
-            {/* Shared background layer for hero + projects */}
-            <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
-            <div className="absolute top-[10%] left-[15%] w-72 h-72 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute top-[40%] right-[10%] w-80 h-80 bg-accent/20 rounded-full blur-[110px] pointer-events-none" />
-            <div className="absolute bottom-[10%] left-[30%] w-72 h-72 bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
+            {/* Shared background layer for hero + projects — fades in with chrome. */}
+            <div
+              className={`transition-opacity duration-500 ease-out ${
+                contentRevealed ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+              <div className="absolute top-[10%] left-[15%] w-72 h-72 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
+              <div className="absolute top-[40%] right-[10%] w-80 h-80 bg-accent/20 rounded-full blur-[110px] pointer-events-none" />
+              <div className="absolute bottom-[10%] left-[30%] w-72 h-72 bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
+            </div>
             <div className="relative z-10">
               <HeroSection
                 onNavigate={handleNavigate}
                 hideHeadline={showIntro}
+                revealChrome={contentRevealed}
               />
-              <ProjectsSection hideHeader />
+              <div
+                className={`transition-opacity duration-500 ease-out ${
+                  contentRevealed ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+              >
+                <ProjectsSection hideHeader />
+              </div>
             </div>
           </div>
         );
