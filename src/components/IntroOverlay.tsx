@@ -41,20 +41,22 @@ const IntroOverlay = ({ onDismiss }: IntroOverlayProps) => {
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-[110px] pointer-events-none" />
 
-      <div className="relative z-10 text-center px-6 max-w-4xl lg:max-w-5xl">
+      <div className="relative z-10 px-5 sm:px-6 w-full max-w-[92vw] md:max-w-3xl lg:max-w-5xl flex flex-col items-center text-center">
+        {/* Line 1 — headline (forced single line, never reflows into line 2) */}
         <h1
-          className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-snug opacity-0 animate-fade-in"
+          className="opacity-0 animate-fade-in font-bold leading-tight tracking-tight text-foreground whitespace-nowrap text-[clamp(1rem,4.6vw,3.75rem)]"
           style={{ animationDelay: "200ms", animationFillMode: "forwards" }}
         >
           <span className="text-muted-foreground">"이게 될까요?"</span>를{" "}
           <span className="text-gradient">"이게 되네요"</span>로 바꾸는 기획자
         </h1>
 
+        {/* Forced line break between Line 1 and Line 2 */}
         <p
-          className="mt-3 md:mt-4 text-lg md:text-2xl lg:text-3xl font-semibold opacity-0 animate-fade-in"
+          className="opacity-0 animate-fade-in mt-3 md:mt-4 font-semibold text-foreground/90 whitespace-nowrap text-[clamp(0.875rem,2.6vw,1.875rem)]"
           style={{ animationDelay: "900ms", animationFillMode: "forwards" }}
         >
-          윤소미입니다.
+          안녕하세요 윤소미입니다.
         </p>
 
         <div
