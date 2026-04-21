@@ -6,7 +6,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   return (
     <section
       id="welcome"
-      className="pt-8 pb-6 lg:pt-12 lg:pb-10 flex items-center justify-center relative overflow-hidden"
+      className="pt-8 pb-2 lg:pt-12 lg:pb-4 flex items-center justify-center relative"
     >
       {/* Grid background */}
       <div className="absolute inset-0 grid-bg opacity-30" />

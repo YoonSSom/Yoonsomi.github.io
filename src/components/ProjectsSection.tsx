@@ -1112,12 +1112,12 @@ const ProjectsSection = () => {
   }, [api, onSelect]);
 
   return (
-    <section id="projects" className="min-h-screen py-24 px-4 md:px-6 lg:px-12">
+    <section id="projects" className="pt-2 pb-16 md:pt-4 md:pb-24 px-4 md:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div 
           ref={headerRef}
-          className={`text-center mb-10 md:mb-16 transition-all duration-700 ${
+          className={`text-center mb-6 md:mb-10 transition-all duration-700 ${
             headerVisible 
               ? "opacity-100 translate-y-0" 
               : "opacity-0 translate-y-8"
