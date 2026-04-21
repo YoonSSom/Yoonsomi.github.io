@@ -147,7 +147,7 @@ const projects: Project[] = [
   {
     id: "commercial",
     title: "디저트 린 – 수제 디저트 커머스 (SEO & 데이터 기반 성장)",
-    summary: "프랑스 정통 레시피 기반 수제 디저트 브랜드 '디저트 린'의 웹사이트를 기획·개발·운영하며, 광고비 없이 월 방문자 2,400명과 전환율 3.2%를 달성",
+    summary: "프랑스 정통 레시피 기반 수제 디저트 브랜드 '디저트 린'의 웹사이트를 기획·개발·운영하며, 광고비 없이 월 방문자 500명과 전환율 3.2%를 달성",
     problemGoal: [
       "오프라인 중심 수제 디저트 매장의 신규 고객 유입 한계",
       "두바이 초콜릿·휘낭시에·마들렌 등 시그니처 메뉴의 온라인 노출 부재",
@@ -179,7 +179,7 @@ const projects: Project[] = [
     },
     techStack: ["React", "Vite", "Tailwind CSS", "GA4", "GTM", "Google Search Console", "Lovable"],
     results: [
-      "월 방문자: 0 → 2,400+ (목표 대비 120% 달성)",
+      "월 방문자: 0 → 500 (유기적 유입 기반 초기 성장)",
       "전환율: 3.2% (업계 평균 대비 약 160%)",
       "광고비: ₩0 (100% 유기적 유입)",
       "평균 체류 시간: 2분 34초",
@@ -942,7 +942,7 @@ const DessertLynDetail = ({ project }: { project: Project }) => {
         <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-5">
           프랑스 정통 레시피 기반 수제 디저트 브랜드 ‘디저트 린’의 웹사이트를 기획·개발·운영하며,
           <br className="hidden md:block" />
-          광고비 없이 월 방문자 <span className="text-primary font-semibold">2,400명</span>과 전환율 <span className="text-primary font-semibold">3.2%</span>를 달성한 1인 풀스택 프로젝트입니다.
+          광고비 없이 월 방문자 <span className="text-primary font-semibold">500명</span>과 전환율 <span className="text-primary font-semibold">3.2%</span>를 달성한 1인 풀스택 프로젝트입니다.
         </p>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs md:text-sm">
           <div className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-primary" /><span className="font-medium">{project.period}</span></div>
@@ -985,7 +985,7 @@ const DessertLynDetail = ({ project }: { project: Project }) => {
         <section id="metrics" className="scroll-mt-16">
           <SectionHeader icon={TrendingUp} number="02" title="핵심 성과" subtitle="광고비 ₩0, 데이터로 만든 유기적 성장" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            <StatCard value="100" label="월 방문자" desc="" accent />
+            <StatCard value="500" label="월 방문자" desc="" accent />
             <StatCard value="3.2%" label="전환율" desc="업계 평균 대비 약 160% 수준" />
             <StatCard value="30+" label="A/B 실험" desc="가설–실험–검증 구조 정립" />
             <StatCard value="2:34" label="평균 체류 시간" desc="높은 콘텐츠 몰입도 확인" />
