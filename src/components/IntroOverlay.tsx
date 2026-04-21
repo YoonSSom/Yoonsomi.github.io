@@ -120,11 +120,13 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
       </div>
 
       <div className="relative z-10 w-full max-w-[92vw] md:max-w-3xl lg:max-w-5xl mx-auto px-5 sm:px-6 flex flex-col items-center text-center">
-        <SharedHeadline
-          ref={textRef}
-          className="opacity-0 animate-fade-in will-change-transform"
-          style={{ animationDelay: "150ms", animationFillMode: "forwards" }}
-        />
+        <div className="flex justify-center w-full">
+          <SharedHeadline
+            ref={textRef}
+            className="opacity-0 animate-fade-in will-change-transform"
+            style={{ animationDelay: "150ms", animationFillMode: "forwards" }}
+          />
+        </div>
 
         <div
           className={`mt-12 flex items-center justify-center gap-2.5 text-xs md:text-sm text-muted-foreground tracking-widest uppercase transition-opacity duration-700 ${
