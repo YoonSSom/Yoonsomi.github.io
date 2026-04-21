@@ -42,7 +42,7 @@ const IntroOverlay = ({ onDismiss }: IntroOverlayProps) => {
 
       <div className="relative z-10 text-center px-6 max-w-4xl lg:max-w-5xl">
         <h1
-          className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight opacity-0 animate-fade-in"
+          className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-snug opacity-0 animate-fade-in"
           style={{ animationDelay: "200ms", animationFillMode: "forwards" }}
         >
           <span className="text-muted-foreground">"이게 될까요?"</span>를{" "}
@@ -50,10 +50,10 @@ const IntroOverlay = ({ onDismiss }: IntroOverlayProps) => {
         </h1>
 
         <p
-          className="mt-6 text-xl md:text-3xl lg:text-4xl font-semibold opacity-0 animate-fade-in"
+          className="mt-3 md:mt-4 text-lg md:text-2xl lg:text-3xl font-semibold opacity-0 animate-fade-in"
           style={{ animationDelay: "900ms", animationFillMode: "forwards" }}
         >
-          안녕하세요, 윤소미입니다
+          윤소미입니다.
         </p>
 
         <p
