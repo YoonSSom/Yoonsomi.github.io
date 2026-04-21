@@ -111,11 +111,12 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
       </div>
 
       <div className="relative z-10 px-5 sm:px-6 w-full max-w-[92vw] md:max-w-3xl lg:max-w-5xl flex flex-col items-center text-center">
-        {/* Shared text element. Identical markup/classes to the hero headline,
-            so a simple translate+scale produces a seamless transition. */}
+        {/* Shared text element. Wrapper classes (inline-block, text-left,
+            align-top) must match #hero-headline exactly so the FLIP lands
+            on an identical layout box — no post-transition shift. */}
         <div
           ref={textRef}
-          className="opacity-0 animate-fade-in will-change-transform"
+          className="inline-block text-left align-top opacity-0 animate-fade-in will-change-transform"
           style={{ animationDelay: "150ms", animationFillMode: "forwards" }}
         >
           <h1 className="font-bold leading-tight tracking-tight text-foreground whitespace-nowrap text-[clamp(1rem,4.6vw,3.75rem)]">
