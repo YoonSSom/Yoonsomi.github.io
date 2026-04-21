@@ -50,12 +50,12 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
 
     // Fade the background/hint out independently so it doesn't drag the text.
     if (bgEl) {
-      bgEl.style.transition = "opacity 500ms ease-out";
+      bgEl.style.transition = "opacity 600ms ease-out";
       bgEl.style.opacity = "0";
     }
 
-    const DURATION = 700;
-    const EASING = "cubic-bezier(0.22, 1, 0.36, 1)"; // smooth ease-in-out-ish
+    const DURATION = 1000; // 1.0s — within the requested 0.8–1.2s range
+    const EASING = "cubic-bezier(0.65, 0, 0.35, 1)"; // ease-in-out
 
     if (sourceEl && targetEl) {
       const from = sourceEl.getBoundingClientRect();
@@ -63,11 +63,23 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
 
       const dx = to.left + to.width / 2 - (from.left + from.width / 2);
       const dy = to.top + to.height / 2 - (from.top + from.height / 2);
-      const scale = to.width / from.width;
+      const finalScale = to.width / from.width;
+      // Slight scale-down dip mid-flight for a natural, premium feel.
+      const midScale = Math.min(finalScale, 1) * 0.94;
 
       sourceEl.style.transformOrigin = "50% 50%";
-      sourceEl.style.transition = `transform ${DURATION}ms ${EASING}`;
-      sourceEl.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+      // Use the Web Animations API so we can keyframe a mid-flight scale dip.
+      sourceEl.animate(
+        [
+          { transform: "translate(0px, 0px) scale(1)" },
+          {
+            transform: `translate(${dx * 0.5}px, ${dy * 0.5}px) scale(${midScale})`,
+            offset: 0.5,
+          },
+          { transform: `translate(${dx}px, ${dy}px) scale(${finalScale})` },
+        ],
+        { duration: DURATION, easing: EASING, fill: "forwards" },
+      );
     }
 
     // After the FLIP finishes, unmount and let the hero headline take over.
