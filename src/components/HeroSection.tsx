@@ -20,11 +20,13 @@ const HeroSection = ({ onNavigate, hideHeadline = false }: HeroSectionProps) => 
 
           {/* Shared-element target. The same text lives in IntroOverlay; on
               dismiss it animates from the center of the screen into this slot. */}
+          {/* Shared-element wrapper. Must match IntroOverlay's wrapper
+              exactly (inline-block, text-left, no extra padding) so the
+              animated intro text lands on the same layout box and there's
+              no post-transition shift. */}
           <div
             id="hero-headline"
-            // No fade transition — visibility flips instantly the moment the
-            // intro overlay unmounts so there's never a duplicate render or
-            // cross-fade overlap with the moving intro text.
+            className="inline-block text-left align-top"
             style={{ visibility: hideHeadline ? "hidden" : "visible" }}
           >
             <h1 className="font-bold leading-tight tracking-tight whitespace-nowrap text-[clamp(1rem,4.6vw,3.75rem)]">
