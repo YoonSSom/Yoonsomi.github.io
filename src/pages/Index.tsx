@@ -31,10 +31,17 @@ const Index = () => {
     switch (displaySection) {
       case "welcome":
         return (
-          <>
-            <HeroSection onNavigate={handleNavigate} />
-            <ProjectsSection />
-          </>
+          <div className="relative overflow-hidden">
+            {/* Shared background layer for hero + projects */}
+            <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+            <div className="absolute top-[10%] left-[15%] w-72 h-72 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-[40%] right-[10%] w-80 h-80 bg-accent/20 rounded-full blur-[110px] pointer-events-none" />
+            <div className="absolute bottom-[10%] left-[30%] w-72 h-72 bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="relative z-10">
+              <HeroSection onNavigate={handleNavigate} />
+              <ProjectsSection hideHeader />
+            </div>
+          </div>
         );
       case "about":
         return <AboutSection />;
