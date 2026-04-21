@@ -105,18 +105,7 @@ const Index = () => {
               : "opacity-100 translate-y-0"
           }`}
         >
-          {/* Wrap rendered section so non-headline content fades in only
-              after the shared text settles into place. The hero headline
-              itself is not affected (it lives in HeroSection and is
-              controlled separately via hideHeadline). */}
-          <div
-            data-content-revealed={contentRevealed}
-            className={`[&_*:not(#hero-headline):not(#hero-headline_*)]:transition-opacity [&_*:not(#hero-headline):not(#hero-headline_*)]:duration-500 ${
-              contentRevealed ? "" : "[&_*:not(#hero-headline):not(#hero-headline_*)]:opacity-0"
-            }`}
-          >
-            {renderSection()}
-          </div>
+          {renderSection()}
         </div>
       </main>
     </div>
