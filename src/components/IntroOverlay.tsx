@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { MousePointer2 } from "lucide-react";
+import SharedHeadline from "@/components/SharedHeadline";
 
 interface IntroOverlayProps {
   onDismiss: () => void;
@@ -118,27 +119,12 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-[110px] pointer-events-none" />
       </div>
 
-      <div className="relative z-10 px-5 sm:px-6 w-full max-w-[92vw] md:max-w-3xl lg:max-w-5xl flex flex-col items-center text-center">
-        {/* Shared text element. Wrapper classes (inline-block, text-left,
-            align-top) must match #hero-headline exactly so the FLIP lands
-            on an identical layout box — no post-transition shift. */}
-        <div
+      <div className="relative z-10 w-full max-w-[92vw] md:max-w-3xl lg:max-w-5xl mx-auto px-5 sm:px-6 flex flex-col items-center text-center">
+        <SharedHeadline
           ref={textRef}
-          className="inline-block text-center align-top opacity-0 animate-fade-in will-change-transform"
+          className="opacity-0 animate-fade-in will-change-transform"
           style={{ animationDelay: "150ms", animationFillMode: "forwards" }}
-        >
-          {/* Mirrors HeroSection: Line 2 is absolutely centered under Line 1
-              so the transition lands with identical layout. */}
-          <div className="relative inline-block">
-            <h1 className="font-bold leading-tight tracking-tight text-foreground whitespace-nowrap text-[clamp(1rem,4.6vw,3.75rem)]">
-              <span className="text-muted-foreground">"이게 될까요?"</span>를{" "}
-              <span className="text-gradient">"이게 되네요"</span>로 바꾸는 기획자
-            </h1>
-            <p className="absolute left-1/2 -translate-x-1/2 top-full mt-1 lg:mt-2 font-semibold text-foreground/90 whitespace-nowrap text-[clamp(0.875rem,2.6vw,1.875rem)]">
-              안녕하세요 윤소미입니다.
-            </p>
-          </div>
-        </div>
+        />
 
         <div
           className={`mt-12 flex items-center justify-center gap-2.5 text-xs md:text-sm text-muted-foreground tracking-widest uppercase transition-opacity duration-700 ${
