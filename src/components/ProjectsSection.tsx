@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play, Radio, AlertTriangle, UserRound, Stethoscope, ShieldCheck, Sparkles, Mic, Lock, Layers, Rocket, HelpCircle } from "lucide-react";
+import { ExternalLink, Calendar, Users, CheckCircle2, Circle, TrendingUp, GitBranch, FileText, Target, Briefcase, Wrench, BarChart3, MessageSquare, Play, Radio, AlertTriangle, UserRound, Stethoscope, ShieldCheck, Sparkles, Mic, Lock, Layers, Rocket, HelpCircle, Search, Code2, Megaphone, ShoppingBag, Smartphone, LineChart, Cookie } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import {
   Dialog,
