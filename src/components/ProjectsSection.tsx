@@ -1225,6 +1225,8 @@ const ProjectsSection = () => {
 
               {selectedProject.id === "todosign" ? (
                 <TodoSignDetail project={selectedProject} />
+              ) : selectedProject.id === "commercial" ? (
+                <DessertLynDetail project={selectedProject} />
               ) : (
                 <div className="flex-1 overflow-y-auto">
                 {/* Header Section */}
