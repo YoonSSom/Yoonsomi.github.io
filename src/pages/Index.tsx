@@ -30,7 +30,12 @@ const Index = () => {
   const renderSection = () => {
     switch (displaySection) {
       case "welcome":
-        return <HeroSection onNavigate={handleNavigate} />;
+        return (
+          <>
+            <HeroSection onNavigate={handleNavigate} />
+            <ProjectsSection />
+          </>
+        );
       case "about":
         return <AboutSection />;
       case "projects":
