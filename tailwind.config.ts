@@ -88,6 +88,16 @@ export default {
           "0%, 100%": { opacity: "0.5" },
           "50%": { opacity: "1" },
         },
+        "intro-click-ring": {
+          "0%": { transform: "scale(0.6)", opacity: "0.9" },
+          "80%": { transform: "scale(1.8)", opacity: "0" },
+          "100%": { transform: "scale(1.8)", opacity: "0" },
+        },
+        "intro-click-tap": {
+          "0%, 60%, 100%": { transform: "scale(1)" },
+          "70%": { transform: "scale(0.78)" },
+          "85%": { transform: "scale(1.08)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,6 +105,8 @@ export default {
         "fade-in": "fade-in 0.6s ease-out forwards",
         "slide-in-left": "slide-in-left 0.4s ease-out forwards",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "intro-click-ring": "intro-click-ring 1.6s ease-out infinite",
+        "intro-click-tap": "intro-click-tap 1.6s ease-in-out infinite",
       },
     },
   },
