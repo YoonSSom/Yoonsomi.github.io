@@ -124,7 +124,7 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
             on an identical layout box — no post-transition shift. */}
         <div
           ref={textRef}
-          className="inline-block text-left align-top opacity-0 animate-fade-in will-change-transform"
+          className="inline-block text-center align-top opacity-0 animate-fade-in will-change-transform"
           style={{ animationDelay: "150ms", animationFillMode: "forwards" }}
         >
           {/* Mirrors HeroSection: Line 2 is absolutely centered under Line 1
