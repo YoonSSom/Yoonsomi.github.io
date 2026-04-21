@@ -16,12 +16,16 @@ const HeroSection = ({ onNavigate, hideHeadline = false }: HeroSectionProps) => 
       <div className="w-full max-w-[92vw] md:max-w-3xl lg:max-w-5xl mx-auto px-5 sm:px-6 relative z-10">
         {/* 상단: 한 줄 직무 요약 */}
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 lg:px-4 lg:py-1.5 rounded-full bg-card/50 border border-border/50 mb-3 lg:mb-5 backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-[10px] lg:text-sm text-muted-foreground">현재 구직 중</span>
+          <div className="mb-3 lg:mb-5">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 lg:px-4 lg:py-1.5 rounded-full bg-card/50 border border-border/50 backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-[10px] lg:text-sm text-muted-foreground">현재 구직 중</span>
+            </div>
           </div>
 
-          <SharedHeadline id="hero-headline" hidden={hideHeadline} />
+          <div className="block text-center">
+            <SharedHeadline id="hero-headline" hidden={hideHeadline} />
+          </div>
         </div>
       </div>
     </section>
