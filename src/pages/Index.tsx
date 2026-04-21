@@ -5,11 +5,13 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
+import IntroOverlay from "@/components/IntroOverlay";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("welcome");
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displaySection, setDisplaySection] = useState("welcome");
+  const [showIntro, setShowIntro] = useState(true);
 
   const handleNavigate = (section: string) => {
     if (section === activeSection) return;
@@ -56,6 +58,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {showIntro && <IntroOverlay onDismiss={() => setShowIntro(false)} />}
       <TopNav activeSection={activeSection} onNavigate={handleNavigate} />
       <MobileNav activeSection={activeSection} onNavigate={handleNavigate} />
       
