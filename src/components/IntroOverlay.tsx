@@ -63,15 +63,14 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
 
       const dx = to.left + to.width / 2 - (from.left + from.width / 2);
       const dy = to.top + to.height / 2 - (from.top + from.height / 2);
-      const finalScale = to.width / from.width;
 
       sourceEl.style.transformOrigin = "50% 50%";
-      // Position-first transition: translate the element to its destination
-      // and apply the final scale linearly so motion (not scaling) is the focus.
+      // Position-only transition: translate the element to its destination
+      // without any scaling so the text size stays constant throughout.
       sourceEl.animate(
         [
-          { transform: "translate(0px, 0px) scale(1)" },
-          { transform: `translate(${dx}px, ${dy}px) scale(${finalScale})` },
+          { transform: "translate(0px, 0px)" },
+          { transform: `translate(${dx}px, ${dy}px)` },
         ],
         { duration: DURATION, easing: EASING, fill: "forwards" },
       );
