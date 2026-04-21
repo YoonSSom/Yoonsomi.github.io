@@ -6,15 +6,8 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   return (
     <section
       id="welcome"
-      className="pt-8 pb-2 lg:pt-12 lg:pb-4 flex items-center justify-center relative"
+      className="pt-8 pb-2 lg:pt-12 lg:pb-4 flex items-center justify-center relative z-10"
     >
-      {/* Grid background */}
-      <div className="absolute inset-0 grid-bg opacity-30" />
-      
-      {/* Gradient overlays */}
-      <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-primary/20 rounded-full blur-[80px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-accent/20 rounded-full blur-[80px]" />
-      
       <div className="w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-4 relative z-10">
         {/* 상단: 한 줄 직무 요약 */}
         <div className="text-center">

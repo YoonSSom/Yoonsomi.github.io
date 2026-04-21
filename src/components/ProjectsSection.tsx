@@ -1091,7 +1091,11 @@ const DessertLynDetail = ({ project }: { project: Project }) => {
 };
 
 
-const ProjectsSection = () => {
+interface ProjectsSectionProps {
+  hideHeader?: boolean;
+}
+
+const ProjectsSection = ({ hideHeader = false }: ProjectsSectionProps = {}) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState<any>(null);
@@ -1112,27 +1116,29 @@ const ProjectsSection = () => {
   }, [api, onSelect]);
 
   return (
-    <section id="projects" className="pt-2 pb-16 md:pt-4 md:pb-24 px-4 md:px-6 lg:px-12">
+    <section id="projects" className={`${hideHeader ? "pt-0 pb-16 md:pb-24" : "pt-2 pb-16 md:pt-4 md:pb-24"} px-4 md:px-6 lg:px-12 relative`}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div 
-          ref={headerRef}
-          className={`text-center mb-6 md:mb-10 transition-all duration-700 ${
-            headerVisible 
-              ? "opacity-100 translate-y-0" 
-              : "opacity-0 translate-y-8"
-          }`}
-        >
-          <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
-            PROJECTS
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            주요 <span className="text-gradient">프로젝트</span>
-          </h2>
-          <p className="text-muted-foreground text-sm md:text-base">
-            문제 발견부터 성과 측정까지, End-to-End 프로젝트 경험
-          </p>
-        </div>
+        {!hideHeader && (
+          <div 
+            ref={headerRef}
+            className={`text-center mb-6 md:mb-10 transition-all duration-700 ${
+              headerVisible 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 translate-y-8"
+            }`}
+          >
+            <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
+              PROJECTS
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              주요 <span className="text-gradient">프로젝트</span>
+            </h2>
+            <p className="text-muted-foreground text-sm md:text-base">
+              문제 발견부터 성과 측정까지, End-to-End 프로젝트 경험
+            </p>
+          </div>
+        )}
 
         {/* Mobile: Carousel */}
         <div className="md:hidden">
