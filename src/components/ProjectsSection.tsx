@@ -206,10 +206,10 @@ const projects: Project[] = [
     title: "한국어 메뉴판 OCR 서비스 개선",
     summary: "YOLOv5 기반 OCR 시스템을 분석하고 실제 사용 환경(메뉴판)에 맞춰 인식 정확도와 처리 구조를 개선한 프로젝트",
     problemGoal: [
-      "기존 OCR 시스템은 메뉴판 환경에서 낮은 인식률 발생",
+      "기존 OCR 시스템은 메뉴판 환경에서 전반적으로 낮은 인식률 발생",
       "세로 텍스트 및 기울어진 이미지에서 Detection/Recognition 정확도 저하",
-      "1-stage Detection 구조로 인해 불필요한 영역 포함",
-      "목표: 메뉴판 환경 최적화 OCR 구조 설계, 텍스트 방향 인식 정확도 개선, Detection 성능과 처리 속도 간 균형 확보",
+      "1-stage Detection 구조로 인해 불필요한 영역이 포함되는 문제 발생",
+      "목표: 메뉴판 환경에 특화된 OCR 구조 설계, 텍스트 방향 인식 정확도 향상, Detection 성능과 처리 속도 간 최적 균형 달성",
     ],
     myRole: {
       planning: [
@@ -226,16 +226,19 @@ const projects: Project[] = [
       ],
       other: [
         "테스트 이미지 기반 성능 검증 및 구조 개선 반복",
+        "Google Colab 기반 실험 환경 공유 및 팀 협업",
       ],
     },
     techStack: ["YOLOv5", "SwinIR", "STARNet", "PyTorch", "Google Colab"],
     results: [
-      "세로 및 기울어진 텍스트 인식 가능 구조 확보",
-      "텍스트 영역 추출 정확도 개선",
-      "서비스 환경 기준 구조적 문제 해결 및 성능 개선 방향 도출",
+      "기존 구조에서 처리 불가능했던 세로 및 기울어진 텍스트 인식 가능 구조 확보",
+      "2-stage Detection 도입으로 불필요한 영역 제거 및 텍스트 영역 추출 정밀도 향상",
+      "서비스 환경(메뉴판) 기준 구조적 문제 해결 및 성능 개선 방향 도출 완료",
+      "전체 파이프라인 정립: 입력 이미지 → SwinIR 초해상도 → YOLOv5 2-Stage → STARNet 인식 → 최종 출력",
     ],
     collaboration: [
-      "Google Colab 기반 실험 및 구현",
+      "테스트 이미지 기반 성능 검증 및 구조 개선 반복",
+      "Google Colab 기반 실험 환경 공유 및 GPU 자원 활용",
     ],
     tags: [
       { label: "OCR", color: "bg-cyan-500/20 text-cyan-400" },
