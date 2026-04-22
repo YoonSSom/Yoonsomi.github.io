@@ -313,7 +313,7 @@ const AboutSection = () => {
         <div className="mb-8 md:mb-12">
           <div className="flex items-center gap-2 mb-4 md:mb-6">
             <Target className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-            <h3 className="font-semibold text-base md:text-lg">Product Engineer 핵심 역량</h3>
+            <h3 className="font-semibold text-base md:text-lg">Product Manager 핵심 역량</h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
             {productEngineerCompetencies.map((item) => (
@@ -353,7 +353,7 @@ const AboutSection = () => {
                   />
                   <div>
                     <h3 className="text-lg md:text-xl font-bold">윤소미</h3>
-                    <p className="text-xs md:text-sm text-muted-foreground">Product Engineer</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">Product Manager</p>
                     <p className="text-[10px] md:text-xs text-muted-foreground">ysomi010212@gmail.com</p>
                   </div>
                 </div>
@@ -391,7 +391,7 @@ const AboutSection = () => {
               </div>
               </div>
 
-              {/* 가치관 - Product Engineer 마인드셋 - 모바일에서 숨김 */}
+              {/* 가치관 - Product Manager 마인드셋 - 모바일에서 숨김 */}
               <div className="hidden md:block p-4 md:p-6 rounded-2xl bg-card border border-border">
                 <h4 className="text-xs md:text-sm font-medium mb-2 md:mb-3 text-primary">일하는 방식</h4>
                 <div className="space-y-2 md:space-y-3 text-xs md:text-sm text-muted-foreground">
