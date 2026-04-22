@@ -52,6 +52,16 @@ const ContactSection = () => {
             <div className="space-y-4">
               <Button asChild variant="outline" className="w-full justify-start">
                 <a
+                  href="https://www.notion.so/2744de04b5e847c181a60dfc1e2f9906"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FileText className="mr-3 w-5 h-5" />
+                  자기소개서
+                </a>
+              </Button>
+              <Button asChild variant="outline" className="w-full justify-start">
+                <a
                   href="https://github.com/YoonSoM"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -68,16 +78,6 @@ const ContactSection = () => {
                 >
                   <FileText className="mr-3 w-5 h-5" />
                   Notion 개발 일지
-                </a>
-              </Button>
-              <Button asChild variant="outline" className="w-full justify-start">
-                <a
-                  href="https://www.notion.so/2744de04b5e847c181a60dfc1e2f9906"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FileText className="mr-3 w-5 h-5" />
-                  자기소개서
                 </a>
               </Button>
             </div>
