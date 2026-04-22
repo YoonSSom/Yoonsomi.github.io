@@ -16,7 +16,7 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
   const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const t = setTimeout(() => setShowHint(true), 1200);
+    const t = setTimeout(() => setShowHint(true), 1800);
     return () => clearTimeout(t);
   }, []);
 
