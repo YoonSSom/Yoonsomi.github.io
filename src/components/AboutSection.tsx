@@ -402,20 +402,24 @@ const AboutSection = () => {
                 <h4 className="text-xs md:text-sm font-medium mb-2 md:mb-3 text-primary">일하는 방식</h4>
                 <div className="space-y-2 md:space-y-3 text-xs md:text-sm text-muted-foreground">
                   <p className="leading-relaxed">
-                    <span className="text-foreground font-medium">🎯 Why부터 시작</span><br/>
-                    스펙 구현 전에 "왜 이 기능인가" 질문합니다.
+                    <span className="text-foreground font-medium">🎯 문제 정의부터 시작</span><br/>
+                    "무엇을 만들까"보다 "왜, 누구의 어떤 문제인가"를 먼저 정의합니다.
                   </p>
                   <p className="leading-relaxed">
-                    <span className="text-foreground font-medium">📊 숫자로 판단</span><br/>
-                    감이 아닌 지표로 우선순위와 성공 여부를 결정합니다.
+                    <span className="text-foreground font-medium">📊 지표로 우선순위 결정</span><br/>
+                    GA4·GSC·사용자 행동 데이터로 백로그 우선순위와 성공 기준을 정합니다.
                   </p>
                   <p className="leading-relaxed">
-                    <span className="text-foreground font-medium">⚖️ 트레이드오프 제안</span><br/>
-                    공수와 UX 양쪽 관점에서 현실적인 선택을 제안합니다.
+                    <span className="text-foreground font-medium">⚖️ 트레이드오프로 의사결정</span><br/>
+                    공수·성능·UX·비즈니스 임팩트를 비교해 최적의 선택지를 제안합니다.
                   </p>
                   <p className="leading-relaxed">
-                    <span className="text-foreground font-medium">🤝 모두가 이해하는 언어</span><br/>
-                    비개발자도 이해할 수 있게 기술적 선택을 설명합니다.
+                    <span className="text-foreground font-medium">🤝 크로스펑셔널 공통 언어</span><br/>
+                    기획·개발·디자인·도메인 전문가 사이를 잇는 PRD와 문서로 합의를 만듭니다.
+                  </p>
+                  <p className="leading-relaxed">
+                    <span className="text-foreground font-medium">🔁 가설 → 검증 → 학습</span><br/>
+                    작게 출시하고 지표로 검증한 뒤 다음 의사결정에 반영합니다.
                   </p>
                 </div>
               </div>
