@@ -203,7 +203,7 @@ const projects: Project[] = [
   },
   {
     id: "ocr",
-    title: "한국어 메뉴판 OCR 서비스 개선",
+    title: "한국어 메뉴판 OCR 서비스",
     summary: "YOLOv5 기반 OCR 시스템을 분석하고 실제 사용 환경(메뉴판)에 맞춰 인식 정확도와 처리 구조를 개선한 프로젝트",
     problemGoal: [
       "기존 OCR 시스템은 메뉴판 환경에서 전반적으로 낮은 인식률 발생",
