@@ -89,30 +89,36 @@ const productEngineerCompetencies = [
   },
 ];
 
-// 기술스택 - 카테고리별 정리
+// 기술스택 - PM 관점 카테고리별 정리
 const skillCategories = [
   {
-    icon: Code2,
-    title: "Product Development",
-    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Rapid Prototyping"],
+    icon: Target,
+    title: "Product Strategy & Planning",
+    skills: ["PRD 작성", "User Flow 설계", "페르소나 정의", "요구사항 정의", "우선순위 관리"],
     level: "주력",
   },
   {
     icon: Database,
-    title: "Data & Analytics",
-    skills: ["GA4", "GTM", "Python", "Supabase", "PostgreSQL", "A/B Testing"],
-    level: "활용 가능",
+    title: "Data-Driven Decision",
+    skills: ["GA4", "GTM", "Google Search Console", "A/B Testing", "지표 설계", "SQL"],
+    level: "주력",
   },
   {
     icon: Palette,
-    title: "AI/ML Integration",
-    skills: ["PyTorch", "OpenCV", "OCR", "LLM API", "CV Models"],
-    level: "제품 적용 경험",
+    title: "UX & Prototyping",
+    skills: ["Figma", "User Research", "와이어프레임", "사용자 인터뷰", "Lovable"],
+    level: "활용 가능",
   },
   {
-    icon: Target,
-    title: "Product Tools",
-    skills: ["Figma", "Git", "Notion", "Slack", "JIRA", "Linear"],
+    icon: Code2,
+    title: "Tech Literacy (AI/Dev)",
+    skills: ["LLM API", "CV/OCR 이해", "React/Next.js", "Supabase", "Git"],
+    level: "협업 가능 수준",
+  },
+  {
+    icon: Building2,
+    title: "Collaboration & PM Tools",
+    skills: ["Notion", "Slack", "JIRA", "Linear", "Confluence"],
     level: "활용 가능",
   },
 ];
