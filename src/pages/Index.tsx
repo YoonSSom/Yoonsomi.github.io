@@ -17,11 +17,10 @@ const Index = () => {
   // intro is on screen AND while the FLIP transition is mid-flight.
   const [contentRevealed, setContentRevealed] = useState(false);
 
-  // Reveal homepage content only AFTER the intro overlay has fully
-  // dismissed (i.e. the shared text has landed in its final position).
-  // Honors prefers-reduced-motion by skipping the fade delay.
-  useEffect(() => {
-    if (showIntro) return;
+  // Reveal homepage chrome BEFORE the intro fully dismisses, so the fade-in
+  // overlaps with the tail of the headline travel. This removes the "snap"
+  // feeling of chrome popping in after the text lands.
+  const handleIntroExitStart = () => {
     const prefersReducedMotion =
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -29,9 +28,16 @@ const Index = () => {
       setContentRevealed(true);
       return;
     }
-    // One frame after dismiss so the headline is committed before chrome fades in.
-    const id = requestAnimationFrame(() => setContentRevealed(true));
-    return () => cancelAnimationFrame(id);
+    // Start chrome fade ~halfway through the headline travel (≈450ms in).
+    // Combined with the chrome's own 700ms transition, chrome finishes
+    // settling shortly after the headline lands.
+    window.setTimeout(() => setContentRevealed(true), 450);
+  };
+
+  // Safety net: if exit-start callback never fires (edge cases), still
+  // reveal once the intro is dismissed.
+  useEffect(() => {
+    if (!showIntro) setContentRevealed(true);
   }, [showIntro]);
 
   const handleNavigate = (section: string) => {
@@ -57,7 +63,7 @@ const Index = () => {
           <div className="relative overflow-hidden">
             {/* Shared background layer for hero + projects — fades in with chrome. */}
             <div
-              className={`transition-opacity duration-500 ease-out ${
+              className={`transition-opacity duration-700 ease-out ${
                 contentRevealed ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -73,7 +79,7 @@ const Index = () => {
                 revealChrome={contentRevealed}
               />
               <div
-                className={`transition-opacity duration-500 ease-out ${
+                className={`transition-opacity duration-700 ease-out delay-150 ${
                   contentRevealed ? "opacity-100" : "opacity-0 pointer-events-none"
                 }`}
               >
@@ -98,11 +104,12 @@ const Index = () => {
       {showIntro && (
         <IntroOverlay
           onDismiss={() => setShowIntro(false)}
+          onExitStart={handleIntroExitStart}
         />
       )}
       {/* Nav fades in only after the intro shared-element transition completes. */}
       <div
-        className={`transition-opacity duration-500 ease-out ${
+        className={`transition-opacity duration-700 ease-out ${
           contentRevealed ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
