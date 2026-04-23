@@ -50,17 +50,13 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
     }
 
     // Fade the background/hint out independently so it doesn't drag the text.
-    // Slightly faster than the headline travel so the stage clears first and
-    // the text feels like it's gliding into the awaiting homepage.
     if (bgEl) {
-      bgEl.style.transition = "opacity 500ms ease-out";
+      bgEl.style.transition = "opacity 600ms ease-out";
       bgEl.style.opacity = "0";
     }
 
-    const DURATION = 950; // travel duration for the headline FLIP
-    // Smooth ease-out-quint: quick start, long graceful settle. Removes the
-    // abrupt "stop" feeling at the destination.
-    const EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
+    const DURATION = 900; // 0.9s — within the requested 0.8–1.0s range
+    const EASING = "cubic-bezier(0.65, 0, 0.35, 1)"; // ease-in-out
 
     if (sourceEl && targetEl) {
       const from = sourceEl.getBoundingClientRect();
@@ -84,19 +80,10 @@ const IntroOverlay = ({ onDismiss, onExitStart }: IntroOverlayProps) => {
 
       // Position-only transition: translate the element to its destination
       // without any scaling so the text size stays constant throughout.
-      // Position-only transition with a tiny settle scale at the very end,
-      // so the headline gently "lands" instead of snapping to a stop.
       sourceEl.animate(
         [
-          { transform: "translate(0px, 0px) scale(1)", offset: 0 },
-          {
-            transform: `translate(${dx * 0.92}px, ${dy * 0.92}px) scale(1.015)`,
-            offset: 0.7,
-          },
-          {
-            transform: `translate(${dx}px, ${dy}px) scale(1)`,
-            offset: 1,
-          },
+          { transform: "translate(0px, 0px)" },
+          { transform: `translate(${dx}px, ${dy}px)` },
         ],
         { duration: DURATION, easing: EASING, fill: "forwards" },
       );
