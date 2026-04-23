@@ -63,7 +63,7 @@ const Index = () => {
           <div className="relative overflow-hidden">
             {/* Shared background layer for hero + projects — fades in with chrome. */}
             <div
-              className={`transition-opacity duration-500 ease-out ${
+              className={`transition-opacity duration-700 ease-out ${
                 contentRevealed ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -79,7 +79,7 @@ const Index = () => {
                 revealChrome={contentRevealed}
               />
               <div
-                className={`transition-opacity duration-500 ease-out ${
+                className={`transition-opacity duration-700 ease-out delay-150 ${
                   contentRevealed ? "opacity-100" : "opacity-0 pointer-events-none"
                 }`}
               >
