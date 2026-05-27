@@ -293,6 +293,8 @@ const timeline = [
 const certifications = [
   { name: "빅데이터전문가", year: "2022" },
   { name: "코딩지도사 1급", year: "2022" },
+  { name: "SQL (개발자)", year: "" },
+  { name: "토익", year: "" },
 ];
 
 // 어학
