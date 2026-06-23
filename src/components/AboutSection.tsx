@@ -4,6 +4,13 @@ import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Buil
 // 조직 정보 (그룹화용)
 const organizations = [
   {
+    name: "주식회사 비전커뮤니케이션",
+    period: "2022.02 – 2025.12",
+    type: "experience",
+    color: "from-amber-500/20 to-orange-500/20",
+    borderColor: "border-amber-500/30",
+  },
+  {
     name: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
     period: "2025.11 – 2026.01",
     type: "experience",
@@ -16,6 +23,13 @@ const organizations = [
     type: "experience",
     color: "from-pink-500/20 to-orange-500/20",
     borderColor: "border-pink-500/30",
+  },
+  {
+    name: "법무법인 선정",
+    period: "2021.06 – 2021.07",
+    type: "experience",
+    color: "from-slate-500/20 to-zinc-500/20",
+    borderColor: "border-slate-500/30",
   },
   {
     name: "서울사이버대학교",
