@@ -1,8 +1,8 @@
 import profileImage from "@/assets/profile.jpg";
 import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Building2, Languages } from "lucide-react";
 
-// 조직 정보 (그룹화용)
-const organizations = [
+// 조직 정보 (그룹화용) - 경력
+const experienceOrganizations = [
   {
     name: "주식회사 비전커뮤니케이션",
     period: "2022.02 – 2025.12",
@@ -32,18 +32,22 @@ const organizations = [
     borderColor: "border-slate-500/30",
   },
   {
-    name: "서울사이버대학교",
-    period: "2023.03 - 2025.02",
-    type: "education",
-    color: "from-blue-500/20 to-cyan-500/20",
-    borderColor: "border-blue-500/30",
-  },
-  {
     name: "알파코",
     period: "2022.03 - 2022.12",
     type: "experience",
     color: "from-purple-500/20 to-indigo-500/20",
     borderColor: "border-purple-500/30",
+  },
+];
+
+// 조직 정보 (그룹화용) - 교육
+const educationOrganizations = [
+  {
+    name: "서울사이버대학교",
+    period: "2023.03 - 2025.02",
+    type: "education",
+    color: "from-blue-500/20 to-cyan-500/20",
+    borderColor: "border-blue-500/30",
   },
   {
     name: "배화여자대학교",
