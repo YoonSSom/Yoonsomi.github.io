@@ -4,6 +4,13 @@ import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Buil
 // 조직 정보 (그룹화용)
 const organizations = [
   {
+    name: "주식회사 비전커뮤니케이션",
+    period: "2022.02 – 2025.12",
+    type: "experience",
+    color: "from-amber-500/20 to-orange-500/20",
+    borderColor: "border-amber-500/30",
+  },
+  {
     name: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
     period: "2025.11 – 2026.01",
     type: "experience",
@@ -16,6 +23,13 @@ const organizations = [
     type: "experience",
     color: "from-pink-500/20 to-orange-500/20",
     borderColor: "border-pink-500/30",
+  },
+  {
+    name: "법무법인 선정",
+    period: "2021.06 – 2021.07",
+    type: "experience",
+    color: "from-slate-500/20 to-zinc-500/20",
+    borderColor: "border-slate-500/30",
   },
   {
     name: "서울사이버대학교",
@@ -125,6 +139,29 @@ const skillCategories = [
 
 // 경력/교육 타임라인
 const timeline = [
+  {
+    period: "2022.02 – 2025.12 (3년 11개월)",
+    organization: "주식회사 비전커뮤니케이션",
+    title: "홈플러스 남양주진접점 / 매니저",
+    type: "experience",
+    details: [
+      "역할: 매니저 (기타)",
+      "고객 행동 데이터 기반 맞춤형 제품 추천",
+      "VOC 및 고객 반응 기반 판매 전략 개선",
+      "VMD 및 프로모션 조정을 통한 구매 전환율 제고",
+    ],
+  },
+  {
+    period: "2021.06 – 2021.07 (2개월)",
+    organization: "법무법인 선정",
+    title: "법무지원팀 / 인턴",
+    type: "experience",
+    details: [
+      "역할: 법무지원팀 인턴",
+      "법률 문서 및 사건 자료의 체계적 분류",
+      "비정형 데이터 기반 정보 추출 및 지원",
+    ],
+  },
   {
     period: "2025.11 – 2026.01",
     organization: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
