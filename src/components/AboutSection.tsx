@@ -506,11 +506,11 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* 조직별 그룹화된 타임라인 */}
+            {/* 경력 타임라인 */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">경력 & 교육</h3>
+              <h3 className="text-lg font-semibold mb-4">경력</h3>
               <div className="space-y-6">
-                {organizations.map((org) => {
+                {experienceOrganizations.map((org) => {
                   const orgItems = timeline.filter((item) => item.organization === org.name);
                   if (orgItems.length === 0) return null;
                   
@@ -521,27 +521,67 @@ const AboutSection = () => {
                     >
                       {/* 조직 헤더 */}
                       <div className="p-4 border-b border-border/50 flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                          org.type === "education" 
-                            ? "bg-primary/20" 
-                            : "bg-accent/20"
-                        }`}>
-                          {org.type === "education" ? (
-                            <GraduationCap className="w-5 h-5 text-primary" />
-                          ) : (
-                            <Building2 className="w-5 h-5 text-accent" />
-                          )}
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-accent/20">
+                          <Building2 className="w-5 h-5 text-accent" />
                         </div>
                         <div>
                           <h4 className="font-semibold">{org.name}</h4>
                           <p className="text-xs text-muted-foreground">{org.period}</p>
                         </div>
-                        <span className={`ml-auto text-xs px-2 py-1 rounded-full ${
-                          org.type === "education" 
-                            ? "bg-primary/20 text-primary" 
-                            : "bg-accent/20 text-accent"
-                        }`}>
-                          {org.type === "education" ? "교육" : "경력"}
+                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-accent/20 text-accent">
+                          경력
+                        </span>
+                      </div>
+                      
+                      {/* 해당 조직의 항목들 */}
+                      <div className="p-4 space-y-4">
+                        {orgItems.map((item, idx) => (
+                          <div key={idx} className="relative pl-4 border-l-2 border-border/50">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-xs font-medium text-primary">{item.title}</span>
+                              <span className="text-xs text-muted-foreground">| {item.period}</span>
+                            </div>
+                            <ul className="space-y-1">
+                              {item.details.map((detail, dIdx) => (
+                                <li key={dIdx} className="text-sm text-muted-foreground flex items-start gap-2">
+                                  <span className="text-primary/60 mt-1">•</span>
+                                  <span>{detail}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 교육 타임라인 */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">교육</h3>
+              <div className="space-y-6">
+                {educationOrganizations.map((org) => {
+                  const orgItems = timeline.filter((item) => item.organization === org.name);
+                  if (orgItems.length === 0) return null;
+                  
+                  return (
+                    <div
+                      key={org.name}
+                      className={`rounded-2xl border ${org.borderColor} bg-gradient-to-br ${org.color} overflow-hidden`}
+                    >
+                      {/* 조직 헤더 */}
+                      <div className="p-4 border-b border-border/50 flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-primary/20">
+                          <GraduationCap className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold">{org.name}</h4>
+                          <p className="text-xs text-muted-foreground">{org.period}</p>
+                        </div>
+                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-primary/20 text-primary">
+                          교육
                         </span>
                       </div>
                       
