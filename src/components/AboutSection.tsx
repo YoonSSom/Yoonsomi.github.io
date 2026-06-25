@@ -1,47 +1,33 @@
 import profileImage from "@/assets/profile.jpg";
 import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Building2, Languages } from "lucide-react";
 
-// 조직 정보 (그룹화용) - 경력
-const experienceOrganizations = [
-  {
-    name: "주식회사 비전커뮤니케이션",
-    period: "2022.02 – 2025.12",
-    type: "experience",
-    color: "from-amber-500/20 to-orange-500/20",
-    borderColor: "border-amber-500/30",
-  },
-  {
-    name: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
-    period: "2025.11 – 2026.01",
-    type: "experience",
-    color: "from-sky-500/20 to-blue-500/20",
-    borderColor: "border-sky-500/30",
-  },
-  {
-    name: "디저트 린(Dessert Lyn)",
-    period: "2023.10 - 현재",
-    type: "experience",
-    color: "from-pink-500/20 to-orange-500/20",
-    borderColor: "border-pink-500/30",
-  },
-  {
-    name: "법무법인 선정",
-    period: "2021.06 – 2021.07",
-    type: "experience",
-    color: "from-slate-500/20 to-zinc-500/20",
-    borderColor: "border-slate-500/30",
-  },
-  {
-    name: "알파코",
-    period: "2022.03 - 2022.12",
-    type: "experience",
-    color: "from-purple-500/20 to-indigo-500/20",
-    borderColor: "border-purple-500/30",
-  },
-];
+// 기간 문자열에서 시작 날짜를 숫자로 변환 (YYYYMM)
+const parseStartDate = (period: string): number => {
+  const ymMatch = period.match(/(\d{4})\.(\d{1,2})/);
+  if (ymMatch) {
+    return parseInt(ymMatch[1]) * 100 + parseInt(ymMatch[2]);
+  }
+  const halfMatch = period.match(/(\d{4})\s+(상반기|하반기)/);
+  if (halfMatch) {
+    const year = parseInt(halfMatch[1]);
+    return halfMatch[2] === "상반기" ? year * 100 + 3 : year * 100 + 9;
+  }
+  const yearMatch = period.match(/(\d{4})/);
+  if (yearMatch) {
+    return parseInt(yearMatch[1]) * 100;
+  }
+  return 0;
+};
 
-// 조직 정보 (그룹화용) - 교육
-const educationOrganizations = [
+// 조직 정보 (그룹화용) - 학력
+const academicOrganizations = [
+  {
+    name: "배화여자대학교",
+    period: "2020.02 - 2022.02",
+    type: "education",
+    color: "from-emerald-500/20 to-teal-500/20",
+    borderColor: "border-emerald-500/30",
+  },
   {
     name: "서울사이버대학교",
     period: "2023.03 - 2025.02",
@@ -49,12 +35,48 @@ const educationOrganizations = [
     color: "from-blue-500/20 to-cyan-500/20",
     borderColor: "border-blue-500/30",
   },
+];
+
+// 조직 정보 (그룹화용) - 교육
+const trainingOrganizations = [
   {
-    name: "배화여자대학교",
-    period: "2020.02 - 2022.02",
-    type: "education",
-    color: "from-emerald-500/20 to-teal-500/20",
-    borderColor: "border-emerald-500/30",
+    name: "알파코",
+    period: "2022.03 - 2022.12",
+    type: "training",
+    color: "from-purple-500/20 to-indigo-500/20",
+    borderColor: "border-purple-500/30",
+  },
+  {
+    name: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
+    period: "2025.11 - 2026.01",
+    type: "training",
+    color: "from-sky-500/20 to-blue-500/20",
+    borderColor: "border-sky-500/30",
+  },
+];
+
+// 조직 정보 (그룹화용) - 경력
+const careerOrganizations = [
+  {
+    name: "법무법인 선정",
+    period: "2021.06 - 2021.07",
+    type: "experience",
+    color: "from-slate-500/20 to-zinc-500/20",
+    borderColor: "border-slate-500/30",
+  },
+  {
+    name: "주식회사 비전커뮤니케이션",
+    period: "2022.02 - 2025.12",
+    type: "experience",
+    color: "from-amber-500/20 to-orange-500/20",
+    borderColor: "border-amber-500/30",
+  },
+  {
+    name: "디저트 린(Dessert Lyn)",
+    period: "2023.10 - 현재",
+    type: "experience",
+    color: "from-pink-500/20 to-orange-500/20",
+    borderColor: "border-pink-500/30",
   },
 ];
 
