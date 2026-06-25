@@ -528,13 +528,13 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* 학력 타임라인 */}
+            {/* 경력 타임라인 */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">학력</h3>
+              <h3 className="text-lg font-semibold mb-4">경력</h3>
               <div className="space-y-6">
-                {[...academicOrganizations].sort((a, b) => parseStartDate(a.period) - parseStartDate(b.period)).map((org) => {
+                {[...careerOrganizations].sort((a, b) => parseStartDate(b.period) - parseStartDate(a.period)).map((org) => {
                   const orgItems = [...timeline.filter((item) => item.organization === org.name)].sort(
-                    (a, b) => parseStartDate(a.period) - parseStartDate(b.period)
+                    (a, b) => parseStartDate(b.period) - parseStartDate(a.period)
                   );
                   if (orgItems.length === 0) return null;
 
@@ -544,15 +544,15 @@ const AboutSection = () => {
                       className={`rounded-2xl border ${org.borderColor} bg-gradient-to-br ${org.color} overflow-hidden`}
                     >
                       <div className="p-4 border-b border-border/50 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-primary/20">
-                          <GraduationCap className="w-5 h-5 text-primary" />
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-accent/20">
+                          <Building2 className="w-5 h-5 text-accent" />
                         </div>
                         <div>
                           <h4 className="font-semibold">{org.name}</h4>
                           <p className="text-xs text-muted-foreground">{org.period}</p>
                         </div>
-                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-primary/20 text-primary">
-                          학력
+                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-accent/20 text-accent">
+                          경력
                         </span>
                       </div>
 
@@ -584,9 +584,9 @@ const AboutSection = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">교육</h3>
               <div className="space-y-6">
-                {[...trainingOrganizations].sort((a, b) => parseStartDate(a.period) - parseStartDate(b.period)).map((org) => {
+                {[...trainingOrganizations].sort((a, b) => parseStartDate(b.period) - parseStartDate(a.period)).map((org) => {
                   const orgItems = [...timeline.filter((item) => item.organization === org.name)].sort(
-                    (a, b) => parseStartDate(a.period) - parseStartDate(b.period)
+                    (a, b) => parseStartDate(b.period) - parseStartDate(a.period)
                   );
                   if (orgItems.length === 0) return null;
 
@@ -632,13 +632,13 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* 경력 타임라인 */}
+            {/* 학력 타임라인 */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">경력</h3>
+              <h3 className="text-lg font-semibold mb-4">학력</h3>
               <div className="space-y-6">
-                {[...careerOrganizations].sort((a, b) => parseStartDate(a.period) - parseStartDate(b.period)).map((org) => {
+                {[...academicOrganizations].sort((a, b) => parseStartDate(b.period) - parseStartDate(a.period)).map((org) => {
                   const orgItems = [...timeline.filter((item) => item.organization === org.name)].sort(
-                    (a, b) => parseStartDate(a.period) - parseStartDate(b.period)
+                    (a, b) => parseStartDate(b.period) - parseStartDate(a.period)
                   );
                   if (orgItems.length === 0) return null;
 
@@ -648,15 +648,15 @@ const AboutSection = () => {
                       className={`rounded-2xl border ${org.borderColor} bg-gradient-to-br ${org.color} overflow-hidden`}
                     >
                       <div className="p-4 border-b border-border/50 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-accent/20">
-                          <Building2 className="w-5 h-5 text-accent" />
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-primary/20">
+                          <GraduationCap className="w-5 h-5 text-primary" />
                         </div>
                         <div>
                           <h4 className="font-semibold">{org.name}</h4>
                           <p className="text-xs text-muted-foreground">{org.period}</p>
                         </div>
-                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-accent/20 text-accent">
-                          경력
+                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-primary/20 text-primary">
+                          학력
                         </span>
                       </div>
 
