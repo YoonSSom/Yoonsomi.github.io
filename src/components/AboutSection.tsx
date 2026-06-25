@@ -1,47 +1,33 @@
 import profileImage from "@/assets/profile.jpg";
 import { GraduationCap, Briefcase, Award, Code2, Database, Palette, Target, Building2, Languages } from "lucide-react";
 
-// 조직 정보 (그룹화용) - 경력
-const experienceOrganizations = [
-  {
-    name: "주식회사 비전커뮤니케이션",
-    period: "2022.02 – 2025.12",
-    type: "experience",
-    color: "from-amber-500/20 to-orange-500/20",
-    borderColor: "border-amber-500/30",
-  },
-  {
-    name: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
-    period: "2025.11 – 2026.01",
-    type: "experience",
-    color: "from-sky-500/20 to-blue-500/20",
-    borderColor: "border-sky-500/30",
-  },
-  {
-    name: "디저트 린(Dessert Lyn)",
-    period: "2023.10 - 현재",
-    type: "experience",
-    color: "from-pink-500/20 to-orange-500/20",
-    borderColor: "border-pink-500/30",
-  },
-  {
-    name: "법무법인 선정",
-    period: "2021.06 – 2021.07",
-    type: "experience",
-    color: "from-slate-500/20 to-zinc-500/20",
-    borderColor: "border-slate-500/30",
-  },
-  {
-    name: "알파코",
-    period: "2022.03 - 2022.12",
-    type: "experience",
-    color: "from-purple-500/20 to-indigo-500/20",
-    borderColor: "border-purple-500/30",
-  },
-];
+// 기간 문자열에서 시작 날짜를 숫자로 변환 (YYYYMM)
+const parseStartDate = (period: string): number => {
+  const ymMatch = period.match(/(\d{4})\.(\d{1,2})/);
+  if (ymMatch) {
+    return parseInt(ymMatch[1]) * 100 + parseInt(ymMatch[2]);
+  }
+  const halfMatch = period.match(/(\d{4})\s+(상반기|하반기)/);
+  if (halfMatch) {
+    const year = parseInt(halfMatch[1]);
+    return halfMatch[2] === "상반기" ? year * 100 + 3 : year * 100 + 9;
+  }
+  const yearMatch = period.match(/(\d{4})/);
+  if (yearMatch) {
+    return parseInt(yearMatch[1]) * 100;
+  }
+  return 0;
+};
 
-// 조직 정보 (그룹화용) - 교육
-const educationOrganizations = [
+// 조직 정보 (그룹화용) - 학력
+const academicOrganizations = [
+  {
+    name: "배화여자대학교",
+    period: "2020.02 - 2022.02",
+    type: "education",
+    color: "from-emerald-500/20 to-teal-500/20",
+    borderColor: "border-emerald-500/30",
+  },
   {
     name: "서울사이버대학교",
     period: "2023.03 - 2025.02",
@@ -49,12 +35,48 @@ const educationOrganizations = [
     color: "from-blue-500/20 to-cyan-500/20",
     borderColor: "border-blue-500/30",
   },
+];
+
+// 조직 정보 (그룹화용) - 교육
+const trainingOrganizations = [
   {
-    name: "배화여자대학교",
-    period: "2020.02 - 2022.02",
-    type: "education",
-    color: "from-emerald-500/20 to-teal-500/20",
-    borderColor: "border-emerald-500/30",
+    name: "알파코",
+    period: "2022.03 - 2022.12",
+    type: "training",
+    color: "from-purple-500/20 to-indigo-500/20",
+    borderColor: "border-purple-500/30",
+  },
+  {
+    name: "AI 비대면 수술 동의서 전자서명 서비스(KT)",
+    period: "2025.11 - 2026.01",
+    type: "training",
+    color: "from-sky-500/20 to-blue-500/20",
+    borderColor: "border-sky-500/30",
+  },
+];
+
+// 조직 정보 (그룹화용) - 경력
+const careerOrganizations = [
+  {
+    name: "법무법인 선정",
+    period: "2021.06 - 2021.07",
+    type: "experience",
+    color: "from-slate-500/20 to-zinc-500/20",
+    borderColor: "border-slate-500/30",
+  },
+  {
+    name: "주식회사 비전커뮤니케이션",
+    period: "2022.02 - 2025.12",
+    type: "experience",
+    color: "from-amber-500/20 to-orange-500/20",
+    borderColor: "border-amber-500/30",
+  },
+  {
+    name: "디저트 린(Dessert Lyn)",
+    period: "2023.10 - 현재",
+    type: "experience",
+    color: "from-pink-500/20 to-orange-500/20",
+    borderColor: "border-pink-500/30",
   },
 ];
 
@@ -506,34 +528,34 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* 경력 타임라인 */}
+            {/* 학력 타임라인 */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">경력</h3>
+              <h3 className="text-lg font-semibold mb-4">학력</h3>
               <div className="space-y-6">
-                {experienceOrganizations.map((org) => {
-                  const orgItems = timeline.filter((item) => item.organization === org.name);
+                {[...academicOrganizations].sort((a, b) => parseStartDate(a.period) - parseStartDate(b.period)).map((org) => {
+                  const orgItems = [...timeline.filter((item) => item.organization === org.name)].sort(
+                    (a, b) => parseStartDate(a.period) - parseStartDate(b.period)
+                  );
                   if (orgItems.length === 0) return null;
-                  
+
                   return (
                     <div
                       key={org.name}
                       className={`rounded-2xl border ${org.borderColor} bg-gradient-to-br ${org.color} overflow-hidden`}
                     >
-                      {/* 조직 헤더 */}
                       <div className="p-4 border-b border-border/50 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-accent/20">
-                          <Building2 className="w-5 h-5 text-accent" />
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-primary/20">
+                          <GraduationCap className="w-5 h-5 text-primary" />
                         </div>
                         <div>
                           <h4 className="font-semibold">{org.name}</h4>
                           <p className="text-xs text-muted-foreground">{org.period}</p>
                         </div>
-                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-accent/20 text-accent">
-                          경력
+                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-primary/20 text-primary">
+                          학력
                         </span>
                       </div>
-                      
-                      {/* 해당 조직의 항목들 */}
+
                       <div className="p-4 space-y-4">
                         {orgItems.map((item, idx) => (
                           <div key={idx} className="relative pl-4 border-l-2 border-border/50">
@@ -562,30 +584,82 @@ const AboutSection = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">교육</h3>
               <div className="space-y-6">
-                {educationOrganizations.map((org) => {
-                  const orgItems = timeline.filter((item) => item.organization === org.name);
+                {[...trainingOrganizations].sort((a, b) => parseStartDate(a.period) - parseStartDate(b.period)).map((org) => {
+                  const orgItems = [...timeline.filter((item) => item.organization === org.name)].sort(
+                    (a, b) => parseStartDate(a.period) - parseStartDate(b.period)
+                  );
                   if (orgItems.length === 0) return null;
-                  
+
                   return (
                     <div
                       key={org.name}
                       className={`rounded-2xl border ${org.borderColor} bg-gradient-to-br ${org.color} overflow-hidden`}
                     >
-                      {/* 조직 헤더 */}
                       <div className="p-4 border-b border-border/50 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-primary/20">
-                          <GraduationCap className="w-5 h-5 text-primary" />
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-accent/20">
+                          <Code2 className="w-5 h-5 text-accent" />
                         </div>
                         <div>
                           <h4 className="font-semibold">{org.name}</h4>
                           <p className="text-xs text-muted-foreground">{org.period}</p>
                         </div>
-                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-primary/20 text-primary">
+                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-accent/20 text-accent">
                           교육
                         </span>
                       </div>
-                      
-                      {/* 해당 조직의 항목들 */}
+
+                      <div className="p-4 space-y-4">
+                        {orgItems.map((item, idx) => (
+                          <div key={idx} className="relative pl-4 border-l-2 border-border/50">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-xs font-medium text-primary">{item.title}</span>
+                              <span className="text-xs text-muted-foreground">| {item.period}</span>
+                            </div>
+                            <ul className="space-y-1">
+                              {item.details.map((detail, dIdx) => (
+                                <li key={dIdx} className="text-sm text-muted-foreground flex items-start gap-2">
+                                  <span className="text-primary/60 mt-1">•</span>
+                                  <span>{detail}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 경력 타임라인 */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">경력</h3>
+              <div className="space-y-6">
+                {[...careerOrganizations].sort((a, b) => parseStartDate(a.period) - parseStartDate(b.period)).map((org) => {
+                  const orgItems = [...timeline.filter((item) => item.organization === org.name)].sort(
+                    (a, b) => parseStartDate(a.period) - parseStartDate(b.period)
+                  );
+                  if (orgItems.length === 0) return null;
+
+                  return (
+                    <div
+                      key={org.name}
+                      className={`rounded-2xl border ${org.borderColor} bg-gradient-to-br ${org.color} overflow-hidden`}
+                    >
+                      <div className="p-4 border-b border-border/50 flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-accent/20">
+                          <Building2 className="w-5 h-5 text-accent" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold">{org.name}</h4>
+                          <p className="text-xs text-muted-foreground">{org.period}</p>
+                        </div>
+                        <span className="ml-auto text-xs px-2 py-1 rounded-full bg-accent/20 text-accent">
+                          경력
+                        </span>
+                      </div>
+
                       <div className="p-4 space-y-4">
                         {orgItems.map((item, idx) => (
                           <div key={idx} className="relative pl-4 border-l-2 border-border/50">
