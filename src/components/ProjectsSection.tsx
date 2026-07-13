@@ -12,6 +12,8 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import PdfViewer from "@/components/PdfViewer";
+import surgicalConsentPdf from "@/assets/Surgical_Consent.pdf.asset.json";
 
 
 interface Project {
@@ -1243,7 +1245,7 @@ const ProjectsSection = ({ hideHeader = false }: ProjectsSectionProps = {}) => {
               <DialogDescription className="sr-only">{selectedProject.summary}</DialogDescription>
 
               {selectedProject.id === "todosign" ? (
-                <TodoSignDetail project={selectedProject} />
+                <PdfViewer file={surgicalConsentPdf.url} />
               ) : selectedProject.id === "commercial" ? (
                 <DessertLynDetail project={selectedProject} />
               ) : (
