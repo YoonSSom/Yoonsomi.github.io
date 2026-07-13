@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 
 // Configure pdf.js worker (bundled locally)
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -21,6 +21,9 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
   const [pageSize, setPageSize] = useState<{ w: number; h: number } | null>(null);
   const [containerSize, setContainerSize] = useState<{ w: number; h: number }>({ w: 0, h: 0 });
   const [fadeIn, setFadeIn] = useState(true);
+  const [docLoaded, setDocLoaded] = useState(false);
+  const [loadProgress, setLoadProgress] = useState(0); // 0-100
+  const [pageRendered, setPageRendered] = useState(false);
 
   // Track container size
   useEffect(() => {
@@ -36,6 +39,7 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
   // Fade animation on page change
   useEffect(() => {
     setFadeIn(false);
+    setPageRendered(false);
     const t = setTimeout(() => setFadeIn(true), 30);
     return () => clearTimeout(t);
   }, [pageNumber]);
@@ -58,8 +62,19 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
         >
           <Document
             file={file}
-            onLoadSuccess={({ numPages: n }) => setNumPages(n)}
-            loading={<div className="text-sm text-muted-foreground">Loading PDF…</div>}
+            onLoadStart={() => {
+              setDocLoaded(false);
+              setLoadProgress(0);
+            }}
+            onLoadProgress={({ loaded, total }) => {
+              if (total) setLoadProgress(Math.min(100, Math.round((loaded / total) * 100)));
+            }}
+            onLoadSuccess={({ numPages: n }) => {
+              setNumPages(n);
+              setLoadProgress(100);
+              setDocLoaded(true);
+            }}
+            loading={<div className="w-px h-px" />}
             error={<div className="text-sm text-destructive">Failed to load PDF</div>}
           >
             {containerSize.w > 0 && (
@@ -72,11 +87,35 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
                   const vp = p.getViewport({ scale: 1 });
                   setPageSize({ w: vp.width, h: vp.height });
                 }}
+                onRenderSuccess={() => setPageRendered(true)}
+                loading={<div className="w-px h-px" />}
               />
             )}
           </Document>
         </div>
       </div>
+
+      {/* Loading overlay: document download progress + page render spinner */}
+      {(!docLoaded || !pageRendered) && (
+        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-4 bg-neutral-900/70 backdrop-blur-sm pointer-events-none">
+          <Loader2 className="w-8 h-8 text-white/90 animate-spin" />
+          {!docLoaded ? (
+            <div className="flex flex-col items-center gap-2 w-56">
+              <div className="w-full h-1.5 bg-white/15 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-white/90 transition-all duration-150 ease-out"
+                  style={{ width: `${loadProgress}%` }}
+                />
+              </div>
+              <div className="text-xs text-white/80 tabular-nums">
+                PDF 불러오는 중… {loadProgress}%
+              </div>
+            </div>
+          ) : (
+            <div className="text-xs text-white/80">페이지 렌더링 중…</div>
+          )}
+        </div>
+      )}
 
       {/* Left click zone */}
       <button
