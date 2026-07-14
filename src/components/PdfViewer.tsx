@@ -85,7 +85,6 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
                   const vp = p.getViewport({ scale: 1 });
                   setPageSize({ w: vp.width, h: vp.height });
                 }}
-                onRenderSuccess={() => setPageRendered(true)}
                 loading={<div className="w-px h-px" />}
               />
             )}
