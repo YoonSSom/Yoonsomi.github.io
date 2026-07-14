@@ -23,7 +23,6 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
   const [fadeIn, setFadeIn] = useState(true);
   const [docLoaded, setDocLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0); // 0-100
-  const [pageRendered, setPageRendered] = useState(false);
 
   // Track container size
   useEffect(() => {
