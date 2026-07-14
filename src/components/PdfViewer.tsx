@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
@@ -23,6 +23,19 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
   const [fadeIn, setFadeIn] = useState(true);
   const [docLoaded, setDocLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0); // 0-100
+
+  // Enable HTTP Range requests + lazy fetching so only the bytes needed for
+  // the current page are downloaded on first load (dramatically faster on
+  // large PDFs served from a CDN that supports Range requests).
+  const fileParam = useMemo(
+    () => ({
+      url: file,
+      disableAutoFetch: true,
+      disableStream: false,
+      rangeChunkSize: 65536,
+    }),
+    [file],
+  );
 
   // Track container size
   useEffect(() => {
@@ -59,7 +72,7 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
           className={`transition-opacity duration-150 ${fadeIn ? "opacity-100" : "opacity-0"}`}
         >
           <Document
-            file={file}
+            file={fileParam}
             onLoadStart={() => {
               setDocLoaded(false);
               setLoadProgress(0);
