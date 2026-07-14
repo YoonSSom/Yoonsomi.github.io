@@ -39,8 +39,7 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
   // Fade animation on page change
   useEffect(() => {
     setFadeIn(false);
-    setPageRendered(false);
-    const t = setTimeout(() => setFadeIn(true), 30);
+    const t = setTimeout(() => setFadeIn(true), 20);
     return () => clearTimeout(t);
   }, [pageNumber]);
 
