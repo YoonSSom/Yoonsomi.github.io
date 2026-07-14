@@ -23,7 +23,6 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
   const [fadeIn, setFadeIn] = useState(true);
   const [docLoaded, setDocLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0); // 0-100
-  const [pageRendered, setPageRendered] = useState(false);
 
   // Track container size
   useEffect(() => {
@@ -39,8 +38,7 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
   // Fade animation on page change
   useEffect(() => {
     setFadeIn(false);
-    setPageRendered(false);
-    const t = setTimeout(() => setFadeIn(true), 30);
+    const t = setTimeout(() => setFadeIn(true), 20);
     return () => clearTimeout(t);
   }, [pageNumber]);
 
@@ -58,7 +56,7 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
       {/* PDF page centered */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div
-          className={`transition-opacity duration-300 ${fadeIn ? "opacity-100" : "opacity-0"}`}
+          className={`transition-opacity duration-150 ${fadeIn ? "opacity-100" : "opacity-0"}`}
         >
           <Document
             file={file}
@@ -87,7 +85,6 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
                   const vp = p.getViewport({ scale: 1 });
                   setPageSize({ w: vp.width, h: vp.height });
                 }}
-                onRenderSuccess={() => setPageRendered(true)}
                 loading={<div className="w-px h-px" />}
               />
             )}
@@ -95,25 +92,21 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
         </div>
       </div>
 
-      {/* Loading overlay: document download progress + page render spinner */}
-      {(!docLoaded || !pageRendered) && (
+      {/* Loading overlay: document download progress only */}
+      {!docLoaded && (
         <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-4 bg-neutral-900/70 backdrop-blur-sm pointer-events-none">
           <Loader2 className="w-8 h-8 text-white/90 animate-spin" />
-          {!docLoaded ? (
-            <div className="flex flex-col items-center gap-2 w-56">
-              <div className="w-full h-1.5 bg-white/15 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-white/90 transition-all duration-150 ease-out"
-                  style={{ width: `${loadProgress}%` }}
-                />
-              </div>
-              <div className="text-xs text-white/80 tabular-nums">
-                PDF 불러오는 중… {loadProgress}%
-              </div>
+          <div className="flex flex-col items-center gap-2 w-56">
+            <div className="w-full h-1.5 bg-white/15 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-white/90 transition-all duration-100 ease-out"
+                style={{ width: `${loadProgress}%` }}
+              />
             </div>
-          ) : (
-            <div className="text-xs text-white/80">페이지 렌더링 중…</div>
-          )}
+            <div className="text-xs text-white/80 tabular-nums">
+              PDF 불러오는 중… {loadProgress}%
+            </div>
+          </div>
         </div>
       )}
 
