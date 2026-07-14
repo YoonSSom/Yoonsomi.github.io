@@ -56,7 +56,7 @@ const PdfViewer = ({ file }: PdfViewerProps) => {
       {/* PDF page centered */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div
-          className={`transition-opacity duration-300 ${fadeIn ? "opacity-100" : "opacity-0"}`}
+          className={`transition-opacity duration-150 ${fadeIn ? "opacity-100" : "opacity-0"}`}
         >
           <Document
             file={file}
